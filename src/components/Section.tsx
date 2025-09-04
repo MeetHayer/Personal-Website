@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
 
-export default function Section({ children, id }: { children: ReactNode; id?: string }) {
+export default function Section({ children, id, className }: { children: ReactNode; id?: string; className?: string }) {
   return (
-    <section id={id} className="py-16 md:py-24">
+    <section id={id} className={`py-16 md:py-24 ${className || ''}`}>
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

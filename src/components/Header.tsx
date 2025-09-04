@@ -14,8 +14,12 @@ const NavItem = ({ to, label }: { to: string; label: string }) => (
       }`
     }
   >
-    {label}
-    <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300 group-hover:w-full ${({ isActive }: { isActive: boolean }) => isActive ? 'w-full' : ''}`} />
+    {({ isActive }) => (
+      <>
+        {label}
+        <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300 group-hover:w-full ${isActive ? 'w-full' : ''}`} />
+      </>
+    )}
   </NavLink>
 )
 
