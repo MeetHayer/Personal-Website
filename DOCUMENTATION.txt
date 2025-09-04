@@ -151,39 +151,6 @@ npm run init         # Interactive content setup
 - **Bundle Analysis**: Vite's built-in bundle analyzer
 - **Caching Strategy**: Optimized asset caching
 
-## 📄 **Page-Specific Features**
-
-### **Home Page**
-- **Hero Section**: Gradient text with professional introduction
-- **Technical Skills**: Interactive skill showcase with 6 key technologies
-- **Contact Integration**: Direct email link instead of redundant contact page
-- **Project Highlights**: Three main navigation cards
-
-### **About Page**
-- **Education Section**: Academic credentials and achievements
-- **Experience Timeline**: Professional journey with detailed achievements
-- **Skills Categorization**: Programming, software, finance, and languages
-- **Leadership Programs**: Management Fellows and Bonner Scholars
-
-### **Projects Page**
-- **VBA Automation Suite**: Combined VBA projects with detailed achievements
-- **Oracle ERP Integration**: Financial analysis and forecasting tools
-- **Gift of Life Chapter**: Community impact and life-saving work
-- **Molecular Visualization**: Educational technology and 3D modeling
-- **Impact Statistics**: Quantified results and achievements
-
-### **Writing Page**
-- **Introduction Post**: Personal story from Punjab, India to DePauw University
-- **Passion Areas**: Travel, music, analytics, and financial modeling
-- **Professional Focus**: AI and technology in financial modeling
-- **Personal Touch**: Hobbies and interests integration
-
-### **Contact Page**
-- **Professional Form**: Clean contact form with validation
-- **Direct Contact Info**: Email, phone, and location
-- **Social Integration**: LinkedIn and GitHub links
-- **Availability Status**: Current internship and graduation timeline
-
 ## 🔧 **Customization & Extension**
 
 ### **Adding New Pages**
@@ -214,7 +181,6 @@ npm run init         # Interactive content setup
 
 ### **Hosting Options**
 - **Vercel**: Zero-config deployment with Git integration
-- **Netlify**: JAMstack hosting with form handling
 - **GitHub Pages**: Free hosting for public repositories
 - **Custom Server**: Node.js/Express deployment
 

@@ -31,7 +31,7 @@ export default function Header() {
       <div className="container flex items-center justify-between h-18">
         <Link 
           to="/" 
-          className="font-bold tracking-tight text-xl bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hover:from-primary-700 hover:to-accent-700 transition-all duration-300 dark:tesla-gradient-text dark:hover:tesla-gradient-text"
+          className="font-bold tracking-tight text-xl bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hover:from-primary-700 hover:to-accent-700 transition-all duration-300 dark:professional-gradient-text dark:hover:professional-gradient-text"
         >
           Manmeet Singh Hayer
         </Link>

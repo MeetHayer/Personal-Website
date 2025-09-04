@@ -25,7 +25,7 @@ export default function Home() {
                 </div>
                 
                 <h1 className="text-5xl lg:text-7xl font-bold tracking-tight">
-                  <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent dark:tesla-gradient-text">
+                  <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent dark:professional-gradient-text">
                     {data.name}
                   </span>
                 </h1>
@@ -209,7 +209,7 @@ export default function Home() {
           viewport={{ once: true }}
           className="text-center space-y-8"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent dark:tesla-gradient-text">
+          <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent dark:professional-gradient-text">
             Let's Connect
           </h2>
           
