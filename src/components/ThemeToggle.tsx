@@ -38,7 +38,7 @@ export default function ThemeToggle() {
         </span>
       </div>
       
-      {/* Tesla-inspired electric effect */}
+      {/* Electric effect overlay */}
       {dark && (
         <div className="absolute inset-0 bg-gradient-to-r from-electric-400/20 to-electric-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       )}

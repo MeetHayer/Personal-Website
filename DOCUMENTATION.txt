@@ -274,14 +274,14 @@ This project demonstrates mastery of:
 ## 📝 **Recent Updates**
 
 ### **Version 2.1 Changes - January 15, 2025**
-- **Enhanced Dark Mode**: Tesla-level professional dark mode with electric blue accents
-- **Improved Scroll Visibility**: Fixed content visibility issues for better recruiter experience
+- **Enhanced Dark Mode**: Professional dark mode with electric blue accents and improved contrast
+- **Improved Scroll Visibility**: Fixed content visibility issues for better user experience
 - **Contact Section Redesign**: Moved contact info to bottom of homepage with dedicated section
 - **Navigation Improvements**: Changed email button to contact page navigator
-- **Professional Color Palette**: Added Tesla-inspired electric blue and enhanced contrast ratios
+- **Professional Color Palette**: Added electric blue accents and enhanced contrast ratios
 - **Enhanced Glass Morphism**: Improved backdrop blur effects and transparency layers
 - **Better Text Contrast**: Enhanced readability with proper dark mode text colors
-- **Animated Theme Toggle**: Professional theme switcher with Tesla-inspired effects
+- **Animated Theme Toggle**: Professional theme switcher with smooth animations
 
 ### **Version 2.0 Changes**
 - **Removed Command Palette**: Simplified navigation for better UX

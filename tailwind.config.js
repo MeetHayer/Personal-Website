@@ -55,7 +55,7 @@ export default {
           900: '#134e4a',
           950: '#042f2e', // New darker shade
         },
-        // Tesla-inspired electric blue for highlights
+        // Electric blue for highlights
         electric: {
           50: '#eff6ff',
           100: '#dbeafe',
