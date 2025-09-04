@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+html.dark .bg-background { background: #0f172a; }
+html.dark .text-foreground { color: #f8fafc; }
+html.dark .bg-card { background: #1e293b; }
+html.dark .bg-muted { background: #334155; }
+
+/* Reusable utilities */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply bg-card border border-border rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm;
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border hover:shadow-lg transition-all duration-300 font-medium;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-primary-500 to-primary-600 text-white border-primary-500 hover:from-primary-600 hover:to-primary-700 hover:shadow-primary-500/25;
+}
+
+.btn-secondary {
+  @apply bg-gradient-to-r from-secondary-500 to-secondary-600 text-white border-secondary-500 hover:from-secondary-600 hover:to-secondary-700;
+}
+
+.badge {
+  @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm border border-border bg-gradient-to-r from-primary-50 to-accent-50 text-primary-700;
+}
+
+.prose-custom {
+  @apply prose prose-neutral max-w-none;
+}
+
+/* Custom gradient backgrounds */
+.hero-bg {
+  background: linear-gradient(135deg, #0ea5e9 0%, #64748b 50%, #14b8a6 100%);
+}
+
+.glass-effect {
+  @apply backdrop-blur-md bg-white/80 border border-white/20;
+}
+
+html.dark .glass-effect {
+  @apply bg-slate-900/80 border-slate-700/20;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-primary-400 to-primary-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-primary-500 to-primary-700;
+}
+
+/* Animation utilities */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

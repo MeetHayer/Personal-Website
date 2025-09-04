@@ -1,0 +1,153 @@
+{
+  "name": "Manmeet Singh Hayer",
+  "tagline": "Finance & Computer Science Student | Data Analytics & Automation Specialist",
+  "bio": "Passionate Finance and Computer Science student at DePauw University with expertise in data analytics, automation, and financial modeling. Experienced in VBA, Python, and various financial software tools. Proven track record of improving operational efficiency through automation and data-driven insights.",
+  "email": "manmeethayer_2026@depauw.edu",
+  "phone": "765-712-2527",
+  "resumeUrl": "",
+  "location": "Greencastle, IN",
+  "education": {
+    "degree": "Bachelor of Arts: Finance & Computer Science",
+    "school": "DePauw University",
+    "graduation": "May 2026",
+    "gpa": "3.65/4.0",
+    "awards": ["Dean's List (Fall 2022, Spring 2023, Fall 2023, Spring 2025)", "Bloomberg BMC Certificate"]
+  },
+  "skills": {
+    "programming": ["Java", "Python", "C++", "VBA", "Git"],
+    "software": ["Microsoft Office - Excel", "Tableau", "BlueJ", "VS Code", "Blender", "SQL", "Stata", "Oracle EPM", "Anaplan", "SmartView", "Power BI", "Coupa", "Transcend"],
+    "languages": ["English", "Hindi", "Punjabi"],
+    "finance": ["Financial Modeling", "DCF Analysis", "Portfolio Management", "Investment Analysis", "Corporate Finance", "Financial Accounting"]
+  },
+  "experience": [
+    {
+      "title": "FP&A Intern",
+      "company": "ABM Industries",
+      "location": "Atlanta, GA",
+      "period": "June 2025 – July 2025",
+      "description": "Designed and launched VBA-based macro tools, analyzed FY26 labor budgets across 160+ accounts, and learned multiple financial software platforms within 3 weeks.",
+      "achievements": [
+        "Increased task efficiency by over 40% through VBA automation",
+        "Analyzed $200M+ annual revenue across West region accounts",
+        "Completed 52-week comparisons in just 2 days using Excel and VBA"
+      ]
+    },
+    {
+      "title": "PE Intern",
+      "company": "Founders Mosaic Partners LLC",
+      "location": "Indianapolis, IN",
+      "period": "August 2024 – December 2024",
+      "description": "Reconciled $1M+ AR/AP accounts, automated shipment logging, and researched 250+ manufacturing companies for acquisition opportunities.",
+      "achievements": [
+        "Reduced daily processing time by over 50% through VBA automation",
+        "Generated 10+ new opportunities in under two months",
+        "Improved revenue by 5-10% per part for largest customers"
+      ]
+    },
+    {
+      "title": "Campus Ambassador",
+      "company": "Gift of Life",
+      "location": "Boca Raton, FL",
+      "period": "February 2023 – April 2024",
+      "description": "Led stem cell donor recruitment efforts and managed campus chapter operations.",
+      "achievements": [
+        "Added 150+ potential donors to national registry in <6 months",
+        "Started DePauw chapter and met 100 new swab goal in 4 weeks",
+        "Facilitated first-ever match-transplant process with DePauw student"
+      ]
+    },
+    {
+      "title": "Research Assistant",
+      "company": "Department of Chemistry and Biochemistry, DePauw University",
+      "location": "Greencastle, IN",
+      "period": "June 2024 – July 2024",
+      "description": "Created e-book for Organic Chemistry course using molecular drawing applications and 3D visualization software.",
+      "achievements": [
+        "Gained proficiency in ChemDraw, Avogadro, and Blender in <1 week",
+        "Created educational videos depicting molecular properties and movements"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "VBA Automation Suite",
+      "description": "Comprehensive Excel VBA automation solutions including workbook filtering, financial data analysis, and shipment logging systems. Built advanced macros with error handling, cross-file compatibility, and automated data processing workflows.",
+      "stack": ["VBA", "Excel", "Error Handling", "Data Processing"],
+      "achievements": [
+        "40% efficiency improvement in data filtering operations",
+        "Automated 52-week financial comparisons across 160+ accounts",
+        "50% reduction in daily shipment processing time",
+        "Processed $200M+ in financial data analysis"
+      ],
+      "codeUrl": "",
+      "demoUrl": ""
+    },
+    {
+      "title": "Oracle ERP & Excel Integration",
+      "description": "Developed integrated forecasting and analysis system combining Oracle EPM with Excel for comprehensive budget vs actual analysis. Created automated workflows for financial reporting and variance analysis.",
+      "stack": ["Oracle EPM", "Excel", "VBA", "Financial Modeling", "Anaplan"],
+      "achievements": [
+        "Integrated Oracle EPM with Excel for seamless data flow",
+        "Automated FY26 labor budget analysis across multiple regions",
+        "Reduced forecast vs actual analysis time by 75%",
+        "Generated comprehensive financial reports for 160+ accounts"
+      ],
+      "codeUrl": "",
+      "demoUrl": ""
+    },
+    {
+      "title": "Gift of Life Campus Chapter",
+      "description": "Founded and led DePauw University's Gift of Life chapter, organizing stem cell donor recruitment campaigns and facilitating the first successful transplant from a DePauw student donor.",
+      "stack": ["Project Management", "Marketing", "Community Outreach", "Event Planning"],
+      "achievements": [
+        "Added 150+ potential donors to national registry in <6 months",
+        "Met 100 new swab goal in just 4 weeks",
+        "Facilitated first-ever successful transplant from DePauw donor",
+        "Organized campus-wide awareness campaigns and events"
+      ],
+      "codeUrl": "",
+      "demoUrl": ""
+    },
+    {
+      "title": "Molecular Visualization E-book",
+      "description": "Created interactive educational e-book for Organic Chemistry with 3D molecular visualizations, animations, and comprehensive learning materials. Developed using advanced 3D modeling and video production techniques.",
+      "stack": ["Blender", "ChemDraw", "Avogadro", "Video Production", "Educational Design"],
+      "achievements": [
+        "Mastered 3D modeling software in <1 week",
+        "Created educational videos depicting molecular properties",
+        "Developed interactive learning materials for chemistry students",
+        "Produced high-quality 3D animations and visualizations"
+      ],
+      "codeUrl": "",
+      "demoUrl": ""
+    }
+  ],
+  "programs": [
+    {
+      "name": "Management Fellows Program",
+      "period": "August 2022 - Present",
+      "description": "Selective honors program integrating management and entrepreneurship with liberal arts. Served as Ambassador 2023-24.",
+      "achievements": ["Alumni engagement", "Budget allocation", "Strategic business analytics"]
+    },
+    {
+      "name": "Bonner Scholars Program",
+      "period": "August 2022 – Present",
+      "description": "Highly selective 4-year program providing extensive community service training and comprehensive financial aid.",
+      "achievements": ["Social impact focus", "Community service training", "Full financial aid"]
+    }
+  ],
+  "posts": [
+    {
+      "title": "Hello, I'm Manmeet",
+      "slug": "hello-im-manmeet",
+      "summary": "A brief introduction about my journey from Punjab, India, to DePauw University, and my passion for financial modeling, technology, and making a difference.",
+      "date": "2025-01-15",
+      "tags": ["introduction", "personal", "journey"]
+    }
+  ],
+  "socials": {
+    "LinkedIn": "https://www.linkedin.com/in/meethayer",
+    "GitHub": "https://github.com/meethayer",
+    "Email": "manmeethayer_2026@depauw.edu"
+  }
+}
