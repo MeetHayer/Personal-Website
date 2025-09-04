@@ -9,15 +9,15 @@ const NavItem = ({ to, label }: { to: string; label: string }) => (
     className={({ isActive }) =>
       `px-4 py-2 rounded-xl font-medium transition-all duration-300 relative group ${
         isActive 
-          ? 'text-primary-600 bg-primary-50 shadow-sm' 
-          : 'text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50'
+          ? 'text-primary-600 bg-primary-50 shadow-sm dark:text-electric-300 dark:bg-electric-500/20 dark:shadow-electric-500/20' 
+          : 'text-secondary-600 hover:text-primary-600 hover:bg-primary-50/50 dark:text-slate-300 dark:hover:text-electric-300 dark:hover:bg-electric-500/10'
       }`
     }
   >
     {({ isActive }) => (
       <>
         {label}
-        <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300 group-hover:w-full ${isActive ? 'w-full' : ''}`} />
+        <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 transition-all duration-300 group-hover:w-full dark:from-electric-500 dark:to-accent-400 ${isActive ? 'w-full' : ''}`} />
       </>
     )}
   </NavLink>
@@ -31,7 +31,7 @@ export default function Header() {
       <div className="container flex items-center justify-between h-18">
         <Link 
           to="/" 
-          className="font-bold tracking-tight text-xl bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hover:from-primary-700 hover:to-accent-700 transition-all duration-300"
+          className="font-bold tracking-tight text-xl bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hover:from-primary-700 hover:to-accent-700 transition-all duration-300 dark:tesla-gradient-text dark:hover:tesla-gradient-text"
         >
           Manmeet Singh Hayer
         </Link>

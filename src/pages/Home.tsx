@@ -19,22 +19,22 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="space-y-6"
               >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm font-medium">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm font-medium dark:from-electric-500/20 dark:to-accent-500/20 dark:text-electric-300 dark:border dark:border-electric-500/30">
                   <GraduationCap size={16} />
                   {data.education.degree} • {data.education.school}
                 </div>
                 
                 <h1 className="text-5xl lg:text-7xl font-bold tracking-tight">
-                  <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent dark:tesla-gradient-text">
                     {data.name}
                   </span>
                 </h1>
                 
-                <p className="text-xl lg:text-2xl text-secondary-600 max-w-2xl leading-relaxed">
+                <p className="text-xl lg:text-2xl text-secondary-600 max-w-2xl leading-relaxed dark:text-slate-300">
                   {data.tagline}
                 </p>
                 
-                <p className="text-lg text-secondary-500 max-w-3xl leading-relaxed">
+                <p className="text-lg text-secondary-500 max-w-3xl leading-relaxed dark:text-slate-400">
                   {data.bio}
                 </p>
               </motion.div>
@@ -49,35 +49,10 @@ export default function Home() {
                   View My Work
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a className="btn btn-secondary group" href={`mailto:${data.email}`}>
+                <Link className="btn btn-secondary group" to="/contact">
                   <Mail size={18} className="group-hover:scale-110 transition-transform" />
-                  Email Me
-                </a>
-              </motion.div>
-
-              {/* Contact Info */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-wrap gap-6 text-sm text-secondary-600"
-              >
-                <div className="flex items-center gap-2">
-                  <Mail size={16} className="text-primary-500" />
-                  <a href={`mailto:${data.email}`} className="hover:text-primary-600 transition-colors">
-                    {data.email}
-                  </a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone size={16} className="text-primary-500" />
-                  <a href={`tel:${data.phone}`} className="hover:text-primary-600 transition-colors">
-                    {data.phone}
-                  </a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin size={16} className="text-primary-500" />
-                  {data.location}
-                </div>
+                  Contact Me
+                </Link>
               </motion.div>
             </div>
 
@@ -221,6 +196,91 @@ export default function Home() {
                 </Link>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+      </Section>
+
+      {/* Contact Info Section */}
+      <Section id="contact-info" className="bg-gradient-to-br from-primary-50/50 to-accent-50/50 dark:from-slate-900/50 dark:to-slate-800/50">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center space-y-8"
+        >
+          <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent dark:tesla-gradient-text">
+            Let's Connect
+          </h2>
+          
+          <div className="max-w-4xl mx-auto">
+            <p className="text-lg text-secondary-600 dark:text-slate-300 mb-8">
+              Ready to discuss opportunities or collaborate on innovative projects? I'd love to hear from you.
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="card p-6 text-center hover:shadow-lg transition-all duration-300"
+              >
+                <Mail className="mx-auto mb-4 text-primary-500 dark:text-electric-400" size={32} />
+                <h3 className="font-semibold text-lg mb-2">Email</h3>
+                <a 
+                  href={`mailto:${data.email}`} 
+                  className="text-secondary-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-electric-300 transition-colors"
+                >
+                  {data.email}
+                </a>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="card p-6 text-center hover:shadow-lg transition-all duration-300"
+              >
+                <Phone className="mx-auto mb-4 text-primary-500 dark:text-electric-400" size={32} />
+                <h3 className="font-semibold text-lg mb-2">Phone</h3>
+                <a 
+                  href={`tel:${data.phone}`} 
+                  className="text-secondary-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-electric-300 transition-colors"
+                >
+                  {data.phone}
+                </a>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="card p-6 text-center hover:shadow-lg transition-all duration-300"
+              >
+                <MapPin className="mx-auto mb-4 text-primary-500 dark:text-electric-400" size={32} />
+                <h3 className="font-semibold text-lg mb-2">Location</h3>
+                <p className="text-secondary-600 dark:text-slate-300">
+                  {data.location}
+                </p>
+              </motion.div>
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="mt-8"
+            >
+              <Link className="btn btn-primary group" to="/contact">
+                <Mail size={18} className="group-hover:scale-110 transition-transform" />
+                Get In Touch
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </Section>

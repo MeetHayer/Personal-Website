@@ -15,10 +15,10 @@ export default function ProjectCard({ project }: { project: Project }) {
       <div className="space-y-6">
         {/* Header */}
         <div className="space-y-3">
-          <h3 className="text-2xl font-bold text-primary-700 group-hover:text-primary-600 transition-colors">
+          <h3 className="text-2xl font-bold text-primary-700 group-hover:text-primary-600 transition-colors dark:text-electric-300 dark:group-hover:text-electric-200">
             {project.title}
           </h3>
-          <p className="text-secondary-600 leading-relaxed text-lg">
+          <p className="text-secondary-600 leading-relaxed text-lg dark:text-slate-300">
             {project.description}
           </p>
         </div>
@@ -27,13 +27,13 @@ export default function ProjectCard({ project }: { project: Project }) {
         {project.achievements && project.achievements.length > 0 && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <Award className="text-accent-500" size={18} />
-              <h4 className="font-semibold text-accent-700">Key Achievements</h4>
+              <Award className="text-accent-500 dark:text-accent-400" size={18} />
+              <h4 className="font-semibold text-accent-700 dark:text-accent-300">Key Achievements</h4>
             </div>
             <ul className="space-y-2">
               {project.achievements.map((achievement, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm text-secondary-600">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent-500 mt-2 flex-shrink-0"></div>
+                <li key={index} className="flex items-start gap-2 text-sm text-secondary-600 dark:text-slate-400">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent-500 dark:bg-accent-400 mt-2 flex-shrink-0"></div>
                   <span>{achievement}</span>
                 </li>
               ))}
@@ -43,12 +43,12 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         {/* Tech Stack */}
         <div className="space-y-3">
-          <h4 className="font-semibold text-primary-700">Technologies Used</h4>
+          <h4 className="font-semibold text-primary-700 dark:text-electric-300">Technologies Used</h4>
           <div className="flex flex-wrap gap-2">
             {project.stack.map((tech) => (
               <span 
                 key={tech} 
-                className="badge bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 hover:from-primary-200 hover:to-accent-200 transition-all duration-300"
+                className="badge bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 hover:from-primary-200 hover:to-accent-200 transition-all duration-300 dark:from-electric-500/20 dark:to-accent-500/20 dark:text-electric-300 dark:border-electric-500/30 dark:hover:from-electric-500/30 dark:hover:to-accent-500/30"
               >
                 {tech}
               </span>
