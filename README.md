@@ -6,10 +6,13 @@ A sophisticated, production-ready personal portfolio website showcasing advanced
 
 - **React 18** with TypeScript for type-safe development
 - **Vite** for fast development and optimized builds
-- **Tailwind CSS** with custom design system
+- **Tailwind CSS** with custom design system and professional typography
 - **Framer Motion** for smooth animations and micro-interactions
-- **React Router v6** for client-side routing
+- **React Router v6** for client-side routing with scroll-to-top
 - **Glass Morphism** design with backdrop blur effects
+- **Interactive Course Showcase** with real resume data and department filtering
+- **Expandable Volunteer Experience** with postcard-style design
+- **Professional Typography** with 4 custom fonts (Inter, JetBrains Mono, Space Grotesk, Poppins)
 - **Responsive Design** with mobile-first approach
 - **Data-Driven Content** via JSON configuration
 - **SEO Optimized** with dynamic meta tags
@@ -39,21 +42,24 @@ npm run dev
 
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── Header.tsx      # Navigation with glass morphism
-│   ├── Footer.tsx      # Clean, minimal footer
-│   ├── Section.tsx     # Layout wrapper with animations
-│   ├── ThemeToggle.tsx # Dark/light mode switcher
-│   └── ProjectCard.tsx # Enhanced project showcase
-├── pages/              # Route components
-│   ├── Home.tsx        # Hero section with animations
-│   ├── About.tsx       # Professional experience timeline
-│   ├── Projects.tsx    # Portfolio showcase
-│   ├── Writing.tsx     # Blog with personal stories
-│   └── Contact.tsx     # Contact form and information
+├── components/              # Reusable UI components
+│   ├── Header.tsx          # Floating navigation with glass morphism
+│   ├── Footer.tsx          # Clean, minimal footer
+│   ├── Section.tsx         # Layout wrapper with animations
+│   ├── LightSwitchToggle.tsx # Vintage light switch theme toggle
+│   ├── ProjectCard.tsx     # Enhanced project showcase
+│   ├── CoursesBelt.tsx     # Interactive course showcase with filtering
+│   ├── ProjectCarsShowcase.tsx # Advanced floating project display
+│   └── FloatingProject.tsx # Project modal component
+├── pages/                  # Route components
+│   ├── Home.tsx            # Hero section with dynamic skills
+│   ├── About.tsx           # Professional experience + volunteer postcards
+│   ├── Projects.tsx        # Interactive project playground
+│   ├── Writing.tsx         # Blog with personal stories
+│   └── Contact.tsx         # Contact form with updated status
 ├── data/
-│   └── personal.json   # Centralized content management
-└── App.tsx             # Main app layout & routing
+│   └── personal.json       # Centralized content management
+└── App.tsx                 # Main app layout & routing
 ```
 
 ## 🎨 Customization
@@ -102,6 +108,22 @@ npm run init     # Interactive content setup
 ```
 
 ### Recent Updates - January 15, 2025
+
+#### Version 2.2 - Major UI/UX Improvements
+- ✅ **Interactive Course Showcase**: Replaced moving belt with professional course display using real resume data
+- ✅ **Clickable Department Filters**: Added filterable course categories (Finance, CS, Math, Business, Liberal Arts)
+- ✅ **Professional Course Navigation**: Play/pause controls, previous/next buttons, and progress indicators
+- ✅ **Typography Enhancement**: Added 4 professional fonts (Inter, JetBrains Mono, Space Grotesk, Poppins)
+- ✅ **Volunteer Experience Section**: Added expandable postcard-style volunteer positions on About page
+- ✅ **Content Updates**: Updated About page with detailed personal introduction, interests, and work focus
+- ✅ **Specializations Update**: Removed "Treasury Management", changed "AI Research & Learning" to "AI/ML", added "Equity Analysis"
+- ✅ **Contact Status Update**: Changed availability to "full-time opportunities" and "part-time leading to full-time"
+- ✅ **Navigation Fixes**: Fixed scroll-to-top on page changes and volunteer section linking
+- ✅ **Leadership Section Removal**: Removed "Leadership & Programs" section from About page
+- ✅ **Scroll-to-Top Implementation**: Added global scroll-to-top on route changes
+- ✅ **TypeScript Fixes**: Resolved all compilation errors for successful Vercel deployment
+
+#### Version 2.1 - Previous Updates
 - ✅ **Professional Dark Mode**: Enhanced dark mode with electric blue accents and improved contrast
 - ✅ **Better Scroll Visibility**: Fixed content visibility for improved user experience
 - ✅ **Contact Section Redesign**: Moved contact info to bottom with dedicated section
@@ -110,10 +132,6 @@ npm run init     # Interactive content setup
 - ✅ **Glass Morphism Effects**: Improved backdrop blur and transparency
 - ✅ **Text Contrast**: Enhanced readability with proper dark mode colors
 - ✅ **Theme Toggle**: Professional theme switcher with smooth animations
-- ✅ Fixed TypeScript IntrinsicAttributes errors
-- ✅ Enhanced Section component with className support
-- ✅ Improved Header navigation with proper prop handling
-- ✅ Optimized build process and error handling
 
 ## 📝 Documentation
 

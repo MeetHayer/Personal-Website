@@ -239,6 +239,19 @@ This project demonstrates mastery of:
 
 ## 📝 **Recent Updates**
 
+### **Version 2.2 Changes - January 15, 2025**
+- **Course Showcase Redesign**: Replaced problematic moving belt with interactive course display using real resume data
+- **Clickable Department Filters**: Added filterable course categories (Finance, CS, Math, Business, Liberal Arts)
+- **Professional Course Navigation**: Play/pause controls, previous/next buttons, and progress indicators
+- **Typography Enhancement**: Added 4 professional fonts (Inter, JetBrains Mono, Space Grotesk, Poppins)
+- **Volunteer Experience Section**: Added expandable postcard-style volunteer positions on About page
+- **Content Updates**: Updated About page with detailed personal introduction, interests, and work focus
+- **Specializations Update**: Removed "Treasury Management", changed "AI Research & Learning" to "AI/ML", added "Equity Analysis"
+- **Contact Status Update**: Changed availability to "full-time opportunities" and "part-time leading to full-time"
+- **Navigation Fixes**: Fixed scroll-to-top on page changes and volunteer section linking
+- **Leadership Section Removal**: Removed "Leadership & Programs" section from About page
+- **Scroll-to-Top Implementation**: Added global scroll-to-top on route changes
+
 ### **Version 2.1 Changes - January 15, 2025**
 - **Enhanced Dark Mode**: Professional dark mode with electric blue accents and improved contrast
 - **Improved Scroll Visibility**: Fixed content visibility issues for better user experience

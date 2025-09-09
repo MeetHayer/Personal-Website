@@ -77,7 +77,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               rel="noreferrer"
             >
               <ExternalLink size={18} className="group-hover/btn:translate-x-1 transition-transform" /> 
-              Live Demo
+              {project.title.includes("CAS Case Study") ? "Review our pricing solution" : "Live Demo"}
             </a>
           )}
           {!project.codeUrl && !project.demoUrl && (
