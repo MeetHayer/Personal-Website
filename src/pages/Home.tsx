@@ -1,10 +1,235 @@
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Code, Briefcase, GraduationCap, Award, Mail, Phone, MapPin, Database, TrendingUp, Zap } from 'lucide-react'
+import { ArrowRight, ArrowDown, Code, Briefcase, GraduationCap, Award, Mail, Phone, MapPin, Database, TrendingUp, Zap } from 'lucide-react'
 import data from '@/data/personal.json'
 import { useState, useEffect } from 'react'
 import CoursesBelt from '@/components/CoursesBelt'
+
+// Typewriter Text Component with Loop
+function TypewriterText() {
+  const [displayedText, setDisplayedText] = useState('')
+  const fullText = 'ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic'
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (currentIndex < fullText.length) {
+          setDisplayedText(prev => prev + fullText[currentIndex])
+          setCurrentIndex(prev => prev + 1)
+        } else {
+          // Wait a bit before starting to delete
+          setTimeout(() => setIsDeleting(true), 2000)
+        }
+      } else {
+        if (displayedText.length > 0) {
+          setDisplayedText(prev => prev.slice(0, -1))
+        } else {
+          // Reset for next cycle
+          setIsDeleting(false)
+          setCurrentIndex(0)
+        }
+      }
+    }, isDeleting ? 50 : 100) // Faster deletion
+
+    return () => clearTimeout(timeout)
+  }, [currentIndex, fullText, displayedText, isDeleting])
+
+  return (
+    <div className="text-lg text-secondary-600 dark:text-slate-300 font-mono">
+      {displayedText}
+      <span className="animate-pulse">|</span>
+    </div>
+  )
+}
+
+// Welcome Text Animation (letter by letter, gothic)
+function WelcomeText() {
+  const [displayedText, setDisplayedText] = useState('')
+  const fullText = 'Welcome, visitor'
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + fullText[currentIndex])
+        setCurrentIndex(prev => prev + 1)
+      }, 150) // Faster letter appearance
+
+      return () => clearTimeout(timeout)
+    }
+  }, [currentIndex, fullText])
+
+  return (
+    <div className="text-5xl lg:text-7xl font-bold font-rich tracking-wide">
+      <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+        {displayedText}
+        <span className="animate-pulse">|</span>
+      </span>
+    </div>
+  )
+}
+
+// Scratch-Off Motto Design
+function MottoText() {
+  const [isScratched, setIsScratched] = useState(false)
+  const [displayedText, setDisplayedText] = useState('')
+  const fullText = 'YOGOWYPI: You Only Get Out, What You Put In'
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [showWelcome, setShowWelcome] = useState(false)
+
+  useEffect(() => {
+    // Calculate when welcome text finishes: 15 characters * 150ms + 500ms buffer
+    const welcomeDuration = 15 * 150 + 500
+    const timer = setTimeout(() => setShowWelcome(true), welcomeDuration)
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Typewriter effect when scratched
+  useEffect(() => {
+    if (!isScratched) return
+
+    const timeout = setTimeout(() => {
+      if (currentIndex < fullText.length) {
+        setDisplayedText(prev => prev + fullText[currentIndex])
+        setCurrentIndex(prev => prev + 1)
+      }
+    }, 100) // 100ms per character
+
+    return () => clearTimeout(timeout)
+  }, [currentIndex, fullText, isScratched])
+
+  const handleScratch = () => {
+    if (!isScratched) {
+      setIsScratched(true)
+    }
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 15 }}
+      animate={{ 
+        opacity: showWelcome ? 1 : 0,
+        scale: showWelcome ? 1 : 0.9,
+        y: showWelcome ? 0 : 15
+      }}
+      transition={{ 
+        duration: 1,
+        ease: "easeOut"
+      }}
+      className="relative my-6"
+    >
+      {/* Royal Background - Theme Matched */}
+      <div className="relative bg-gradient-to-br from-slate-50 via-primary-50 to-accent-50 dark:from-slate-800/50 dark:via-primary-900/20 dark:to-accent-900/20 rounded-2xl p-6 shadow-2xl border border-primary-200/50 dark:border-primary-500/30 overflow-hidden">
+        {/* Elegant Border with Gradient */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-400/20 via-accent-400/20 to-primary-400/20 p-[1px]">
+          <div className="w-full h-full rounded-2xl bg-gradient-to-br from-slate-50 via-primary-50 to-accent-50 dark:from-slate-800/50 dark:via-primary-900/20 dark:to-accent-900/20"></div>
+        </div>
+        
+        {/* Main Content */}
+        <div className="relative z-10 text-center">
+          {!isScratched ? (
+            // Scratch-off Layer
+            <motion.div
+              initial={{ y: 8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="cursor-pointer group"
+              onClick={handleScratch}
+            >
+              {/* Scratch-off Surface */}
+              <div className="relative bg-gradient-to-br from-purple-200 via-violet-200 to-indigo-200 dark:from-purple-800 dark:via-violet-800 dark:to-indigo-800 rounded-lg p-4 shadow-inner">
+                {/* Scratch Pattern */}
+                <div className="absolute inset-0 opacity-30">
+                  <div className="w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12"></div>
+                  <div className="w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform skew-x-12"></div>
+                </div>
+                
+                {/* Text */}
+                <div className="relative z-10 text-lg font-semibold text-purple-800 dark:text-purple-200 font-heading tracking-wide group-hover:text-purple-900 dark:group-hover:text-purple-100 transition-colors">
+                  My Motto? <span className="text-sm opacity-75">*click to reveal*</span>
+                </div>
+                
+                {/* Hover Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+              </div>
+            </motion.div>
+          ) : (
+            // Revealed Content - Typewriter Effect
+            <motion.div
+              initial={{ y: 8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="text-xl lg:text-2xl font-bold text-primary-700 dark:text-primary-300 font-heading whitespace-nowrap overflow-hidden"
+            >
+                      <span className="text-blue-500 dark:text-blue-300">
+                {displayedText}
+                {currentIndex < fullText.length && <span className="animate-pulse">|</span>}
+              </span>
+            </motion.div>
+          )}
+          
+          {/* Decorative Line */}
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "80%" }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="h-0.5 bg-gradient-to-r from-transparent via-primary-400 to-transparent mx-auto mt-3"
+          ></motion.div>
+        </div>
+        
+        {/* Subtle Glow Effect */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary-200/10 via-accent-200/10 to-primary-200/10 dark:from-primary-500/5 dark:via-accent-500/5 dark:to-primary-500/5"></div>
+      </div>
+    </motion.div>
+  )
+}
+
+// Rotating Tagline Component
+function RotatingTagline() {
+  const taglines = [
+    'Data Analytics & Automation', 
+    'Business Strategy',
+    'Investment & Portfolio Analysis'
+  ]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [displayedText, setDisplayedText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const currentTagline = taglines[currentIndex]
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (displayedText.length < currentTagline.length) {
+          setDisplayedText(prev => prev + currentTagline[displayedText.length])
+        } else {
+          // Wait before deleting
+          setTimeout(() => setIsDeleting(true), 2000)
+        }
+      } else {
+        if (displayedText.length > 0) {
+          setDisplayedText(prev => prev.slice(0, -1))
+        } else {
+          // Move to next tagline
+          setIsDeleting(false)
+          setCurrentIndex(prev => (prev + 1) % taglines.length)
+        }
+      }
+    }, isDeleting ? 30 : 80) // Fast typing
+
+    return () => clearTimeout(timeout)
+  }, [displayedText, isDeleting, currentIndex, taglines])
+
+  return (
+    <div className="text-xl lg:text-2xl text-secondary-600 dark:text-slate-300 font-tech min-h-[2rem] flex items-center">
+      {displayedText}
+      <span className="animate-pulse">|</span>
+    </div>
+  )
+}
 
 // Dynamic Skills Component with Toggle
 function DynamicSkills() {
@@ -162,6 +387,33 @@ export default function Home() {
       {/* Hero Section */}
       <Section id="hero" className="relative overflow-hidden">
         <div className="absolute inset-0 hero-bg opacity-5"></div>
+        
+        {/* Small headshot in top left */}
+        <div className="absolute top-8 left-8 z-20">
+          <a 
+            href="https://your-vercel-url.vercel.app" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="block transition-transform hover:scale-105 duration-300"
+          >
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-200/50 shadow-lg">
+              <img 
+                src="/Dreamwave-Photo.png" 
+                alt="Manmeet Singh Hayer - Small Headshot"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </a>
+        </div>
+        
+        {/* Education info near small headshot */}
+        <div className="absolute top-12 left-28 z-20">
+          <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-xs font-medium dark:from-electric-500/20 dark:to-accent-500/20 dark:text-electric-300 dark:border dark:border-electric-500/30">
+            <GraduationCap size={12} />
+            {data.education.degree} • {data.education.school}
+          </div>
+        </div>
+        
         <div className="relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 min-h-[80vh]">
             <div className="flex-1 space-y-8">
@@ -171,24 +423,11 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="space-y-6"
               >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm font-medium dark:from-electric-500/20 dark:to-accent-500/20 dark:text-electric-300 dark:border dark:border-electric-500/30">
-                  <GraduationCap size={16} />
-                  {data.education.degree} • {data.education.school}
-                </div>
+                <WelcomeText />
                 
-                <h1 className="text-5xl lg:text-7xl font-bold tracking-tight font-heading">
-                  <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent dark:professional-gradient-text">
-                    {data.name}
-                  </span>
-                </h1>
+                <MottoText />
                 
-                <p className="text-xl lg:text-2xl text-secondary-600 max-w-2xl leading-relaxed dark:text-slate-300">
-                  {data.tagline}
-                </p>
-                
-                <p className="text-lg text-secondary-500 max-w-3xl leading-relaxed dark:text-slate-400">
-                  {data.bio}
-                </p>
+                <RotatingTagline />
               </motion.div>
 
               <motion.div
@@ -241,22 +480,27 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="relative"
               >
-                {/* Headshot Placeholder - Ready for your photo! */}
-                <div className="card p-8 bg-gradient-to-br from-white to-primary-50/30 border-primary-200/50 text-center">
-                  <div className="space-y-6">
-                    <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-primary-100 to-accent-100 flex items-center justify-center border-4 border-primary-200/50">
-                      <div className="text-6xl">📸</div>
+                {/* Professional Headshot */}
+                <div className="text-center space-y-6">
+                  <a 
+                    href="https://your-vercel-url.vercel.app" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block transition-transform hover:scale-105 duration-300"
+                  >
+                    <div className="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-primary-200/50 shadow-2xl">
+                      <img 
+                        src="/Dreamwave-Photo 2.png" 
+                        alt="Manmeet Singh Hayer - Professional Headshot"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-primary-700 mb-2">Ready for Headshot!</h3>
-                      <p className="text-secondary-600">Your professional photo will go here</p>
-                    </div>
+                  </a>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-600 dark:text-gray-300 mb-3 font-heading">Manmeet Singh Hayer</h3>
+                    <TypewriterText />
                   </div>
                 </div>
-                
-                {/* Floating elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-accent-400 to-primary-400 rounded-full opacity-20 animate-float"></div>
-                <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full opacity-20 animate-float" style={{ animationDelay: '2s' }}></div>
               </motion.div>
             </div>
           </div>
@@ -465,6 +709,35 @@ export default function Home() {
           </div>
         </motion.div>
       </Section>
+
+      {/* Single Scroll Down Arrow - Fixed Position */}
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 4, duration: 0.8 }}
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-14 h-14 rounded-full bg-primary-500/20 dark:bg-primary-400/20 backdrop-blur-sm border border-primary-300/30 dark:border-primary-500/30 flex items-center justify-center cursor-pointer hover:bg-primary-500/30 dark:hover:bg-primary-400/30 transition-all duration-300 shadow-lg"
+            onClick={() => {
+              // Scroll down by one viewport height
+              window.scrollTo({ 
+                top: window.scrollY + window.innerHeight, 
+                behavior: 'smooth' 
+              })
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ArrowDown size={22} className="text-primary-600 dark:text-primary-400" />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
     </div>
   )
 }

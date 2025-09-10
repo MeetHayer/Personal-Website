@@ -12,6 +12,13 @@ export default {
         'mono': ['JetBrains Mono', 'monospace'],
         'display': ['Space Grotesk', 'system-ui', 'sans-serif'],
         'heading': ['Poppins', 'system-ui', 'sans-serif'],
+        'serif': ['Playfair Display', 'serif'],
+        'cursive': ['Dancing Script', 'cursive'],
+        'tech': ['Fira Code', 'monospace'],
+        'elegant': ['Crimson Text', 'serif'],
+        'modern': ['Source Sans Pro', 'sans-serif'],
+        'gothic': ['Creepster', 'cursive'],
+        'rich': ['Georgia', 'serif'],
       },
       colors: {
         // Light theme colors

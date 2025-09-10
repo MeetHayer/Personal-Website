@@ -80,6 +80,7 @@
   ],
   "volunteerExperience": [
     {
+      "id": "edge-21-director",
       "title": "Outreach Program Director",
       "company": "EDGE 21",
       "location": "Indiana",
@@ -94,6 +95,7 @@
       ]
     },
     {
+      "id": "gift-of-life-ambassador",
       "title": "Campus Ambassador",
       "company": "Gift of Life Marrow Registry",
       "location": "DePauw University",
@@ -108,6 +110,7 @@
       ]
     },
     {
+      "id": "green-lake-counselor",
       "title": "Summer Camp Counselor",
       "company": "Green Lake Lutheran Ministries",
       "location": "Seasonal",

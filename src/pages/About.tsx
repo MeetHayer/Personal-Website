@@ -1,12 +1,81 @@
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
-import { Briefcase, GraduationCap, Award, Code, Database, TrendingUp, Users, Globe, ChevronDown, ChevronUp } from 'lucide-react'
+import { Briefcase, GraduationCap, Award, Code, Database, TrendingUp, Users, Globe, ChevronDown, ChevronUp, ArrowDown, ArrowUp } from 'lucide-react'
 import data from '@/data/personal.json'
 import { useState } from 'react'
+
+// Expandable Box Component
+function ExpandableBox({ 
+  title, 
+  icon: Icon, 
+  children, 
+  gradient, 
+  delay = 0,
+  expanded,
+  onToggle
+}: { 
+  title: string; 
+  icon: any; 
+  children: React.ReactNode; 
+  gradient: string;
+  delay?: number;
+  expanded?: boolean;
+  onToggle?: () => void;
+}) {
+  const [internalExpanded, setInternalExpanded] = useState(false)
+  const isExpanded = expanded ?? internalExpanded
+  
+  const handleToggle = () => {
+    if (onToggle) {
+      onToggle()
+    } else {
+      setInternalExpanded(prev => !prev)
+    }
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: delay === 0 ? -30 : 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay }}
+      className="card p-8 bg-gradient-to-br from-primary-50/50 to-accent-50/50 border-primary-200/50 hover:shadow-2xl transition-all duration-500 group self-start"
+    >
+      <div className="space-y-6">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <div className={`w-12 h-12 rounded-2xl ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+              <Icon className="text-white" size={24} />
+            </div>
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent font-elegant">
+              {title}
+            </h2>
+          </div>
+          <button
+            onClick={handleToggle}
+            className="p-2 rounded-full bg-primary-100 hover:bg-primary-200 dark:bg-primary-800 dark:hover:bg-primary-700 transition-colors duration-200"
+          >
+            <ChevronDown 
+              size={20} 
+              className={`text-primary-600 dark:text-primary-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
+            />
+          </button>
+        </div>
+        
+        <div className={`transition-all duration-300 overflow-hidden ${isExpanded ? 'max-h-[9999px]' : 'max-h-32'}`}>
+          {children}
+        </div>
+      </div>
+    </motion.div>
+  )
+}
 
 // Volunteer Card Component
 function VolunteerCard({ volunteer, index }: { volunteer: any; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false)
+  
+  const handleToggle = () => {
+    setIsExpanded(prev => !prev)
+  }
 
   return (
     <motion.div
@@ -14,10 +83,10 @@ function VolunteerCard({ volunteer, index }: { volunteer: any; index: number }) 
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="group relative"
+      className="group relative self-start"
     >
       {/* Postcard Container */}
-      <div className="relative bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200 dark:border-slate-700 h-full">
+      <div className="relative bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200 dark:border-slate-700 h-full min-h-[280px]">
         {/* Postcard Header */}
         <div className="bg-gradient-to-r from-violet-500 to-purple-600 p-4 text-white">
           <div className="flex items-center justify-between mb-2">
@@ -45,7 +114,7 @@ function VolunteerCard({ volunteer, index }: { volunteer: any; index: number }) 
           {/* Expandable Achievements */}
           <div className="space-y-2">
             <button
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={handleToggle}
               className="flex items-center justify-between w-full text-left"
             >
               <h4 className="font-semibold text-slate-700 dark:text-slate-200 text-xs">Key Impact:</h4>
@@ -70,9 +139,6 @@ function VolunteerCard({ volunteer, index }: { volunteer: any; index: number }) 
           </div>
         </div>
         
-        {/* Postcard Decorative Elements */}
-        <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-white/20 backdrop-blur-sm"></div>
-        <div className="absolute bottom-3 left-3 w-4 h-4 rounded-full bg-violet-400/30"></div>
       </div>
     </motion.div>
   )
@@ -98,45 +164,37 @@ export default function About() {
             </h1>
           </motion.div>
           
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
             {/* About Box - Left */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="card p-8 bg-gradient-to-br from-primary-50/50 to-accent-50/50 border-primary-200/50 hover:shadow-2xl transition-all duration-500 group"
+            <ExpandableBox 
+              key="who-i-am"
+              title="Who I Am" 
+              icon={Code} 
+              gradient="bg-gradient-to-r from-pink-500 to-rose-500"
+              delay={0.2}
             >
               <div className="space-y-6">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Code className="text-white" size={24} />
-                  </div>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-                    Who I Am
-                  </h2>
+                <div>
+                  <h3 className="text-lg font-bold mb-3 text-primary-700 font-heading">Introduction</h3>
+                    <p className="text-secondary-600 leading-relaxed">
+                      I grew up in a semi-urban town in Punjab, India, and came to DePauw University on a <strong>full cost scholarship</strong>. Numbers have always been my thing, and college opened up the world of business and finance—fields I never had access to back home. Since then, I've been hooked on how money and value are created and multiplied through corporate planning, investment analysis, M&A, and business process optimization.
+                    </p>
                 </div>
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-lg font-bold mb-3 text-primary-700 font-heading">Introduction</h3>
-                    <p className="text-secondary-600 leading-relaxed">
-                      I grew up in a semi-urban town in Punjab, India, and came to DePauw University on a full Bonner Program scholarship. Numbers have always been my thing, and college opened up the world of business and finance—fields I never had access to back home. Since then, I've been hooked on how money and value are created and multiplied through corporate planning, investment analysis, M&A, and business process optimization.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-lg font-bold mb-3 text-primary-700 font-heading">Interests</h3>
-                    <p className="text-secondary-600 leading-relaxed">
-                      Outside the classroom, you'll usually find me working out, singing, playing chess, hiking, or shooting pool. I'm also a curious reader and love diving into anything business- or politics-related.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-lg font-bold mb-3 text-primary-700 font-heading">What I Work On</h3>
-                    <p className="text-secondary-600 leading-relaxed">
-                      I like tackling problems where finance meets tech. My experience spans data visualization and analytics, process optimization and automation, business strategy, CRM management, marketing insights, and product analysis—always with an eye on making systems run smarter and more efficiently.
-                    </p>
-                  </div>
+                
+                <div>
+                  <h3 className="text-lg font-bold mb-3 text-primary-700 font-heading">Interests</h3>
+                  <p className="text-secondary-600 leading-relaxed">
+                    Outside the classroom, you'll usually find me working out, singing, playing chess, hiking, or shooting pool. I'm also a curious reader and love diving into anything business- or politics-related.
+                  </p>
                 </div>
+                
+                <div>
+                  <h3 className="text-lg font-bold mb-3 text-primary-700 font-heading">What I Work On</h3>
+                  <p className="text-secondary-600 leading-relaxed">
+                    I like tackling problems where finance meets tech. My experience spans data visualization and analytics, process optimization and automation, business strategy, CRM management, marketing insights, and product analysis—always with an eye on making systems run smarter and more efficiently.
+                  </p>
+                </div>
+                
                 <div className="pt-4 border-t border-primary-200/50">
                   <div className="flex items-center gap-2 text-sm text-primary-600 font-medium">
                     <div className="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></div>
@@ -144,61 +202,53 @@ export default function About() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </ExpandableBox>
 
             {/* Education Box - Right */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="card p-8 bg-gradient-to-br from-secondary-50/50 to-primary-50/50 border-secondary-200/50 hover:shadow-2xl transition-all duration-500 group"
+            <ExpandableBox 
+              key="academic-journey"
+              title="Academic Journey" 
+              icon={GraduationCap} 
+              gradient="bg-gradient-to-r from-emerald-500 to-teal-500"
+              delay={0.4}
             >
-              <div className="space-y-6">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <GraduationCap className="text-white" size={24} />
-                  </div>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-                    Education
-                  </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-bold text-primary-700">{data.education.degree}</h3>
+                  <p className="text-lg text-secondary-600">{data.education.school}</p>
+                  <p className="text-secondary-500">Expected Graduation: {data.education.graduation}</p>
+                  <p className="text-primary-600 font-semibold">GPA: {data.education.gpa}</p>
                 </div>
                 
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-primary-700">{data.education.degree}</h3>
-                    <p className="text-lg text-secondary-600">{data.education.school}</p>
-                    <p className="text-secondary-500">Expected Graduation: {data.education.graduation}</p>
-                    <p className="text-primary-600 font-semibold">GPA: {data.education.gpa}</p>
+                {/* Awards - Always Visible (Outside Expandable Area) */}
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-lg text-primary-700">Awards & Certifications</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {data.education.awards.map((award, index) => (
+                      <span key={index} className="badge bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 hover:scale-105 transition-transform duration-200">
+                        <Award size={14} className="mr-1" />
+                        {award}
+                      </span>
+                    ))}
                   </div>
-                  
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-lg text-primary-700">Awards & Certifications</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {data.education.awards.map((award, index) => (
-                        <span key={index} className="badge bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 hover:scale-105 transition-transform duration-200">
-                          <Award size={14} className="mr-1" />
-                          {award}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {data.education.academicExcellence && (
-                    <div className="space-y-3">
-                      <h4 className="font-semibold text-lg text-primary-700">Academic Journey</h4>
-                      <ul className="space-y-2">
-                        {data.education.academicExcellence.map((item, index) => (
-                          <li key={index} className="flex items-start gap-2 text-secondary-600 hover:text-primary-600 transition-colors duration-200">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></div>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
               </div>
-            </motion.div>
+              
+                {data.education.academicExcellence && (
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-lg text-primary-700">Leadership & Programs</h4>
+                    <ul className="space-y-2">
+                      {data.education.academicExcellence.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2 text-secondary-600 hover:text-primary-600 transition-colors duration-200">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0"></div>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+            </ExpandableBox>
           </div>
         </div>
       </Section>
@@ -215,6 +265,19 @@ export default function About() {
           <h2 className="text-3xl lg:text-4xl font-bold text-center bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
             Professional Experience
           </h2>
+          
+          {/* Professional Bio */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="card p-6 bg-gradient-to-br from-primary-50/50 to-accent-50/50 border-primary-200/50 dark:from-slate-800/50 dark:to-slate-700/50 dark:border-slate-600/50"
+          >
+            <p className="text-lg text-secondary-600 dark:text-slate-300 leading-relaxed text-center font-sans">
+              I'm a finance analyst who codes. I use Python/VBA/SQL, Microsoft Office, BI and ERP tools to turn messy operational data into decisions—budget vs. actuals, variance patterns, unit economics—and build small automations that save real hours. I like ownership, tight feedback loops, and shipping useful tools fast. Senior at DePauw (Finance & CS), graduating May 2026; open to roles in corporate finance/FP&A, investment analysis & portfolio management, BNPL/fintech, and data-heavy product or analytics work.
+            </p>
+          </motion.div>
           
           <div className="space-y-8">
             {data.workExperience.map((exp, index) => (
@@ -271,9 +334,9 @@ export default function About() {
             Volunteer Experience
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-4 items-start">
             {data.volunteerExperience.map((volunteer, index) => (
-              <VolunteerCard key={index} volunteer={volunteer} index={index} />
+              <VolunteerCard key={volunteer.id} volunteer={volunteer} index={index} />
             ))}
           </div>
         </motion.div>
@@ -368,6 +431,35 @@ export default function About() {
           </div>
         </motion.div>
       </Section>
+
+      {/* Single Scroll Down Arrow - Fixed Position */}
+      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 0.8 }}
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-14 h-14 rounded-full bg-primary-500/20 dark:bg-primary-400/20 backdrop-blur-sm border border-primary-300/30 dark:border-primary-500/30 flex items-center justify-center cursor-pointer hover:bg-primary-500/30 dark:hover:bg-primary-400/30 transition-all duration-300 shadow-lg"
+            onClick={() => {
+              // Scroll down by one viewport height
+              window.scrollTo({ 
+                top: window.scrollY + window.innerHeight, 
+                behavior: 'smooth' 
+              })
+            }}
+          >
+            <motion.div
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ArrowDown size={22} className="text-primary-600 dark:text-primary-400" />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
 
     </div>
   )
