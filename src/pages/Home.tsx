@@ -9,9 +9,15 @@ import CoursesBelt from '@/components/CoursesBelt'
 // Typewriter Text Component with Loop
 function TypewriterText() {
   const [displayedText, setDisplayedText] = useState('')
-  const fullText = 'ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic'
+  const phrases = [
+    'ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic',
+    'Interests- Exercise; Singing; Nature; Chess; Politics'
+  ]
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
+
+  const fullText = phrases[currentPhraseIndex]
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -30,12 +36,13 @@ function TypewriterText() {
           // Reset for next cycle
           setIsDeleting(false)
           setCurrentIndex(0)
+          setCurrentPhraseIndex(prev => (prev + 1) % phrases.length)
         }
       }
     }, isDeleting ? 50 : 100) // Faster deletion
 
     return () => clearTimeout(timeout)
-  }, [currentIndex, fullText, displayedText, isDeleting])
+  }, [currentIndex, fullText, displayedText, isDeleting, currentPhraseIndex, phrases.length])
 
   return (
     <div className="text-lg text-secondary-600 dark:text-slate-300 font-mono">
@@ -92,7 +99,7 @@ function MottoText() {
 
     const timer = setTimeout(() => {
       setBlindsRevealed(true)
-    }, 500) // Start checkerboard effect after 500ms
+    }, 1000) // Start checkerboard effect after 1000ms (slower)
 
     return () => clearTimeout(timer)
   }, [isScratched])
@@ -174,9 +181,9 @@ function MottoText() {
                   scale: 0.8
                 }}
                 transition={{ 
-                  duration: 0.8,
+                  duration: 1.2,
                   ease: "easeOut",
-                  delay: 0.2
+                  delay: 0.4
                 }}
               >
                 {fullText}
@@ -198,9 +205,9 @@ function MottoText() {
                   scale: 1
                 }}
                 transition={{ 
-                  duration: 1.5,
+                  duration: 2.0,
                   ease: "easeInOut",
-                  delay: 0.1
+                  delay: 0.3
                 }}
               />
             </motion.div>
