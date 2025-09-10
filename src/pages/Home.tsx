@@ -86,13 +86,13 @@ function MottoText() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Blinds effect when scratched
+  // Checkerboard effect when scratched
   useEffect(() => {
     if (!isScratched) return
 
     const timer = setTimeout(() => {
       setBlindsRevealed(true)
-    }, 500) // Start blinds effect after 500ms
+    }, 500) // Start checkerboard effect after 500ms
 
     return () => clearTimeout(timer)
   }, [isScratched])
@@ -153,7 +153,7 @@ function MottoText() {
               </div>
             </motion.div>
           ) : (
-            // Revealed Content - Blinds Effect
+            // Revealed Content - Checkerboard Effect
             <motion.div
               initial={{ y: 8, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -163,34 +163,44 @@ function MottoText() {
               <motion.span 
                 className="text-blue-500 dark:text-blue-300 block"
                 initial={{ 
-                  clipPath: "inset(0 0 100% 0)",
-                  opacity: 0
+                  opacity: 0,
+                  scale: 0.8
                 }}
                 animate={blindsRevealed ? {
-                  clipPath: "inset(0% 0 0% 0)",
-                  opacity: 1
+                  opacity: 1,
+                  scale: 1
                 } : {
-                  clipPath: "inset(0 0 100% 0)",
-                  opacity: 0
+                  opacity: 0,
+                  scale: 0.8
                 }}
                 transition={{ 
-                  duration: 1.2,
-                  ease: "easeInOut",
+                  duration: 0.8,
+                  ease: "easeOut",
                   delay: 0.2
                 }}
               >
                 {fullText}
               </motion.span>
               
-              {/* Blinds overlay effect */}
+              {/* Checkerboard overlay effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent"
-                initial={{ y: "-100%" }}
-                animate={blindsRevealed ? { y: "100%" } : { y: "-100%" }}
+                className="absolute inset-0"
+                initial={{ 
+                  backgroundImage: "repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, white 90deg, transparent 180deg, white 270deg, transparent 360deg)",
+                  backgroundSize: "20px 20px",
+                  opacity: 1
+                }}
+                animate={blindsRevealed ? { 
+                  opacity: 0,
+                  scale: 1.2
+                } : { 
+                  opacity: 1,
+                  scale: 1
+                }}
                 transition={{ 
-                  duration: 1.0,
+                  duration: 1.5,
                   ease: "easeInOut",
-                  delay: 0.3
+                  delay: 0.1
                 }}
               />
             </motion.div>
