@@ -483,7 +483,7 @@ export default function Home() {
                 {/* Professional Headshot */}
                 <div className="text-center space-y-6">
                   <a 
-                    href="https://your-vercel-url.vercel.app" 
+                    href="https://personal-website-wine-two-90.vercel.app/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="block transition-transform hover:scale-105 duration-300"
