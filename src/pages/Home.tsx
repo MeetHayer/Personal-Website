@@ -75,10 +75,9 @@ function WelcomeText() {
 // Scratch-Off Motto Design
 function MottoText() {
   const [isScratched, setIsScratched] = useState(false)
-  const [displayedText, setDisplayedText] = useState('')
-  const fullText = 'YOGOWYPI: You Only Get Out, What You Put In'
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [showWelcome, setShowWelcome] = useState(false)
+  const [blindsRevealed, setBlindsRevealed] = useState(false)
+  const fullText = 'YOGOWYPI: You Only Get Out, What You Put In'
 
   useEffect(() => {
     // Calculate when welcome text finishes: 15 characters * 150ms + 500ms buffer
@@ -87,19 +86,16 @@ function MottoText() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Typewriter effect when scratched
+  // Blinds effect when scratched
   useEffect(() => {
     if (!isScratched) return
 
-    const timeout = setTimeout(() => {
-      if (currentIndex < fullText.length) {
-        setDisplayedText(prev => prev + fullText[currentIndex])
-        setCurrentIndex(prev => prev + 1)
-      }
-    }, 100) // 100ms per character
+    const timer = setTimeout(() => {
+      setBlindsRevealed(true)
+    }, 500) // Start blinds effect after 500ms
 
-    return () => clearTimeout(timeout)
-  }, [currentIndex, fullText, isScratched])
+    return () => clearTimeout(timer)
+  }, [isScratched])
 
   const handleScratch = () => {
     if (!isScratched) {
@@ -157,17 +153,46 @@ function MottoText() {
               </div>
             </motion.div>
           ) : (
-            // Revealed Content - Typewriter Effect
+            // Revealed Content - Blinds Effect
             <motion.div
               initial={{ y: 8, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="text-xl lg:text-2xl font-bold text-primary-700 dark:text-primary-300 font-heading whitespace-nowrap overflow-hidden"
+              className="text-xl lg:text-2xl font-bold text-primary-700 dark:text-primary-300 font-heading whitespace-nowrap overflow-hidden relative"
             >
-                      <span className="text-blue-500 dark:text-blue-300">
-                {displayedText}
-                {currentIndex < fullText.length && <span className="animate-pulse">|</span>}
-              </span>
+              <motion.span 
+                className="text-blue-500 dark:text-blue-300 block"
+                initial={{ 
+                  clipPath: "inset(0 0 100% 0)",
+                  opacity: 0
+                }}
+                animate={blindsRevealed ? {
+                  clipPath: "inset(0% 0 0% 0)",
+                  opacity: 1
+                } : {
+                  clipPath: "inset(0 0 100% 0)",
+                  opacity: 0
+                }}
+                transition={{ 
+                  duration: 1.2,
+                  ease: "easeInOut",
+                  delay: 0.2
+                }}
+              >
+                {fullText}
+              </motion.span>
+              
+              {/* Blinds overlay effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-b from-transparent via-white/20 to-transparent"
+                initial={{ y: "-100%" }}
+                animate={blindsRevealed ? { y: "100%" } : { y: "-100%" }}
+                transition={{ 
+                  duration: 1.0,
+                  ease: "easeInOut",
+                  delay: 0.3
+                }}
+              />
             </motion.div>
           )}
           
@@ -391,7 +416,7 @@ export default function Home() {
         {/* Small headshot in top left */}
         <div className="absolute top-8 left-8 z-20">
           <a 
-            href="https://your-vercel-url.vercel.app" 
+            href="https://personal-website-wine-two-90.vercel.app/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="block transition-transform hover:scale-105 duration-300"
