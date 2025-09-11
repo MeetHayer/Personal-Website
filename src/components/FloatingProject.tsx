@@ -18,7 +18,7 @@ const projectIcons = {
 }
 
 const projectColors = {
-  'Tigers vs. Cancer': 'from-pink-400 to-rose-500',
+  'Tigers vs. Cancer': 'from-purple-400 to-violet-500',
   'VBA Automation': 'from-blue-400 to-indigo-500',
   'CAS Case Study': 'from-emerald-400 to-teal-500',
 }

@@ -48,15 +48,15 @@ export default function Writing() {
                   <Heart className="text-white" size={28} />
                 </div>
                 <div>
-                  <h2 className="text-2xl lg:text-3xl font-bold text-primary-700">Hello, I'm Manmeet</h2>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-primary-700">Hey there 👋, I'm Meet!</h2>
                   <div className="flex items-center gap-4 text-sm text-secondary-500 mt-2">
                     <div className="flex items-center gap-1">
                       <MapPin size={14} />
-                      Punjab, India → DePauw University
+                      Punjab, India → the World, USA
                     </div>
                     <div className="flex items-center gap-1">
                       <Calendar size={14} />
-                      January 15, 2025
+                      September 10, 2025
                     </div>
                   </div>
                 </div>
@@ -64,24 +64,24 @@ export default function Writing() {
 
               <div className="prose prose-lg max-w-none text-secondary-600 leading-relaxed space-y-4">
                 <p>
-                  Born and raised in the vibrant state of Punjab, India, I've always been fascinated by the power of numbers and their ability to tell compelling stories. My journey from the bustling streets of Punjab to the academic halls of DePauw University has been nothing short of transformative.
+                  <strong className="text-primary-700 dark:text-primary-300">My origin:</strong> born in Punjab, India, and raised in a low-income Sikh household by a very disciplined father and a remarkably educated mother (three master's degrees!). Watching my parents pour time and sacrifice into my and my sibling's education gave me a durable bias for hard work, character, and building things that matter.
                 </p>
                 
                 <p>
-                  When I'm not diving deep into financial models or building automation solutions, you'll find me exploring new places through travel, expressing myself through music and singing, or analyzing the latest trends in financial markets. There's something magical about how data can reveal patterns that were previously hidden, and I'm passionate about using technology and AI to advance financial and investment modeling.
+                  Two obsessions anchor me: math and music. After graduating next May, I plan to lean into both—professionally through finance and personally through music. On the finance side, I'm open to starting in either investment banking or corporate FP&A. I plan to pursue an MBA in the next 4-6 years, and over the next 5–10 years, intend to grow within IB—reaching at least junior associate (and ideally a PM track) before 30. As for Music, I'm constantly working on vocal sessions, learning new scales & sneakily preparing for global pop takeover.
                 </p>
                 
                 <p>
-                  My work in VBA automation, Oracle ERP systems, and financial analysis isn't just about efficiency—it's about creating tools that can help businesses make better decisions and ultimately create more value. Whether it's processing $200M+ in financial data or facilitating life-saving stem cell transplants, I believe technology should serve a greater purpose.
+                  Even with a deep interest in investment analysis, I value FP&A dearly because it reveals the real levers—margins, ROE, cash flow, and working capital, and how successfully the company's management can leverage & drive them.
                 </p>
                 
                 <p>
-                  I'm particularly excited about the future of financial modeling and how artificial intelligence can revolutionize how we approach investment analysis, risk assessment, and portfolio optimization. The intersection of finance and technology is where I thrive, and I'm always eager to explore new ways to make complex financial concepts more accessible and actionable.
+                  Right now, I'm a senior at DePauw building an investment-analysis and portfolio simulator as a foundation for more advanced models. I also manage a modest Robinhood account (since March '24; realized return ~8.5% to date). I'm open to opportunities—no geographic restrictions—across fintech and business, and I'm excited for what senior year and beyond will bring.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-2 pt-4">
-                {['introduction', 'personal', 'journey', 'finance', 'technology', 'passion'].map((tag) => (
+                {['introduction', 'personal', 'journey', 'finance', 'technology', 'passion', 'music', 'singing'].map((tag) => (
                   <span key={tag} className="badge bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700">
                     <Tag size={12} className="mr-1" />
                     {tag}

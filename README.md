@@ -6,7 +6,20 @@ A sophisticated, production-ready personal portfolio website showcasing advanced
 
 ## 📋 Recent Updates
 
-### September 10, 2025
+### September 10, 2025 (Evening Update)
+- **Course Categorization**: Grouped Finance, Math, and Business courses into single category for cleaner interface
+- **Content Updates**: Changed "Specializations" to "Passions" and added "AI" to interests
+- **Color Scheme**: Replaced pink colors with purple throughout site (except email icons)
+- **Social Media Integration**: Added LinkedIn and Gmail icons next to name with hover effects
+- **Contact Messaging**: Updated with personalized "Looking for a Finance & Software guy with a knack for AI? Let's chat!" message
+- **Motto Redesign**: Moved motto from scratch-off to prominent quote display under headshot
+- **Email Display Fix**: Added proper text wrapping for email in contact tiles
+- **Writing Page**: Created new personal blog post with origin story, career goals, and music ambitions
+- **Passions Update**: Changed "Commercial Banking" to "Debt Instruments" in specializations
+- **Projects Skills**: Reorganized project skills from embedded text to dedicated bubble-style display
+- **UI/UX Polish**: Multiple improvements for better user experience and professional appearance
+
+### September 10, 2025 (Morning Update)
 - **UI Layout Fixes**: Resolved volunteer cards height inconsistency by adding minimum height constraint
 - **Interactive Headshot**: Made professional headshot image clickable, linking to Vercel deployment with hover scale effect
 - **Visual Polish**: Lightened YOGOWYPI motto text color for better readability

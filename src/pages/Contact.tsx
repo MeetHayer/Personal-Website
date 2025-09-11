@@ -44,7 +44,7 @@ export default function Contact() {
               </span>
             </h1>
             <p className="text-xl lg:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed">
-              Ready to discuss opportunities in finance, technology, or data analytics? I'd love to hear from you.
+              Looking for a Finance & Software guy with a knack for AI? Let's chat!
             </p>
           </motion.div>
         </div>

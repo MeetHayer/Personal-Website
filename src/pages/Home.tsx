@@ -1,7 +1,7 @@
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowDown, Code, Briefcase, GraduationCap, Award, Mail, Phone, MapPin, Database, TrendingUp, Zap } from 'lucide-react'
+import { ArrowRight, ArrowDown, Code, Briefcase, GraduationCap, Award, Mail, Phone, MapPin, Database, TrendingUp, Zap, Linkedin } from 'lucide-react'
 import data from '@/data/personal.json'
 import { useState, useEffect } from 'react'
 import CoursesBelt from '@/components/CoursesBelt'
@@ -11,7 +11,7 @@ function TypewriterText() {
   const [displayedText, setDisplayedText] = useState('')
   const phrases = [
     'ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic',
-    'Interests- Exercise; Singing; Nature; Chess; Politics'
+    'Interests- Exercise; Singing; Nature; Chess; Politics; AI'
   ]
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -467,8 +467,6 @@ export default function Home() {
               >
                 <WelcomeText />
                 
-                <MottoText />
-                
                 <RotatingTagline />
               </motion.div>
 
@@ -539,8 +537,34 @@ export default function Home() {
                     </div>
                   </a>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-600 dark:text-gray-300 mb-3 font-heading">Manmeet Singh Hayer</h3>
+                    <div className="flex items-center justify-center gap-4 mb-3">
+                      <h3 className="text-2xl font-bold text-gray-600 dark:text-gray-300 font-heading">Manmeet Singh Hayer</h3>
+                      <div className="flex items-center gap-3">
+                        <a 
+                          href="https://www.linkedin.com/in/meethayer/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 hover:scale-110"
+                        >
+                          <Linkedin size={18} />
+                        </a>
+                        <a 
+                          href="mailto:manmeethayer_2026@depauw.edu" 
+                          className="p-2 rounded-full bg-red-500 hover:bg-red-600 text-white transition-all duration-300 hover:scale-110"
+                        >
+                          <Mail size={18} />
+                        </a>
+                      </div>
+                    </div>
                     <TypewriterText />
+                    
+                    {/* Motto */}
+                    <div className="mt-8 text-center">
+                      <p className="text-base text-slate-500 dark:text-slate-400 italic">
+                        My Motto?<br />
+                        "YOGOWYPI: You Only Get Out, What You Put In"
+                      </p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -693,7 +717,7 @@ export default function Home() {
                 <h3 className="font-semibold text-lg mb-2">Email</h3>
                 <a 
                   href={`mailto:${data.email}`} 
-                  className="text-secondary-600 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-300 transition-colors"
+                  className="text-secondary-600 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-300 transition-colors text-sm whitespace-nowrap overflow-hidden text-ellipsis"
                 >
                   {data.email}
                 </a>

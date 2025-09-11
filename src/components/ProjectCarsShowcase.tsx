@@ -30,7 +30,7 @@ type Project = {
   summary: string
   details: {
     bullets: string[]
-    tech?: string[]
+    skills?: string[]
     links?: { label: string; href: string }[]
   }
 }
@@ -54,10 +54,9 @@ export const projects: Project[] = [
       bullets: [
         "Surpassed 115% of target donors, outperforming ~90% of peer campuses nationwide.",
         "Orchestrated the first successful stem-cell transplant from a DePauw donor — a 63-year-old leukemia patient matched with my Beta Theta Pi brother, Sam Applegate ('26).",
-        "Introduced a budget-based lottery: received ~$1 for each donor added to the registry and reinvested $80 of those funds into a raffle prize for early registrants, boosting urgency and participation.",
-        "Skills demonstrated: advertising, marketing, tabling, project planning, and networking."
+        "Introduced a budget-based lottery: received ~$1 for each donor added to the registry and reinvested $80 of those funds into a raffle prize for early registrants, boosting urgency and participation."
       ],
-      tech: ["Project Management", "Marketing", "Community Outreach", "Event Planning", "C++", "Data Analysis"],
+      skills: ["Project Management", "Marketing", "Community Outreach", "Event Planning", "C++", "Data Analysis", "Advertising", "Tabling", "Networking"],
       links: []
     }
   },
@@ -70,10 +69,9 @@ export const projects: Project[] = [
       bullets: [
         "Filterer Macro: Automated filtering of large Excel workbooks by Region/Area/District, with options for new sheets or new files, error-handling, sheet protection, and safe save paths. Improved reporting efficiency by 40%+, cutting hours of manual copy-paste.",
         "Variance Builder Macro: Processed 52-week Anaplan exports for 160+ accounts, generating single-sheet variance reports grouped by FY26 budgets vs. CY25 actuals/forecasts. Added color-grading and grouping, enabling reviewers to detect anomalies in 2 days instead of weeks.",
-        "Strengthened forecast accuracy and freed FP&A analysts to focus on higher-level review instead of data prep.",
-        "Skills: data formatting, Excel, Oracle ERP, VBA, automation"
+        "Strengthened forecast accuracy and freed FP&A analysts to focus on higher-level review instead of data prep."
       ],
-      tech: ["VBA", "Excel", "Error Handling", "Data Processing", "Financial Analysis"],
+      skills: ["VBA", "Excel", "Error Handling", "Data Processing", "Financial Analysis", "Data Formatting", "Oracle ERP", "Automation"],
       links: []
     }
   },
@@ -89,7 +87,7 @@ export const projects: Project[] = [
         "Wrote and presented a structured case study memo summarizing methods, assumptions, and recommendations for pricing reform.",
         "Placed 4th out of 12 teams in competitive case study"
       ],
-      tech: ["Actuarial Science", "Risk Analysis", "Financial Modeling", "Insurance", "Data Analysis"],
+      skills: ["Actuarial Science", "Risk Analysis", "Financial Modeling", "Insurance", "Data Analysis", "Team Leadership", "Research", "Case Study Writing"],
       links: [{ label: "Review our pricing solution", href: "/298.pdf" }]
     }
   }
@@ -309,16 +307,16 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
               </ul>
             </div>
 
-            {project.details.tech && project.details.tech.length > 0 && (
+            {project.details.skills && project.details.skills.length > 0 && (
               <div>
-                <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Technologies</h3>
+                <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Skills</h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.details.tech.map((tech, index) => (
+                  {project.details.skills.map((skill, index) => (
                     <span
                       key={index}
                       className="px-3 py-1 bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 rounded-full text-sm"
                     >
-                      {tech}
+                      {skill}
                     </span>
                   ))}
                 </div>
@@ -503,7 +501,7 @@ export default function ProjectCarsShowcase() {
       {/* Heading */}
       <div className="text-center space-y-4 mb-8">
         <h1 className="text-4xl lg:text-6xl font-bold">
-          <span className="bg-gradient-to-r from-violet-600 via-pink-600 to-emerald-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
             My Projects
           </span>
         </h1>

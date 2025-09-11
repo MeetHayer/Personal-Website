@@ -3,27 +3,23 @@ import { BookOpen, Code, Calculator, TrendingUp, Database, Globe, ChevronLeft, C
 import { useState, useEffect } from 'react'
 
 const courses = [
-  // Finance courses (from resume)
-  { name: 'Statistics for Economics and Management', category: 'finance', icon: Calculator },
-  { name: 'Investment & Portfolio Analysis', category: 'finance', icon: TrendingUp },
-  { name: 'Portfolio Management', category: 'finance', icon: TrendingUp },
-  { name: 'Econometrics', category: 'finance', icon: Calculator },
-  { name: 'Intermediate Macroeconomics', category: 'finance', icon: Globe },
-  { name: 'Regression with Microdata', category: 'finance', icon: Calculator },
-  { name: 'Corporate Finance', category: 'finance', icon: TrendingUp },
-  { name: 'Financial Accounting', category: 'finance', icon: Calculator },
+  // Finance, Math & Business courses (grouped together)
+  { name: 'Statistics for Economics and Management', category: 'finance-math-business', icon: Calculator },
+  { name: 'Investment & Portfolio Analysis', category: 'finance-math-business', icon: TrendingUp },
+  { name: 'Portfolio Management', category: 'finance-math-business', icon: TrendingUp },
+  { name: 'Econometrics', category: 'finance-math-business', icon: Calculator },
+  { name: 'Intermediate Macroeconomics', category: 'finance-math-business', icon: Globe },
+  { name: 'Regression with Microdata', category: 'finance-math-business', icon: Calculator },
+  { name: 'Corporate Finance', category: 'finance-math-business', icon: TrendingUp },
+  { name: 'Financial Accounting', category: 'finance-math-business', icon: Calculator },
+  { name: 'Discrete Mathematics', category: 'finance-math-business', icon: Calculator },
+  { name: 'HONR-Business & the liberal arts', category: 'finance-math-business', icon: BookOpen },
   
   // CS courses (from resume)
   { name: 'Object Oriented Software Development', category: 'cs', icon: Code },
   { name: 'Foundations of Computation', category: 'cs', icon: Code },
   { name: 'Computer Science I', category: 'cs', icon: Code },
   { name: 'Data Structures', category: 'cs', icon: Database },
-  
-  // Math courses (from resume)
-  { name: 'Discrete Mathematics', category: 'math', icon: Calculator },
-  
-  // Business courses (from resume)
-  { name: 'HONR-Business & the liberal arts', category: 'business', icon: BookOpen },
   
   // Miscellaneous courses (from resume)
   { name: 'Contemporary Society', category: 'misc', icon: Globe },
@@ -33,18 +29,14 @@ const courses = [
 ]
 
 const categoryColors = {
-  finance: 'from-slate-600 to-slate-700',
+  'finance-math-business': 'from-slate-600 to-slate-700',
   cs: 'from-violet-500 to-purple-600',
-  math: 'from-blue-500 to-indigo-600',
-  business: 'from-blue-500 to-cyan-600',
   misc: 'from-emerald-500 to-teal-600',
 }
 
 const categoryIcons = {
-  finance: TrendingUp,
+  'finance-math-business': TrendingUp,
   cs: Code,
-  math: Calculator,
-  business: BookOpen,
   misc: Globe,
 }
 
@@ -59,14 +51,21 @@ export default function CoursesBelt() {
     ? courses.filter(course => course.category === selectedCategory)
     : courses
 
-  // Reset current index when category changes
+  // Reset current index when category changes, but ensure it's within bounds
   useEffect(() => {
     setCurrentIndex(0)
   }, [selectedCategory])
 
+  // Ensure currentIndex is always within bounds of filteredCourses
+  useEffect(() => {
+    if (filteredCourses.length > 0 && currentIndex >= filteredCourses.length) {
+      setCurrentIndex(0)
+    }
+  }, [filteredCourses.length, currentIndex])
+
   // Auto-advance courses
   useEffect(() => {
-    if (!isPlaying || isHovered) return
+    if (!isPlaying || isHovered || filteredCourses.length === 0) return
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % filteredCourses.length)
@@ -76,20 +75,25 @@ export default function CoursesBelt() {
   }, [isPlaying, isHovered, filteredCourses.length])
 
   const nextCourse = () => {
-    setCurrentIndex((prev) => (prev + 1) % filteredCourses.length)
+    if (filteredCourses.length > 0) {
+      setCurrentIndex((prev) => (prev + 1) % filteredCourses.length)
+    }
   }
 
   const prevCourse = () => {
-    setCurrentIndex((prev) => (prev - 1 + filteredCourses.length) % filteredCourses.length)
+    if (filteredCourses.length > 0) {
+      setCurrentIndex((prev) => (prev - 1 + filteredCourses.length) % filteredCourses.length)
+    }
   }
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying)
   }
 
-  const currentCourse = filteredCourses[currentIndex]
-  const CategoryIcon = categoryIcons[currentCourse.category as keyof typeof categoryIcons]
-  const colorClass = categoryColors[currentCourse.category as keyof typeof categoryColors]
+  // Safety check to prevent crashes
+  const currentCourse = filteredCourses.length > 0 ? filteredCourses[currentIndex] : null
+  const CategoryIcon = currentCourse ? categoryIcons[currentCourse.category as keyof typeof categoryIcons] : BookOpen
+  const colorClass = currentCourse ? categoryColors[currentCourse.category as keyof typeof categoryColors] : 'from-slate-500 to-slate-600'
 
   return (
     <div className="relative py-8">
@@ -112,56 +116,76 @@ export default function CoursesBelt() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="relative"
-          >
-            {/* Course Card */}
-            <div className={`relative bg-gradient-to-r ${colorClass} rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300`}>
-              <div className="flex items-center justify-between">
-                {/* Left side - Category and Course Info */}
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <CategoryIcon className="text-white" size={28} />
-                  </div>
-                  <div>
-                    <h4 className="text-2xl font-bold text-white mb-1 font-heading">
-                      {currentCourse.name}
-                    </h4>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-white/60"></div>
+          {currentCourse ? (
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="relative"
+            >
+              {/* Course Card */}
+              <div className={`relative bg-gradient-to-r ${colorClass} rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300`}>
+                <div className="flex items-center justify-between">
+                  {/* Left side - Category and Course Info */}
+                  <div className="flex items-center gap-6">
+                    <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                      <CategoryIcon className="text-white" size={28} />
+                    </div>
+                    <div>
+                      <h4 className="text-2xl font-bold text-white mb-1 font-heading">
+                        {currentCourse.name}
+                      </h4>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-white/60"></div>
                       <span className="text-white/80 text-sm capitalize font-medium">
-                        {currentCourse.category === 'cs' ? 'Computer Science' : currentCourse.category}
+                        {currentCourse.category === 'cs' ? 'Computer Science' : 
+                         currentCourse.category === 'finance-math-business' ? 'Finance, Math & Business' :
+                         currentCourse.category === 'misc' ? 'Liberal Arts' : currentCourse.category}
                       </span>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Right side - Course Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <currentCourse.icon className="text-white" size={24} />
+                  </div>
                 </div>
 
-                {/* Right side - Course Icon */}
-                <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <currentCourse.icon className="text-white" size={24} />
+                {/* Progress Indicator */}
+                <div className="mt-6 flex justify-center">
+                  <div className="flex gap-2">
+                    {filteredCourses.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentIndex ? 'bg-white' : 'bg-white/30'
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              {/* Progress Indicator */}
-              <div className="mt-6 flex justify-center">
-                <div className="flex gap-2">
-                  {filteredCourses.map((_, index) => (
-                    <div
-                      key={index}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        index === currentIndex ? 'bg-white' : 'bg-white/30'
-                      }`}
-                    />
-                  ))}
+            </motion.div>
+          ) : (
+            <div className="relative bg-gradient-to-r from-slate-500 to-slate-600 rounded-2xl p-8 shadow-xl">
+              <div className="flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-4">
+                    <BookOpen className="text-white" size={28} />
+                  </div>
+                  <h4 className="text-2xl font-bold text-white mb-2 font-heading">
+                    No courses found
+                  </h4>
+                  <p className="text-white/80 text-sm">
+                    Try selecting a different category
+                  </p>
                 </div>
               </div>
             </div>
-          </motion.div>
+          )}
 
           {/* Navigation Controls */}
           <div className="flex items-center justify-center gap-4 mt-6">
@@ -223,7 +247,9 @@ export default function CoursesBelt() {
             >
               <Icon size={14} />
               <span className="capitalize">
-                {category === 'cs' ? 'CS' : category === 'misc' ? 'Liberal Arts' : category}
+                {category === 'cs' ? 'CS' : 
+                 category === 'finance-math-business' ? 'Finance, Math & Business' :
+                 category === 'misc' ? 'Liberal Arts' : category}
               </span>
             </button>
           ))}

@@ -1,0 +1,1026 @@
+PROBLEMS SOLVED - Personal Portfolio Website
+============================================
+
+This document tracks major issues encountered during development and their solutions.
+
+## 1. EXPANDABLE BOX COMPONENTS EXPANDING TOGETHER
+=================================================
+
+**Problem**: 
+The "Who I Am" and "Academic Journey" expandable boxes were visually expanding together, even when only one was clicked. This made the UI look broken and unprofessional.
+
+**What was happening**:
+- All ExpandableBox components were stretching to match the height of the tallest expanded box
+- This was caused by CSS Grid's default `align-items: stretch` behavior
+- The grid container was forcing all items to have the same height
+
+**Before (Broken State)**:
+```tsx
+// Grid container was like this:
+<div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+  <ExpandableBox title="Who I Am" ... />
+  <ExpandableBox title="Academic Journey" ... />
+</div>
+
+// ExpandableBox root was like this:
+<motion.div className="group relative">
+  {/* content */}
+</motion.div>
+```
+
+**What users saw**:
+- Click "Who I Am" → Both boxes visually expand to same height
+- Click "Academic Journey" → Both boxes stretch together
+- Only one box's content was visible, but both boxes appeared expanded
+- Very confusing and unprofessional looking
+
+**Attempts made**:
+1. **First attempt**: Modified the ExpandableBox component to use `maxHeight` and `opacity` with `motion.div` for expansion
+2. **Second attempt**: Switched to regular CSS `transition-all` with `max-h` and `opacity` classes
+3. **Third attempt**: Used `maxHeight` and `opacity` with `motion.div` for expansion
+4. **Fourth attempt**: Reverted back to `motion.div` based `height: isExpanded ? 'auto' : 0` animation
+
+**After (Fixed State)**:
+```tsx
+// Grid container now has items-start:
+<div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
+  <ExpandableBox title="Who I Am" ... />
+  <ExpandableBox title="Academic Journey" ... />
+</div>
+
+// ExpandableBox root now has self-start:
+<motion.div className="group relative self-start">
+  {/* content */}
+</motion.div>
+```
+
+**What users see now**:
+- Click "Who I Am" → Only "Who I Am" box expands, "Academic Journey" stays collapsed
+- Click "Academic Journey" → Only "Academic Journey" box expands, "Who I Am" stays collapsed
+- Each box maintains its individual height
+- Clean, professional behavior
+
+**Final solution**:
+- Added `items-start` to the grid container: `className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start"`
+- Added `self-start` to the root `motion.div` in ExpandableBox: `className="group relative self-start"`
+- This prevented grid items from stretching to match the tallest element
+
+**Code location**: `src/pages/About.tsx` lines ~350 and ~50
+
+## 2. VOLUNTEER CARDS HEIGHT INCONSISTENCY
+=========================================
+
+**Problem**: 
+The third volunteer card (Green Lake Lutheran Ministries) appeared shorter than the first two when unexpanded, creating visual inconsistency.
+
+**What was happening**:
+- Different volunteer cards had different content lengths
+- The third card had a much shorter description: "Led daily activities, supervised campers, and ensured safety in a high-energy, team-based environment."
+- This caused the card to appear visually smaller than the others
+
+**Before (Inconsistent Heights)**:
+```tsx
+// Volunteer cards grid was like this:
+<div className="grid md:grid-cols-3 gap-4">
+  <VolunteerCard volunteer={volunteer1} />
+  <VolunteerCard volunteer={volunteer2} />
+  <VolunteerCard volunteer={volunteer3} />
+</div>
+
+// VolunteerCard container was like this:
+<div className="relative bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200 dark:border-slate-700 h-full">
+  {/* content */}
+</div>
+```
+
+**What users saw**:
+- Card 1 (EDGE 21): Tall card with long description
+- Card 2 (Gift of Life): Medium height card
+- Card 3 (Green Lake): Short card with minimal description
+- Very uneven, unprofessional appearance
+- Cards looked like they were from different designs
+
+**After (Consistent Heights)**:
+```tsx
+// Volunteer cards grid now has items-start:
+<div className="grid md:grid-cols-3 gap-4 items-start">
+  <VolunteerCard volunteer={volunteer1} />
+  <VolunteerCard volunteer={volunteer2} />
+  <VolunteerCard volunteer={volunteer3} />
+</div>
+
+// VolunteerCard container now has min-height:
+<div className="relative bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-slate-200 dark:border-slate-700 h-full min-h-[280px]">
+  {/* content */}
+</div>
+
+// VolunteerCard root motion.div now has self-start:
+<motion.div className="group relative self-start">
+  {/* content */}
+</motion.div>
+```
+
+**What users see now**:
+- All three cards have the same minimum height (280px)
+- Cards maintain their individual content heights when expanded
+- Clean, professional grid layout
+- Visual consistency across all volunteer cards
+
+**Solution**:
+- Added `min-h-[280px]` to the volunteer card container
+- Added `items-start` to the volunteer cards grid: `className="grid md:grid-cols-3 gap-4 items-start"`
+- Added `self-start` to the VolunteerCard root motion.div: `className="group relative self-start"`
+
+**Code location**: `src/pages/About.tsx` lines ~89 and ~337
+
+## 3. HEADSHOT IMAGES NOT DISPLAYING ON DEPLOYED SITE
+====================================================
+
+**Problem**: 
+The headshot images were not visible on the deployed Vercel website, even though they worked locally.
+
+**What was happening**:
+- Images were placed in the root directory instead of the `public/` folder
+- Vercel only serves static assets from the `public/` folder
+- The images were tracked by git but in the wrong location
+
+**Before (Images Not Showing)**:
+```
+Project structure:
+/Personal-website/
+  - Dreamwave-Photo.png          ← Wrong location
+  - Dreamwave-Photo 2.png        ← Wrong location
+  - public/
+    - 298.pdf
+    - resume.txt
+    - (no images here)
+```
+
+**What users saw**:
+- Local development: Images worked fine (Vite serves from root)
+- Deployed site: Broken image icons or empty spaces
+- Console errors: "Failed to load resource: 404"
+- Professional headshot missing from hero section
+- Small headshot missing from top-left
+
+**After (Images Working)**:
+```
+Project structure:
+/Personal-website/
+  - public/
+    - Dreamwave-Photo.png        ← Correct location
+    - Dreamwave-Photo 2.png      ← Correct location
+    - 298.pdf
+    - resume.txt
+```
+
+**What users see now**:
+- Both headshot images display correctly on deployed site
+- Professional headshot in hero section
+- Small headshot in top-left corner
+- No console errors
+- Professional appearance maintained
+
+**Solution**:
+- Moved both `Dreamwave-Photo.png` and `Dreamwave-Photo 2.png` to `public/` folder
+- Updated image paths in code to reference `/Dreamwave-Photo.png` (which works from public folder)
+- This allowed Vercel to properly serve the static images
+
+**Code location**: `src/pages/Home.tsx` lines ~401 and ~493
+
+## 4. WRONG VERCEL LINKS IN HEADSHOT IMAGES
+==========================================
+
+**Problem**: 
+Both headshot images were linking to placeholder URLs instead of the actual deployed website.
+
+**What was happening**:
+- Headshot links were set to `https://your-vercel-url.vercel.app` (placeholder)
+- Users clicking on headshots would go to a non-existent page
+
+**Before (Broken Links)**:
+```tsx
+// Small headshot (top-left) was like this:
+<a 
+  href="https://your-vercel-url.vercel.app" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="block transition-transform hover:scale-105 duration-300"
+>
+  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-200/50 shadow-lg">
+    <img src="/Dreamwave-Photo.png" alt="Manmeet Singh Hayer - Small Headshot" />
+  </div>
+</a>
+
+// Large headshot (hero section) was like this:
+<a 
+  href="https://your-vercel-url.vercel.app" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="block transition-transform hover:scale-105 duration-300"
+>
+  <div className="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-primary-200/50 shadow-2xl">
+    <img src="/Dreamwave-Photo 2.png" alt="Manmeet Singh Hayer - Professional Headshot" />
+  </div>
+</a>
+```
+
+**What users experienced**:
+- Click on small headshot → 404 error page
+- Click on large headshot → 404 error page
+- Broken user experience
+- Headshots appeared clickable but led nowhere useful
+
+**After (Working Links)**:
+```tsx
+// Small headshot (top-left) now links correctly:
+<a 
+  href="https://personal-website-wine-two-90.vercel.app/" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="block transition-transform hover:scale-105 duration-300"
+>
+  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-200/50 shadow-lg">
+    <img src="/Dreamwave-Photo.png" alt="Manmeet Singh Hayer - Small Headshot" />
+  </div>
+</a>
+
+// Large headshot (hero section) now links correctly:
+<a 
+  href="https://personal-website-wine-two-90.vercel.app/" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="block transition-transform hover:scale-105 duration-300"
+>
+  <div className="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-primary-200/50 shadow-2xl">
+    <img src="/Dreamwave-Photo 2.png" alt="Manmeet Singh Hayer - Professional Headshot" />
+  </div>
+</a>
+```
+
+**What users experience now**:
+- Click on small headshot → Opens live website in new tab
+- Click on large headshot → Opens live website in new tab
+- Smooth user experience
+- Headshots serve as navigation back to the main site
+
+**Solution**:
+- Updated both headshot links to `https://personal-website-wine-two-90.vercel.app/`
+- Small headshot (top-left): `href="https://personal-website-wine-two-90.vercel.app/"`
+- Large headshot (hero section): `href="https://personal-website-wine-two-90.vercel.app/"`
+
+**Code location**: `src/pages/Home.tsx` lines ~394 and ~486
+
+## 5. INCORRECT DATES IN DOCUMENTATION
+=====================================
+
+**Problem**: 
+Documentation files had incorrect dates (December 19, 2024) instead of the actual current date.
+
+**What was happening**:
+- Documentation was updated with a hardcoded wrong date
+- This made the documentation appear outdated and unprofessional
+
+**Before (Wrong Dates)**:
+```markdown
+# Personal Portfolio Website
+
+A sophisticated, production-ready personal portfolio website...
+
+**Last Updated:** December 19, 2024
+
+## 📋 Recent Updates
+
+### December 19, 2024
+- Fixed volunteer cards height inconsistency by adding minimum height constraint
+- Added clickable headshot image linking to Vercel deployment
+- Lightened YOGOWYPI motto text color for better readability
+```
+
+**What users saw**:
+- Documentation appeared to be from December 2024 (future date)
+- Made the project seem outdated or fake
+- Unprofessional appearance
+- Confusing timeline
+
+**After (Correct Dates)**:
+```markdown
+# Personal Portfolio Website
+
+A sophisticated, production-ready personal portfolio website...
+
+**Last Updated:** September 10, 2025
+
+## 📋 Recent Updates
+
+### September 10, 2025
+- **UI Layout Fixes**: Resolved volunteer cards height inconsistency by adding minimum height constraint
+- **Interactive Headshot**: Made professional headshot image clickable, linking to Vercel deployment with hover scale effect
+- **Visual Polish**: Lightened YOGOWYPI motto text color for better readability
+- **Grid Alignment**: Added CSS classes to prevent expandable components from stretching to match tallest element
+- **Documentation**: Updated both DOCUMENTATION.txt and README.md with current changes and proper date formatting
+```
+
+**What users see now**:
+- Accurate current date (September 10, 2025)
+- Professional, up-to-date documentation
+- Detailed technical summaries instead of vague descriptions
+- Proper project timeline
+
+**Solution**:
+- Corrected dates to actual current date: September 10, 2025
+- Updated both `DOCUMENTATION.txt` and `README.md`
+- Improved change summaries with specific technical details
+
+**Code location**: `DOCUMENTATION.txt` and `README.md`
+
+## 6. TYPEWRITER EFFECT TOO FAST
+===============================
+
+**Problem**: 
+The YOGOWYPI motto reveal effect was too fast and felt rushed.
+
+**What was happening**:
+- Original typewriter effect was revealing text character by character at 100ms intervals
+- The effect felt too quick and didn't have enough dramatic impact
+
+**Before (Fast Typewriter)**:
+```tsx
+// Typewriter effect was like this:
+useEffect(() => {
+  if (!isScratched) return
+
+  const timeout = setTimeout(() => {
+    if (currentIndex < fullText.length) {
+      setDisplayedText(prev => prev + fullText[currentIndex])
+      setCurrentIndex(prev => prev + 1)
+    }
+  }, 100) // 100ms per character - too fast!
+
+  return () => clearTimeout(timeout)
+}, [currentIndex, fullText, isScratched])
+
+// Effect started after 500ms delay
+const timer = setTimeout(() => {
+  setBlindsRevealed(true)
+}, 500) // Start effect after 500ms
+```
+
+**What users experienced**:
+- Text appeared character by character very quickly
+- Effect felt rushed and unprofessional
+- No dramatic impact or visual interest
+- Effect was over before users could appreciate it
+
+**After (Slow Checkerboard Effect)**:
+```tsx
+// Checkerboard effect with slower timing:
+useEffect(() => {
+  if (!isScratched) return
+
+  const timer = setTimeout(() => {
+    setBlindsRevealed(true)
+  }, 1000) // Start checkerboard effect after 1000ms (slower)
+
+  return () => clearTimeout(timer)
+}, [isScratched])
+
+// Text animation with slower reveal:
+<motion.span 
+  className="text-blue-500 dark:text-blue-300 block"
+  initial={{ 
+    opacity: 0,
+    scale: 0.8
+  }}
+  animate={blindsRevealed ? {
+    opacity: 1,
+    scale: 1
+  } : {
+    opacity: 0,
+    scale: 0.8
+  }}
+  transition={{ 
+    duration: 1.2,        // Slower: 0.8s → 1.2s
+    ease: "easeOut",
+    delay: 0.4            // Slower: 0.2s → 0.4s
+  }}
+>
+  {fullText}
+</motion.span>
+
+// Checkerboard overlay with dramatic effect:
+<motion.div
+  className="absolute inset-0"
+  initial={{ 
+    backgroundImage: "repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, white 90deg, transparent 180deg, white 270deg, transparent 360deg)",
+    backgroundSize: "20px 20px",
+    opacity: 1
+  }}
+  animate={blindsRevealed ? { 
+    opacity: 0,
+    scale: 1.2
+  } : { 
+    opacity: 1,
+    scale: 1
+  }}
+  transition={{ 
+    duration: 2.0,        // Slower: 1.5s → 2.0s
+    ease: "easeInOut",
+    delay: 0.3            // Slower: 0.1s → 0.3s
+  }}
+/>
+```
+
+**What users experience now**:
+- Dramatic checkerboard pattern reveals the text
+- Slower, more elegant animation timing
+- Professional, polished feel
+- Visual interest that draws attention
+- Effect has proper dramatic impact
+
+**Solution**:
+- Changed from typewriter to checkerboard effect
+- Increased delays: 500ms → 1000ms for effect start
+- Increased animation durations: 0.8s → 1.2s for text reveal, 1.5s → 2.0s for checkerboard
+- Added more dramatic checkerboard pattern with `repeating-conic-gradient`
+
+**Code location**: `src/pages/Home.tsx` lines ~89-105 and ~156-214
+
+## 7. MISSING TYPEWRITER ROTATION
+=================================
+
+**Problem**: 
+The typewriter text under "Manmeet Singh Hayer" only showed one phrase and didn't rotate.
+
+**What was happening**:
+- TypewriterText component only had one hardcoded phrase
+- No rotation mechanism between different phrases
+
+**Before (Single Phrase)**:
+```tsx
+// TypewriterText component was like this:
+function TypewriterText() {
+  const [displayedText, setDisplayedText] = useState('')
+  const fullText = 'ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic'  // Only one phrase
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  // ... typewriter logic for single phrase
+}
+```
+
+**What users saw**:
+- Only one phrase: "ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic"
+- Text would type out, pause, delete, and repeat the same phrase
+- No variety or additional information
+- Static, boring experience
+
+**After (Rotating Phrases)**:
+```tsx
+// TypewriterText component now has multiple phrases:
+function TypewriterText() {
+  const [displayedText, setDisplayedText] = useState('')
+  const phrases = [
+    'ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic',
+    'Interests- Exercise; Singing; Nature; Chess; Politics'
+  ]
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  const fullText = phrases[currentPhraseIndex]
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (currentIndex < fullText.length) {
+          setDisplayedText(prev => prev + fullText[currentIndex])
+          setCurrentIndex(prev => prev + 1)
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000)
+        }
+      } else {
+        if (displayedText.length > 0) {
+          setDisplayedText(prev => prev.slice(0, -1))
+        } else {
+          // Reset for next cycle and switch to next phrase
+          setIsDeleting(false)
+          setCurrentIndex(0)
+          setCurrentPhraseIndex(prev => (prev + 1) % phrases.length)
+        }
+      }
+    }, isDeleting ? 50 : 100)
+
+    return () => clearTimeout(timeout)
+  }, [currentIndex, fullText, displayedText, isDeleting, currentPhraseIndex, phrases.length])
+}
+```
+
+**What users see now**:
+- Phrase 1: "ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic" (types out, pauses, deletes)
+- Phrase 2: "Interests- Exercise; Singing; Nature; Chess; Politics" (types out, pauses, deletes)
+- Continuous rotation between both phrases
+- More engaging and informative experience
+- Shows both professional experience and personal interests
+
+**Solution**:
+- Added `phrases` array with multiple text options
+- Added `currentPhraseIndex` state management
+- Implemented rotation logic that cycles through phrases
+- Added new phrase: "Interests- Exercise; Singing; Nature; Chess; Politics"
+
+**Code location**: `src/pages/Home.tsx` lines ~9-53
+
+## 8. CSS GRID ALIGNMENT ISSUES
+==============================
+
+**Problem**: 
+Multiple components were experiencing alignment issues due to CSS Grid's default stretching behavior.
+
+**What was happening**:
+- CSS Grid by default uses `align-items: stretch`
+- This caused all grid items to stretch to match the tallest item
+- Created visual inconsistencies across different sections
+
+**Before (Grid Stretching Issues)**:
+```tsx
+// ExpandableBox grid was like this:
+<div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+  <ExpandableBox title="Who I Am" ... />
+  <ExpandableBox title="Academic Journey" ... />
+</div>
+
+// VolunteerCard grid was like this:
+<div className="grid md:grid-cols-3 gap-4">
+  <VolunteerCard volunteer={volunteer1} />
+  <VolunteerCard volunteer={volunteer2} />
+  <VolunteerCard volunteer={volunteer3} />
+</div>
+
+// Individual components had no self-alignment:
+<motion.div className="group relative">
+  {/* content */}
+</motion.div>
+```
+
+**What users experienced**:
+- All grid items stretched to match the tallest item
+- ExpandableBox components appeared to expand together
+- VolunteerCard components had inconsistent heights
+- Unprofessional, broken-looking layout
+- Visual elements didn't behave independently
+
+**After (Proper Grid Alignment)**:
+```tsx
+// ExpandableBox grid now has items-start:
+<div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
+  <ExpandableBox title="Who I Am" ... />
+  <ExpandableBox title="Academic Journey" ... />
+</div>
+
+// VolunteerCard grid now has items-start:
+<div className="grid md:grid-cols-3 gap-4 items-start">
+  <VolunteerCard volunteer={volunteer1} />
+  <VolunteerCard volunteer={volunteer2} />
+  <VolunteerCard volunteer={volunteer3} />
+</div>
+
+// Individual components now have self-start:
+<motion.div className="group relative self-start">
+  {/* content */}
+</motion.div>
+```
+
+**What users see now**:
+- Each grid item maintains its natural height
+- ExpandableBox components expand independently
+- VolunteerCard components have consistent minimum heights
+- Professional, clean layout
+- Visual elements behave as expected
+
+**Solution**:
+- Consistently added `items-start` to grid containers
+- Added `self-start` to individual grid items
+- This ensured each item maintains its natural height
+- Applied to both ExpandableBox and VolunteerCard components
+
+**Code location**: Multiple locations in `src/pages/About.tsx`
+
+## 9. COURSE FILTERING CRASH WHEN CLICKING CATEGORIES OUT OF ORDER
+================================================================
+
+**Problem**: 
+The course filtering system would crash or show a white screen when clicking category buttons in a specific order, rather than only working when clicked in the correct sequence.
+
+**What was happening**:
+- The `currentIndex` state was being reset to 0 when category changed
+- If the filtered courses array was empty or had fewer items than expected, accessing `filteredCourses[currentIndex]` would cause undefined errors
+- The component didn't handle edge cases where `currentIndex` could be out of bounds
+- No safety checks for empty filtered arrays
+
+**Before (Crash-Prone Code)**:
+```tsx
+// No safety checks for currentIndex bounds
+const currentCourse = filteredCourses[currentIndex]
+const CategoryIcon = categoryIcons[currentCourse.category as keyof typeof categoryIcons]
+const colorClass = categoryColors[currentCourse.category as keyof typeof categoryColors]
+
+// Navigation functions without safety checks
+const nextCourse = () => {
+  setCurrentIndex((prev) => (prev + 1) % filteredCourses.length)
+}
+
+const prevCourse = () => {
+  setCurrentIndex((prev) => (prev - 1 + filteredCourses.length) % filteredCourses.length)
+}
+
+// Auto-advance without safety checks
+useEffect(() => {
+  if (!isPlaying || isHovered) return
+  const interval = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % filteredCourses.length)
+  }, 2000)
+  return () => clearInterval(interval)
+}, [isPlaying, isHovered, filteredCourses.length])
+```
+
+**What users experienced**:
+- Clicking category buttons in certain orders caused white screen/crash
+- Site would become unresponsive
+- Console errors about undefined properties
+- Inconsistent behavior depending on click sequence
+
+**After (Crash-Safe Code)**:
+```tsx
+// Safety check to prevent crashes
+const currentCourse = filteredCourses.length > 0 ? filteredCourses[currentIndex] : null
+const CategoryIcon = currentCourse ? categoryIcons[currentCourse.category as keyof typeof categoryIcons] : BookOpen
+const colorClass = currentCourse ? categoryColors[currentCourse.category as keyof typeof categoryColors] : 'from-slate-500 to-slate-600'
+
+// Navigation functions with safety checks
+const nextCourse = () => {
+  if (filteredCourses.length > 0) {
+    setCurrentIndex((prev) => (prev + 1) % filteredCourses.length)
+  }
+}
+
+const prevCourse = () => {
+  if (filteredCourses.length > 0) {
+    setCurrentIndex((prev) => (prev - 1 + filteredCourses.length) % filteredCourses.length)
+  }
+}
+
+// Auto-advance with safety checks
+useEffect(() => {
+  if (!isPlaying || isHovered || filteredCourses.length === 0) return
+  const interval = setInterval(() => {
+    setCurrentIndex((prev) => (prev + 1) % filteredCourses.length)
+  }, 2000)
+  return () => clearInterval(interval)
+}, [isPlaying, isHovered, filteredCourses.length])
+
+// Bounds checking for currentIndex
+useEffect(() => {
+  if (filteredCourses.length > 0 && currentIndex >= filteredCourses.length) {
+    setCurrentIndex(0)
+  }
+}, [filteredCourses.length, currentIndex])
+
+// Conditional rendering with fallback
+{currentCourse ? (
+  <motion.div>
+    {/* Course display */}
+  </motion.div>
+) : (
+  <div className="relative bg-gradient-to-r from-slate-500 to-slate-600 rounded-2xl p-8 shadow-xl">
+    <div className="text-center">
+      <h4 className="text-2xl font-bold text-white mb-2 font-heading">
+        No courses found
+      </h4>
+      <p className="text-white/80 text-sm">
+        Try selecting a different category
+      </p>
+    </div>
+  </div>
+)}
+```
+
+**What users experience now**:
+- Course filtering works regardless of click order
+- No crashes or white screens
+- Graceful fallback when no courses are found
+- Consistent, reliable behavior
+- Safe navigation between categories
+
+**Solution**:
+- Added safety checks for `currentIndex` bounds
+- Added null checks for `currentCourse` access
+- Added fallback UI for empty filtered arrays
+- Added safety checks to navigation functions
+- Added bounds checking useEffect
+- Added conditional rendering with proper fallbacks
+
+**Code location**: `src/components/CoursesBelt.tsx`
+
+## 10. COURSE CATEGORIZATION REORGANIZATION
+==========================================
+
+**Problem**: 
+The course filtering had too many separate categories (Finance, Math, Business) that were related and could be grouped together for better user experience.
+
+**What was happening**:
+- Separate buttons for Finance, Math, and Business courses
+- Related courses were scattered across different categories
+- Too many filter options made the interface cluttered
+- Users had to click multiple buttons to see related courses
+
+**Before (Separate Categories)**:
+```tsx
+const courses = [
+  // Finance courses (from resume)
+  { name: 'Statistics for Economics and Management', category: 'finance', icon: Calculator },
+  { name: 'Investment & Portfolio Analysis', category: 'finance', icon: TrendingUp },
+  { name: 'Portfolio Management', category: 'finance', icon: TrendingUp },
+  { name: 'Econometrics', category: 'finance', icon: Calculator },
+  { name: 'Intermediate Macroeconomics', category: 'finance', icon: Globe },
+  { name: 'Regression with Microdata', category: 'finance', icon: Calculator },
+  { name: 'Corporate Finance', category: 'finance', icon: TrendingUp },
+  { name: 'Financial Accounting', category: 'finance', icon: Calculator },
+  
+  // CS courses (from resume)
+  { name: 'Object Oriented Software Development', category: 'cs', icon: Code },
+  { name: 'Foundations of Computation', category: 'cs', icon: Code },
+  { name: 'Computer Science I', category: 'cs', icon: Code },
+  { name: 'Data Structures', category: 'cs', icon: Database },
+  
+  // Math courses (from resume)
+  { name: 'Discrete Mathematics', category: 'math', icon: Calculator },
+  
+  // Business courses (from resume)
+  { name: 'HONR-Business & the liberal arts', category: 'business', icon: BookOpen },
+  
+  // Miscellaneous courses (from resume)
+  { name: 'Contemporary Society', category: 'misc', icon: Globe },
+  { name: 'Intro Peace and Conflicts', category: 'misc', icon: Globe },
+  { name: 'Literature: Poetry, Fiction and Drama', category: 'misc', icon: BookOpen },
+  { name: 'Civic Education I', category: 'misc', icon: Globe },
+]
+
+const categoryColors = {
+  finance: 'from-slate-600 to-slate-700',
+  cs: 'from-violet-500 to-purple-600',
+  math: 'from-blue-500 to-indigo-600',
+  business: 'from-blue-500 to-cyan-600',
+  misc: 'from-emerald-500 to-teal-600',
+}
+
+const categoryIcons = {
+  finance: TrendingUp,
+  cs: Code,
+  math: Calculator,
+  business: BookOpen,
+  misc: Globe,
+}
+```
+
+**What users experienced**:
+- 5 separate category buttons (All, Finance, CS, Math, Business, Liberal Arts)
+- Related courses scattered across Finance, Math, and Business
+- Cluttered interface with too many options
+- Had to click multiple buttons to see all quantitative courses
+
+**After (Grouped Categories)**:
+```tsx
+const courses = [
+  // Finance, Math & Business courses (grouped together)
+  { name: 'Statistics for Economics and Management', category: 'finance-math-business', icon: Calculator },
+  { name: 'Investment & Portfolio Analysis', category: 'finance-math-business', icon: TrendingUp },
+  { name: 'Portfolio Management', category: 'finance-math-business', icon: TrendingUp },
+  { name: 'Econometrics', category: 'finance-math-business', icon: Calculator },
+  { name: 'Intermediate Macroeconomics', category: 'finance-math-business', icon: Globe },
+  { name: 'Regression with Microdata', category: 'finance-math-business', icon: Calculator },
+  { name: 'Corporate Finance', category: 'finance-math-business', icon: TrendingUp },
+  { name: 'Financial Accounting', category: 'finance-math-business', icon: Calculator },
+  { name: 'Discrete Mathematics', category: 'finance-math-business', icon: Calculator },
+  { name: 'HONR-Business & the liberal arts', category: 'finance-math-business', icon: BookOpen },
+  
+  // CS courses (from resume)
+  { name: 'Object Oriented Software Development', category: 'cs', icon: Code },
+  { name: 'Foundations of Computation', category: 'cs', icon: Code },
+  { name: 'Computer Science I', category: 'cs', icon: Code },
+  { name: 'Data Structures', category: 'cs', icon: Database },
+  
+  // Miscellaneous courses (from resume)
+  { name: 'Contemporary Society', category: 'misc', icon: Globe },
+  { name: 'Intro Peace and Conflicts', category: 'misc', icon: Globe },
+  { name: 'Literature: Poetry, Fiction and Drama', category: 'misc', icon: BookOpen },
+  { name: 'Civic Education I', category: 'misc', icon: Globe },
+]
+
+const categoryColors = {
+  'finance-math-business': 'from-slate-600 to-slate-700',
+  cs: 'from-violet-500 to-purple-600',
+  misc: 'from-emerald-500 to-teal-600',
+}
+
+const categoryIcons = {
+  'finance-math-business': TrendingUp,
+  cs: Code,
+  misc: Globe,
+}
+
+// Updated display logic
+{currentCourse.category === 'cs' ? 'Computer Science' : 
+ currentCourse.category === 'finance-math-business' ? 'Finance, Math & Business' :
+ currentCourse.category === 'misc' ? 'Liberal Arts' : currentCourse.category}
+```
+
+**What users experience now**:
+- 3 clean category buttons (All, Finance Math & Business, CS, Liberal Arts)
+- All quantitative courses grouped together logically
+- Cleaner, less cluttered interface
+- Single click to see all related quantitative courses
+- Better organization that matches academic disciplines
+
+**Solution**:
+- Grouped Finance, Math, and Business courses under single category `'finance-math-business'`
+- Updated category colors and icons to reflect the new grouping
+- Updated display logic to show "Finance, Math & Business" for the grouped category
+- Reduced total categories from 5 to 3 for cleaner interface
+- Maintained all existing functionality while improving organization
+
+**Code location**: `src/components/CoursesBelt.tsx`
+
+## 11. EMAIL OVERFLOW IN CONTACT TILES
+=====================================
+
+**Problem**: 
+The email address in the contact tiles at the bottom of the home page was not fitting properly within the tile boundaries, causing text overflow and poor visual appearance.
+
+**What was happening**:
+- Long email address `manmeethayer_2026@depauw.edu` was overflowing the contact tile
+- No text wrapping or size adjustment for the email display
+- Email text was too large for the available space in the card
+- Poor user experience with text being cut off or extending beyond tile boundaries
+
+**Before (Email Overflow)**:
+```tsx
+<a 
+  href={`mailto:${data.email}`} 
+  className="text-secondary-600 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-300 transition-colors"
+>
+  {data.email}  // Long email not wrapping, causing overflow
+</a>
+```
+
+**What users experienced**:
+- Email text extending beyond the contact tile boundaries
+- Poor visual appearance with text overflow
+- Unprofessional look in the contact section
+- Difficult to read the complete email address
+
+**After (Proper Email Wrapping)**:
+```tsx
+<a 
+  href={`mailto:${data.email}`} 
+  className="text-secondary-600 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-300 transition-colors break-all text-sm"
+>
+  {data.email}  // Added break-all and text-sm for proper wrapping
+</a>
+```
+
+**What users experience now**:
+- Email properly wrapped within the contact tile boundaries
+- Clean, professional appearance in contact section
+- Complete email address visible and readable
+- Proper text sizing that fits the available space
+
+**Solution**:
+- Added `break-all` class to allow text to break at any character for proper wrapping
+- Added `text-sm` class to reduce font size for better fit
+- Maintained hover effects and styling while fixing the overflow issue
+- Ensured email remains clickable and functional
+
+**Code location**: `src/pages/Home.tsx` (Contact Info Section)
+
+## 12. PROJECT SKILLS SECTION REORGANIZATION
+============================================
+
+**Problem**: 
+The projects section had skills embedded within bullet points and a separate "Technologies" section, making it inconsistent and hard to scan. Skills were mentioned in text like "Skills demonstrated: advertising, marketing, tabling, project planning, and networking."
+
+**What was happening**:
+- Skills were embedded within bullet point text instead of being displayed prominently
+- "Technologies" section existed separately from skills
+- Inconsistent presentation between different projects
+- Skills were hard to quickly identify and scan
+- Some projects had skills in text, others didn't
+
+**Before (Embedded Skills)**:
+```tsx
+// Project data with embedded skills
+{
+  id: "tigers-vs-cancer",
+  details: {
+    bullets: [
+      "Surpassed 115% of target donors, outperforming ~90% of peer campuses nationwide.",
+      "Orchestrated the first successful stem-cell transplant from a DePauw donor...",
+      "Introduced a budget-based lottery: received ~$1 for each donor...",
+      "Skills demonstrated: advertising, marketing, tabling, project planning, and networking."  // Embedded in text
+    ],
+    tech: ["Project Management", "Marketing", "Community Outreach", "Event Planning", "C++", "Data Analysis"],  // Separate tech section
+    links: []
+  }
+}
+
+// Modal rendering
+{project.details.tech && project.details.tech.length > 0 && (
+  <div>
+    <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Technologies</h3>
+    <div className="flex flex-wrap gap-2">
+      {project.details.tech.map((tech, index) => (
+        <span className="px-3 py-1 bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 rounded-full text-sm">
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
+)}
+```
+
+**What users experienced**:
+- Skills buried in long bullet point text
+- Inconsistent skill presentation across projects
+- Hard to quickly scan what skills were demonstrated
+- Separate "Technologies" section that was confusing
+- Skills and technologies mixed together
+
+**After (Dedicated Skills Section)**:
+```tsx
+// Project data with dedicated skills array
+{
+  id: "tigers-vs-cancer",
+  details: {
+    bullets: [
+      "Surpassed 115% of target donors, outperforming ~90% of peer campuses nationwide.",
+      "Orchestrated the first successful stem-cell transplant from a DePauw donor...",
+      "Introduced a budget-based lottery: received ~$1 for each donor..."  // Clean bullet points
+    ],
+    skills: ["Project Management", "Marketing", "Community Outreach", "Event Planning", "C++", "Data Analysis", "Advertising", "Tabling", "Networking"],  // Dedicated skills array
+    links: []
+  }
+}
+
+// Modal rendering with Skills section
+{project.details.skills && project.details.skills.length > 0 && (
+  <div>
+    <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Skills</h3>
+    <div className="flex flex-wrap gap-2">
+      {project.details.skills.map((skill, index) => (
+        <span className="px-3 py-1 bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 rounded-full text-sm">
+          {skill}
+        </span>
+      ))}
+    </div>
+  </div>
+)}
+```
+
+**What users experience now**:
+- Clean, dedicated "Skills" section with bubble-style display
+- Consistent skill presentation across all projects
+- Easy to quickly scan and identify skills demonstrated
+- No more embedded skills in bullet point text
+- Professional, organized appearance
+
+**Solution**:
+- Extracted skills from embedded text in bullet points
+- Created dedicated `skills` array in project data structure
+- Replaced "Technologies" section with "Skills" section
+- Used same bubble-style display for skills as previously used for technologies
+- Removed "Skills demonstrated:" text from bullet points
+- Added additional relevant skills to each project
+- Maintained consistent styling and layout
+
+**Code location**: `src/components/ProjectCarsShowcase.tsx`
+
+## KEY LEARNINGS
+================
+
+1. **CSS Grid Behavior**: Always consider `align-items` property when using CSS Grid
+2. **Static Asset Serving**: Vercel only serves assets from `public/` folder
+3. **Animation Timing**: Slower animations often feel more professional and polished
+4. **State Management**: Proper state isolation prevents components from affecting each other
+5. **Documentation**: Keep documentation dates accurate and change summaries specific
+6. **User Experience**: Visual consistency is crucial for professional appearance
+7. **Array Bounds Checking**: Always validate array indices and handle empty arrays to prevent crashes
+8. **Defensive Programming**: Add safety checks for all state-dependent operations
+
+## TOOLS USED FOR DEBUGGING
+===========================
+
+- **Git Status**: Tracked file changes and commits
+- **Linting**: Used `read_lints` to catch TypeScript errors
+- **Browser DevTools**: Inspected CSS Grid behavior
+- **Terminal Commands**: `git log`, `git status`, `ls -la` for file management
+- **Code Search**: Used `grep` and `codebase_search` to locate issues

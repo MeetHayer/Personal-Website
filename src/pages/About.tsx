@@ -170,21 +170,21 @@ export default function About() {
               key="who-i-am"
               title="Who I Am" 
               icon={Code} 
-              gradient="bg-gradient-to-r from-pink-500 to-rose-500"
+              gradient="bg-gradient-to-r from-purple-500 to-violet-500"
               delay={0.2}
             >
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-bold mb-3 text-primary-700 font-heading">Introduction</h3>
                     <p className="text-secondary-600 leading-relaxed">
-                      I grew up in a semi-urban town in Punjab, India, and came to DePauw University on a <strong>full cost scholarship</strong>. Numbers have always been my thing, and college opened up the world of business and finance—fields I never had access to back home. Since then, I've been hooked on how money and value are created and multiplied through corporate planning, investment analysis, M&A, and business process optimization.
+                      I grew up in a semi-urban town in Punjab, India, and came to DePauw University on a <strong>full cost scholarship</strong>. Numbers have always been my thing, and college opened up the world of business and finance—fields I never had access to back home. Since then, I've been hooked on how money and value are driven higher through financial planning, process optimization, investment strategy and M&As.
                     </p>
                 </div>
                 
                 <div>
                   <h3 className="text-lg font-bold mb-3 text-primary-700 font-heading">Interests</h3>
                   <p className="text-secondary-600 leading-relaxed">
-                    Outside the classroom, you'll usually find me working out, singing, playing chess, hiking, or shooting pool. I'm also a curious reader and love diving into anything business- or politics-related.
+                    Outside the classroom, I prioritize fitness. I also enjoy singing, chess, hiking, and billiards. I'm an avid reader with a particular interest in business and politics.
                   </p>
                 </div>
                 
@@ -406,7 +406,7 @@ export default function About() {
           <div className="mt-12 grid md:grid-cols-2 gap-8">
             {data.skills.specializations && (
               <div>
-                <h3 className="text-2xl font-bold text-center mb-6 text-primary-700">Specializations</h3>
+                <h3 className="text-2xl font-bold text-center mb-6 text-primary-700">Passions</h3>
                 <div className="flex flex-wrap justify-center gap-3">
                   {data.skills.specializations.map((specialization, index) => (
                     <span key={index} className="badge bg-gradient-to-r from-accent-100 to-primary-100 text-accent-700 text-sm px-4 py-2">

@@ -7,7 +7,22 @@ Last Updated: September 10, 2025
 
 ## 📋 **Recent Updates**
 
-### **September 10, 2025**
+### **September 10, 2025 (Evening Update)**
+- **Course Categorization**: Grouped Finance, Math, and Business courses into single "Finance, Math & Business" category, reducing filter buttons from 5 to 3 for cleaner interface
+- **Content Updates**: Changed "Specializations" to "Passions" on About page for better engagement
+- **Interests Enhancement**: Added "AI" to typewriter interests rotation on home page
+- **Color Scheme**: Replaced all pink colors with purple throughout site (except email icons as requested)
+- **Social Media Integration**: Added LinkedIn and Gmail icons next to name on home page with hover effects
+- **Contact Messaging**: Updated contact page with personalized "Looking for a Finance & Software guy with a knack for AI? Let's chat!" message
+- **Text Refinement**: Improved About page text to be more concise and impactful
+- **Motto Redesign**: Moved motto from complex scratch-off interaction to prominent quote display under headshot
+- **Email Display Fix**: Added proper text wrapping for email in contact tiles using `break-all` and `text-sm` classes
+- **Writing Page**: Created new personal blog post "Hey there 👋, I'm Meet!" with origin story, career goals, and music ambitions
+- **Passions Update**: Changed "Commercial Banking" to "Debt Instruments" in specializations
+- **Projects Skills**: Reorganized project skills from embedded text to dedicated bubble-style display section
+- **UI/UX Polish**: Multiple small improvements for better user experience and professional appearance
+
+### **September 10, 2025 (Morning Update)**
 - **UI Layout Fixes**: Resolved volunteer cards height inconsistency by adding minimum height constraint (`min-h-[280px]`)
 - **Interactive Headshot**: Made professional headshot image clickable, linking to Vercel deployment with hover scale effect
 - **Visual Polish**: Lightened YOGOWYPI motto text color from `text-blue-600` to `text-blue-500` for better readability
