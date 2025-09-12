@@ -449,7 +449,7 @@ export default function Home() {
           className="hidden md:flex absolute top-8 left-8 items-center gap-3 bg-white/70 dark:bg-slate-900/60 text-slate-800 dark:text-slate-100 border border-white/30 dark:border-white/10 rounded-2xl shadow-lg backdrop-blur px-3 py-2 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all duration-300 cursor-pointer"
         >
           <img src="/Dreamwave-Photo.png" alt="Manmeet"
-               className="w-8 h-6 rounded-full object-cover object-top ring-2 ring-white/80 dark:ring-white/30" />
+               className="w-10 h-8 rounded-full object-cover object-top ring-2 ring-white/80 dark:ring-white/30" />
           <div className="text-sm leading-tight">
             <div className="font-semibold">B.A. — Finance &amp; CS</div>
             <div className="opacity-80">DePauw University '26</div>
