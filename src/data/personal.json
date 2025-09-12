@@ -21,7 +21,7 @@
   },
   "skills": {
     "programming": ["Java", "Python", "C++", "VBA", "JavaScript", "Node.js", "React", "Vue.js", "HTML/CSS", "Bootstrap", "Git"],
-    "software": ["Microsoft Office", "Tableau", "Power BI", "Oracle EPM", "Anaplan", "SmartView", "Coupa", "Transcend", "Stata", "SQL", "VS Code", "Blender", "ChemDraw", "Avogadro", "ZoomInfo", "Bloomberg Terminal"],
+    "software": ["Microsoft Office", "Tableau", "Power BI", "Oracle EPM", "Anaplan", "SmartView", "Coupa", "Transcend", "Stata", "SQL", "VS Code", "Blender", "Hubspot", "Avogadro", "ZoomInfo", "Bloomberg Terminal"],
     "languages": ["English (Fluent)", "Hindi (Fluent)", "Punjabi (Fluent)"],
     "finance": ["Financial Modeling", "DCF Analysis", "Portfolio Management", "Investment Analysis", "Corporate Finance", "Budget Analysis", "Forecasting", "Cash Flow Analysis", "Actuals vs Budget vs Forecast", "AP/AR Reconciliation", "Labor Budgeting", "PO/Invoice Resolving"],
     "specializations": ["Data Analytics & Automation", "Financial Technology", "Investment Banking", "Debt Instruments", "Corporate Finance", "Full-Stack Development", "AI/ML", "Equity Analysis"]
