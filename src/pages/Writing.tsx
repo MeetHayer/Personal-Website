@@ -20,7 +20,7 @@ export default function Writing() {
             transition={{ duration: 0.8 }}
             className="text-center space-y-8 max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold">
+            <h1 className="text-[clamp(1.25rem,6vw,1.75rem)] md:text-4xl lg:text-6xl font-bold">
               <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
                 My Thoughts
               </span>

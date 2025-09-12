@@ -38,12 +38,12 @@ function ExpandableBox({
       initial={{ opacity: 0, x: delay === 0 ? -30 : 30 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, delay }}
-      className="card p-8 bg-gradient-to-br from-primary-50/50 to-accent-50/50 border-primary-200/50 hover:shadow-2xl transition-all duration-500 group self-start"
+      className="card p-4 sm:p-6 md:p-8 bg-gradient-to-br from-primary-50/50 to-accent-50/50 border-primary-200/50 hover:shadow-2xl transition-all duration-500 group self-start overflow-hidden"
     >
       <div className="space-y-6">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-2xl ${gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+            <div className={`w-12 h-12 rounded-2xl ${gradient} flex items-center justify-center md:group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
               <Icon className="text-white" size={24} />
             </div>
             <h2 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent font-elegant">
@@ -146,7 +146,19 @@ function VolunteerCard({ volunteer, index }: { volunteer: any; index: number }) 
 
 export default function About() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      {/* Full-page Background */}
+      <div 
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+        style={{
+          backgroundImage: "url('/mountain-bg-1.webp')"
+        }}
+      ></div>
+      {/* Overlay for better text readability */}
+      <div className="fixed inset-0 bg-white/40 dark:bg-black/30"></div>
+      
+      {/* Content */}
+      <div className="relative z-10">
       {/* Hero Section with Side-by-Side Layout */}
       <Section id="about-hero" className="relative overflow-hidden">
         <div className="absolute inset-0 hero-bg opacity-5"></div>
@@ -157,14 +169,10 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="text-center space-y-8 max-w-6xl mx-auto mb-16"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold">
-              <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
-                About Me
-              </span>
-            </h1>
+            <h1 className="section-title">About Me</h1>
           </motion.div>
           
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-8 max-w-6xl mx-auto">
             {/* About Box - Left */}
             <ExpandableBox 
               key="who-i-am"
@@ -262,9 +270,7 @@ export default function About() {
           viewport={{ once: true }}
           className="space-y-8"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-center bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-            Professional Experience
-          </h2>
+          <h2 className="section-title">Professional Experience</h2>
           
           {/* Professional Bio */}
           <motion.div
@@ -272,9 +278,9 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="card p-6 bg-gradient-to-br from-primary-50/50 to-accent-50/50 border-primary-200/50 dark:from-slate-800/50 dark:to-slate-700/50 dark:border-slate-600/50"
+            className="card p-4 sm:p-6 md:p-8 bg-gradient-to-br from-primary-50/50 to-accent-50/50 border-primary-200/50 dark:from-slate-800/50 dark:to-slate-700/50 dark:border-slate-600/50 self-start overflow-hidden"
           >
-            <p className="text-lg text-secondary-600 dark:text-slate-300 leading-relaxed text-center font-sans">
+            <p className="text-lg text-secondary-600 dark:text-slate-300 leading-relaxed text-center font-sans break-words">
               I'm a finance analyst who codes. I use Python/VBA/SQL, Microsoft Office, BI and ERP tools to turn messy operational data into decisions—budget vs. actuals, variance patterns, unit economics—and build small automations that save real hours. I like ownership, tight feedback loops, and shipping useful tools fast. Senior at DePauw (Finance & CS), graduating May 2026; open to roles in corporate finance/FP&A, investment analysis & portfolio management, BNPL/fintech, and data-heavy product or analytics work.
             </p>
           </motion.div>
@@ -287,9 +293,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card p-8 hover:shadow-xl transition-all duration-300"
+                className="card p-4 sm:p-6 md:p-8 hover:shadow-xl transition-all duration-300 self-start overflow-hidden"
               >
-                <div className="flex items-start gap-6">
+                <div className="flex items-start gap-6 min-w-0">
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-secondary-500 to-primary-500 flex items-center justify-center flex-shrink-0">
                     <Briefcase className="text-white" size={28} />
                   </div>
@@ -330,9 +336,7 @@ export default function About() {
           viewport={{ once: true }}
           className="space-y-8"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-center bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-            Volunteer Experience
-          </h2>
+          <h2 className="section-title">Volunteer Experience</h2>
           
           <div className="grid md:grid-cols-3 gap-4 items-start">
             {data.volunteerExperience.map((volunteer, index) => (
@@ -351,9 +355,7 @@ export default function About() {
           viewport={{ once: true }}
           className="space-y-8"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-center bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
-            Skills & Expertise
-          </h2>
+          <h2 className="section-title">Skills & Expertise</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -385,7 +387,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card p-6 hover:shadow-lg transition-all duration-300"
+                className="card p-4 sm:p-6 md:p-8 hover:shadow-lg transition-all duration-300 self-start overflow-hidden"
               >
                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${category.color} flex items-center justify-center mb-6`}>
                   <category.icon className="text-white" size={28} />
@@ -403,13 +405,13 @@ export default function About() {
             ))}
           </div>
           
-          <div className="mt-12 grid md:grid-cols-2 gap-8">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-8">
             {data.skills.specializations && (
               <div>
-                <h3 className="text-2xl font-bold text-center mb-6 text-primary-700">Passions</h3>
+                <h3 className="text-2xl font-bold text-center mb-6 text-white">Passions</h3>
                 <div className="flex flex-wrap justify-center gap-3">
                   {data.skills.specializations.map((specialization, index) => (
-                    <span key={index} className="badge bg-gradient-to-r from-accent-100 to-primary-100 text-accent-700 text-sm px-4 py-2">
+                    <span key={index} className="chip">
                       {specialization}
                     </span>
                   ))}
@@ -418,10 +420,10 @@ export default function About() {
             )}
             
             <div>
-              <h3 className="text-2xl font-bold text-center mb-6 text-primary-700">Languages</h3>
+              <h3 className="text-2xl font-bold text-center mb-6 text-white">Languages</h3>
               <div className="flex flex-wrap justify-center gap-3">
                 {data.skills.languages.map((language, index) => (
-                  <span key={index} className="badge bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm px-4 py-2">
+                  <span key={index} className="chip">
                     <Globe size={14} className="mr-1" />
                     {language}
                   </span>
@@ -459,6 +461,7 @@ export default function About() {
             </motion.div>
           </motion.div>
         </motion.div>
+      </div>
       </div>
 
     </div>

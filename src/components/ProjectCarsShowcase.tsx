@@ -500,7 +500,7 @@ export default function ProjectCarsShowcase() {
     <div className="max-w-6xl mx-auto px-4 md:px-6">
       {/* Heading */}
       <div className="text-center space-y-4 mb-8">
-        <h1 className="text-4xl lg:text-6xl font-bold">
+        <h1 className="text-[clamp(1.25rem,6vw,1.75rem)] md:text-4xl lg:text-6xl font-bold">
           <span className="bg-gradient-to-r from-violet-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
             My Projects
           </span>

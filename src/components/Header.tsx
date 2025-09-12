@@ -17,7 +17,7 @@ const FloatingNavItem = ({ to, label, icon: Icon }: { to: string; label: string;
   >
     {({ isActive }) => (
       <>
-        <Icon size={24} className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
+        <Icon size={24} className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'md:group-hover:scale-110'}`} />
         {/* Tooltip */}
         <div className="absolute left-full ml-3 px-3 py-1 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-lg">
           {label}
@@ -41,7 +41,7 @@ const NavItem = ({ to, label, icon: Icon }: { to: string; label: string; icon: a
   >
     {({ isActive }) => (
       <>
-        <Icon size={20} className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
+        <Icon size={20} className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'md:group-hover:scale-110'}`} />
         <span>{label}</span>
       </>
     )}

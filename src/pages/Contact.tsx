@@ -14,9 +14,21 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Message from ${formData.name}`)
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)
+    const mailtoLink = `mailto:hayermanmeetsingh@gmail.com?subject=${subject}&body=${body}`
+    
+    // Open email client
+    window.location.href = mailtoLink
+    
+    // Show success message and clear form
     setSent(true)
-    // In a real app, you would send this to your backend
-    setTimeout(() => setSent(false), 3000)
+    setFormData({ name: '', email: '', message: '' })
+    
+    // Reset success message after 5 seconds
+    setTimeout(() => setSent(false), 5000)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,7 +50,7 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="text-center space-y-8 max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold">
+            <h1 className="text-[clamp(1.25rem,6vw,1.75rem)] md:text-4xl lg:text-6xl font-bold">
               <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
                 Let's Connect
               </span>
@@ -52,7 +64,7 @@ export default function Contact() {
 
       {/* Contact Form & Info */}
       <Section id="contact-content">
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-12">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}

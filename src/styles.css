@@ -80,6 +80,39 @@ html.dark .btn-primary:hover {
   transform: translateY(-1px);
 }
 
+.btn-contact {
+  @apply bg-white text-primary-600 border-primary-200 hover:bg-primary-50 hover:border-primary-300 hover:shadow-lg !important;
+}
+
+html.dark .btn-contact {
+  @apply bg-gradient-to-r from-electric-500 to-electric-600 text-white border-electric-500 hover:from-electric-600 hover:to-electric-700 !important;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
+  color: white !important;
+}
+
+/* ===== Section headings (light + dark) ===== */
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-center mb-10
+         bg-gradient-to-r from-sky-700 to-indigo-600
+         bg-clip-text text-transparent drop-shadow-sm;
+}
+html.dark .section-title {
+  @apply from-sky-300 to-indigo-200;
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+.section-subtitle {
+  @apply text-lg md:text-xl text-slate-600 dark:text-slate-300
+         text-center max-w-3xl mx-auto;
+}
+
+/* ===== Neutral chip (great contrast on both modes) ===== */
+.chip {
+  @apply inline-flex items-center gap-1 px-3 py-1 rounded-full border text-sm
+         bg-white/80 text-slate-800 border-slate-300/70
+         dark:bg-slate-800/70 dark:text-slate-100 dark:border-slate-600/50
+         shadow-sm backdrop-blur-md;
+}
+
 .btn-secondary {
   @apply bg-gradient-to-r from-secondary-500 to-secondary-600 text-white border-secondary-500 hover:from-secondary-600 hover:to-secondary-700;
 }

@@ -45,7 +45,7 @@ function TypewriterText() {
   }, [currentIndex, fullText, displayedText, isDeleting, currentPhraseIndex, phrases.length])
 
   return (
-    <div className="text-lg text-secondary-600 dark:text-slate-300 font-mono">
+    <div className="text-slate-200/95 font-mono font-semibold">
       {displayedText}
       <span className="animate-pulse">|</span>
     </div>
@@ -53,10 +53,10 @@ function TypewriterText() {
 }
 
 // Welcome Text Animation (letter by letter, gothic)
-function WelcomeText() {
-  const [displayedText, setDisplayedText] = useState('')
-  const fullText = 'Welcome, visitor'
-  const [currentIndex, setCurrentIndex] = useState(0)
+        function WelcomeText() {
+          const [displayedText, setDisplayedText] = useState('')
+          const fullText = 'Welcome to Meet\'s Website'
+          const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     if (currentIndex < fullText.length) {
@@ -70,12 +70,10 @@ function WelcomeText() {
   }, [currentIndex, fullText])
 
   return (
-    <div className="text-5xl lg:text-7xl font-bold font-rich tracking-wide">
-      <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
-        {displayedText}
-        <span className="animate-pulse">|</span>
-      </span>
-    </div>
+    <span className="text-slate-50 drop-shadow-lg">
+      {displayedText}
+      <span className="animate-pulse">|</span>
+    </span>
   )
 }
 
@@ -266,10 +264,10 @@ function RotatingTagline() {
   }, [displayedText, isDeleting, currentIndex, taglines])
 
   return (
-    <div className="text-xl lg:text-2xl text-secondary-600 dark:text-slate-300 font-tech min-h-[2rem] flex items-center">
+    <span className="text-slate-200/95 drop-shadow-lg">
       {displayedText}
       <span className="animate-pulse">|</span>
-    </div>
+    </span>
   )
 }
 
@@ -358,7 +356,7 @@ function DynamicSkills() {
           
           <div className="relative z-10">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${currentCategory.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${currentCategory.color} flex items-center justify-center md:group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
                 <currentCategory.icon className="text-white" size={28} />
               </div>
               <div className="text-left">
@@ -427,148 +425,137 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <Section id="hero" className="relative overflow-hidden">
-        <div className="absolute inset-0 hero-bg opacity-5"></div>
-        
-        {/* Small headshot in top left */}
-        <div className="absolute top-8 left-8 z-20">
-          <a 
-            href="https://personal-website-wine-two-90.vercel.app/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block transition-transform hover:scale-105 duration-300"
-          >
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-200/50 shadow-lg">
-              <img 
-                src="/Dreamwave-Photo.png" 
-                alt="Manmeet Singh Hayer - Small Headshot"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </a>
-        </div>
-        
-        {/* Education info near small headshot */}
-        <div className="absolute top-12 left-28 z-20">
-          <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-xs font-medium dark:from-electric-500/20 dark:to-accent-500/20 dark:text-electric-300 dark:border dark:border-electric-500/30">
-            <GraduationCap size={12} />
-            {data.education.degree} • {data.education.school}
+      <Section id="hero" className="relative overflow-hidden min-h-screen">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('/swiss-alps-lake.jpg')",
+            backgroundPosition: 'center 35%', // shows horizon + sun nicely
+          }}
+        />
+        {/* Readability overlay (light + dark) */}
+        <div className="
+          absolute inset-0
+          bg-gradient-to-b from-black/70 via-black/45 to-black/15
+          dark:from-slate-950/80 dark:via-slate-900/55 dark:to-slate-800/25
+        " />
+
+        {/* Top-left mini badge (desktop only) */}
+        <a 
+          href="https://personal-website-wine-two-90.vercel.app/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hidden md:flex absolute top-8 left-8 items-center gap-3 bg-white/70 dark:bg-slate-900/60 text-slate-800 dark:text-slate-100 border border-white/30 dark:border-white/10 rounded-2xl shadow-lg backdrop-blur px-3 py-2 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all duration-300 cursor-pointer"
+        >
+          <img src="/Dreamwave-Photo.png" alt="Manmeet"
+               className="w-8 h-6 rounded-full object-cover object-top ring-2 ring-white/80 dark:ring-white/30" />
+          <div className="text-sm leading-tight">
+            <div className="font-semibold">B.A. — Finance &amp; CS</div>
+            <div className="opacity-80">DePauw University '26</div>
           </div>
-        </div>
-        
-        <div className="relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 min-h-[80vh]">
-            <div className="flex-1 space-y-8">
+        </a>
+
+        {/* Content container */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-8 md:gap-12">
+            {/* LEFT: text */}
+            <div className="text-left max-w-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="space-y-6"
               >
-                <WelcomeText />
-                
-                <RotatingTagline />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <Link 
-                  className="btn btn-primary group text-lg px-8 py-4 font-semibold" 
-                  to="/about"
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                    setTimeout(() => {
-                      const experienceSection = document.getElementById('experience');
-                      if (experienceSection) {
-                        experienceSection.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }, 100);
-                  }}
-                >
-                  <Briefcase size={20} className="group-hover:scale-110 transition-transform" />
-                  View My Experience
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link 
-                  className="btn btn-secondary group" 
-                  to="/projects"
-                  onClick={() => window.scrollTo(0, 0)}
-                >
-                  <Code size={18} className="group-hover:scale-110 transition-transform" />
-                  View My Projects
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link 
-                  className="btn btn-outline group" 
-                  to="/contact"
-                  onClick={() => window.scrollTo(0, 0)}
-                >
-                  <Mail size={18} className="group-hover:scale-110 transition-transform" />
-                  Contact Me
-                </Link>
-              </motion.div>
-            </div>
-
-            <div className="flex-1">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative"
-              >
-                {/* Professional Headshot */}
-                <div className="text-center space-y-6">
-                  <a 
-                    href="https://personal-website-wine-two-90.vercel.app/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block transition-transform hover:scale-105 duration-300"
+                <h1 className="font-bold leading-tight text-[clamp(2rem,7vw,3.5rem)] text-slate-50">
+                  <WelcomeText />
+                </h1>
+                <div className="text-[clamp(1rem,2.8vw,1.2rem)] text-slate-200/95 max-w-prose">
+                  <TypewriterText />
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link 
+                    className="inline-flex items-center rounded-xl px-5 py-3 bg-amber-400/95 hover:bg-amber-300 text-slate-900 font-medium shadow-lg transition-all duration-300 group" 
+                    to="/about"
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                      setTimeout(() => {
+                        const experienceSection = document.getElementById('experience');
+                        if (experienceSection) {
+                          experienceSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 100);
+                    }}
                   >
-                    <div className="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-primary-200/50 shadow-2xl">
-                      <img 
-                        src="/Dreamwave-Photo 2.png" 
-                        alt="Manmeet Singh Hayer - Professional Headshot"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </a>
-                  <div>
-                    <div className="flex items-center justify-center gap-4 mb-3">
-                      <h3 className="text-2xl font-bold text-gray-600 dark:text-gray-300 font-heading">Manmeet Singh Hayer</h3>
-                      <div className="flex items-center gap-3">
-                        <a 
-                          href="https://www.linkedin.com/in/meethayer/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 hover:scale-110"
-                        >
-                          <Linkedin size={18} />
-                        </a>
-                        <a 
-                          href="mailto:manmeethayer_2026@depauw.edu" 
-                          className="p-2 rounded-full bg-red-500 hover:bg-red-600 text-white transition-all duration-300 hover:scale-110"
-                        >
-                          <Mail size={18} />
-                        </a>
-                      </div>
-                    </div>
-                    <TypewriterText />
-                    
-                    {/* Motto */}
-                    <div className="mt-8 text-center">
-                      <p className="text-base text-slate-500 dark:text-slate-400 italic">
-                        My Motto?<br />
-                        "YOGOWYPI: You Only Get Out, What You Put In"
-                      </p>
-                    </div>
-                  </div>
+                    <Briefcase size={20} className="mr-2" />
+                    View My Experience
+                    <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link 
+                    className="inline-flex items-center rounded-xl px-5 py-3 bg-white/90 hover:bg-white text-slate-800 font-medium shadow-lg transition-all duration-300 group" 
+                    to="/contact"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    <Mail size={18} className="mr-2" />
+                    Contact Me
+                  </Link>
+                  <Link 
+                    className="inline-flex items-center rounded-xl px-5 py-3 bg-slate-700/90 hover:bg-slate-600 text-white font-medium shadow-lg transition-all duration-300 group" 
+                    to="/projects"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    <Code size={18} className="mr-2" />
+                    View My Projects
+                    <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </motion.div>
             </div>
+
+            {/* RIGHT: stacked card */}
+            <div className="mt-4 md:-mt-8 flex md:justify-end md:pr-6">
+              <div className="text-center">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="w-56 sm:w-64 md:w-80 bg-white/10 dark:bg-slate-900/30
+                             backdrop-blur-xl border border-white/20 dark:border-white/10
+                             rounded-3xl shadow-2xl overflow-hidden"
+                >
+                  <img
+                    src="/Dreamwave-Photo 2.png"
+                    alt="Manmeet Singh Hayer"
+                    className="w-full h-64 sm:h-72 md:h-96 object-cover rounded-2xl"
+                  />
+                  <div className="p-4 text-center">
+                    <h3 className="text-lg md:text-xl font-extrabold text-slate-50 drop-shadow">Manmeet Singh Hayer</h3>
+                    <div className="mt-2 flex items-center justify-center gap-3">
+                      <a href="https://www.linkedin.com/in/meethayer/" target="_blank" rel="noopener noreferrer"
+                         className="p-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition">
+                        <Linkedin size={18} />
+                      </a>
+                      <a href="mailto:hayermanmeetsingh@gmail.com"
+                         className="p-2 rounded-full bg-red-500 hover:bg-red-600 text-white transition">
+                        <Mail size={18} />
+                      </a>
+                    </div>
+                    <div className="mt-3 text-sm text-slate-200/95 font-mono font-semibold">
+                      Data Analytics & Automation | Business Strategy | Investment & Portfolio Analysis
+                    </div>
+                  </div>
+                </motion.div>
+                
+              </div>
+            </div>
+          </div>
+          
+          {/* Motto at top of hero section */}
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-center">
+            <p className="text-sm text-slate-300 italic font-medium drop-shadow-lg">
+              My Motto?<br />
+              "YOGOWYPI: You Only Get Out, What You Put In"
+            </p>
           </div>
         </div>
       </Section>
@@ -666,7 +653,7 @@ export default function Home() {
                   onClick={card.onClick || (() => window.scrollTo(0, 0))}
                 >
                   <div className="card p-8 hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${card.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${card.color} flex items-center justify-center mb-6 md:group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
                       <card.icon className="text-white" size={28} />
                     </div>
                     <h3 className="text-xl font-bold mb-3 group-hover:text-primary-600 transition-colors">
@@ -763,11 +750,11 @@ export default function Home() {
               className="mt-8"
             >
               <Link 
-                className="btn btn-primary group" 
+                className="btn btn-contact group" 
                 to="/contact"
                 onClick={() => window.scrollTo(0, 0)}
               >
-                <Mail size={18} className="group-hover:scale-110 transition-transform" />
+                <Mail size={18} className="md:group-hover:scale-110 transition-transform" />
                 Get In Touch
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
