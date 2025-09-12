@@ -1,34 +1,52 @@
 import Section from '@/components/Section'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Linkedin, Github, Send, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, Github, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import data from '@/data/personal.json'
 import { useState } from 'react'
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsSubmitting(true)
+    setError(false)
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Message from ${formData.name}`)
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)
-    const mailtoLink = `mailto:hayermanmeetsingh@gmail.com?subject=${subject}&body=${body}`
-    
-    // Open email client
-    window.location.href = mailtoLink
-    
-    // Show success message and clear form
-    setSent(true)
-    setFormData({ name: '', email: '', message: '' })
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setSent(false), 5000)
+    try {
+      const response = await fetch('https://formspree.io/f/xzzawzoo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      if (response.ok) {
+        // Show success message and clear form
+        setSent(true)
+        setFormData({ name: '', email: '', message: '' })
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setSent(false), 5000)
+      } else {
+        setError(true)
+        // Reset error message after 5 seconds
+        setTimeout(() => setError(false), 5000)
+      }
+    } catch (err) {
+      setError(true)
+      // Reset error message after 5 seconds
+      setTimeout(() => setError(false), 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -122,12 +140,17 @@ export default function Contact() {
                 <button 
                   type="submit" 
                   className="btn btn-primary w-full group"
-                  disabled={sent}
+                  disabled={sent || isSubmitting}
                 >
                   {sent ? (
                     <>
                       <CheckCircle size={18} />
                       Message Sent!
+                    </>
+                  ) : isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Sending...
                     </>
                   ) : (
                     <>
@@ -141,9 +164,21 @@ export default function Contact() {
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-center text-accent-600 text-sm"
+                    className="text-center text-green-600 dark:text-green-400 text-sm flex items-center justify-center gap-2"
                   >
+                    <CheckCircle size={16} />
                     Thanks for reaching out! I'll get back to you soon.
+                  </motion.p>
+                )}
+                
+                {error && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center text-red-600 dark:text-red-400 text-sm flex items-center justify-center gap-2"
+                  >
+                    <AlertCircle size={16} />
+                    Sorry, there was an error sending your message. Please try again.
                   </motion.p>
                 )}
         </form>
