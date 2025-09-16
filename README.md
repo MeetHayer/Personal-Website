@@ -169,3 +169,4 @@ For detailed technical documentation, see `DOCUMENTATION.txt` which includes:
 ## 📄 License
 
 Personal use and modification allowed. See individual dependency licenses for third-party components.
+# GitHub Pages Deployment
