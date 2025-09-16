@@ -443,7 +443,7 @@ export default function Home() {
 
         {/* Top-left mini badge (desktop only) */}
         <a 
-          href="https://personal-website-wine-two-90.vercel.app/" 
+          href="https://www.meethayer.com/" 
           target="_blank" 
           rel="noopener noreferrer"
           className="hidden md:flex absolute top-8 left-8 items-center gap-3 bg-white/70 dark:bg-slate-900/60 text-slate-800 dark:text-slate-100 border border-white/30 dark:border-white/10 rounded-2xl shadow-lg backdrop-blur px-3 py-2 hover:bg-white/80 dark:hover:bg-slate-900/80 transition-all duration-300 cursor-pointer"

@@ -235,7 +235,7 @@ Both headshot images were linking to placeholder URLs instead of the actual depl
 ```tsx
 // Small headshot (top-left) now links correctly:
 <a 
-  href="https://personal-website-wine-two-90.vercel.app/" 
+  href="https://www.meethayer.com/" 
   target="_blank" 
   rel="noopener noreferrer"
   className="block transition-transform hover:scale-105 duration-300"
@@ -247,7 +247,7 @@ Both headshot images were linking to placeholder URLs instead of the actual depl
 
 // Large headshot (hero section) now links correctly:
 <a 
-  href="https://personal-website-wine-two-90.vercel.app/" 
+  href="https://www.meethayer.com/" 
   target="_blank" 
   rel="noopener noreferrer"
   className="block transition-transform hover:scale-105 duration-300"
@@ -265,9 +265,9 @@ Both headshot images were linking to placeholder URLs instead of the actual depl
 - Headshots serve as navigation back to the main site
 
 **Solution**:
-- Updated both headshot links to `https://personal-website-wine-two-90.vercel.app/`
-- Small headshot (top-left): `href="https://personal-website-wine-two-90.vercel.app/"`
-- Large headshot (hero section): `href="https://personal-website-wine-two-90.vercel.app/"`
+- Updated both headshot links to `https://www.meethayer.com/`
+- Small headshot (top-left): `href="https://www.meethayer.com/"`
+- Large headshot (hero section): `href="https://www.meethayer.com/"`
 
 **Code location**: `src/pages/Home.tsx` lines ~394 and ~486
 
