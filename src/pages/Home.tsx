@@ -11,7 +11,7 @@ function TypewriterText() {
   const [displayedText, setDisplayedText] = useState('')
   const phrases = [
     'ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic',
-    'Interests- Exercise; Singing; Nature; Chess; Politics; AI'
+    'Interests- Analytics; Exercise; Singing; Nature; Chess; Politics; AI'
   ]
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -457,10 +457,10 @@ export default function Home() {
         </a>
 
         {/* Content container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-8 md:gap-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-4 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-8 md:gap-12 xl:gap-16">
             {/* LEFT: text */}
-            <div className="text-left max-w-2xl">
+            <div className="text-left max-w-2xl xl:max-w-none">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -513,7 +513,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT: stacked card */}
-            <div className="mt-4 md:-mt-8 flex md:justify-end md:pr-6">
+            <div className="mt-4 md:-mt-8 flex md:justify-end md:pr-6 xl:pr-0">
               <div className="text-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
