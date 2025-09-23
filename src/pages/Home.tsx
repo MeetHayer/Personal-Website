@@ -457,8 +457,8 @@ export default function Home() {
         </a>
 
         {/* Content container */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-4 py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-8 md:gap-12 xl:gap-16">
+        <div className="relative z-10 max-w-7xl mx-auto px-1 sm:px-2 lg:px-3 xl:px-1 py-16 md:py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-8 md:gap-12 xl:gap-24">
             {/* LEFT: text */}
             <div className="text-left max-w-2xl xl:max-w-none">
               <motion.div
@@ -513,7 +513,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT: stacked card */}
-            <div className="mt-4 md:-mt-8 flex md:justify-end md:pr-6 xl:pr-0">
+            <div className="mt-4 md:-mt-8 flex md:justify-end md:pr-0 xl:pr-0">
               <div className="text-center">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
