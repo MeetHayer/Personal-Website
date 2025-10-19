@@ -93,6 +93,138 @@ export default function Writing() {
         </motion.div>
       </Section>
 
+      {/* Featured Article - JPMorgan Earnings Analysis */}
+      <Section id="featured-article">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto"
+        >
+          <article className="card p-8 lg:p-12">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-accent-500 to-primary-500 flex items-center justify-center">
+                  <TrendingUp className="text-white" size={28} />
+                </div>
+                <div>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-primary-700 dark:text-primary-300">What Exactly Happened with Banks After JPMorgan's Q3 2025 Earnings?</h2>
+                  <div className="flex items-center justify-between text-sm text-secondary-500 dark:text-secondary-400 mt-2">
+                    <div className="text-sm italic text-secondary-600 dark:text-secondary-300">
+                      by Manmeet S Hayer
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Calendar size={14} />
+                      October 19, 2025
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* First Paragraph - Always Visible */}
+              <div className="prose prose-lg max-w-none text-secondary-700 dark:text-secondary-300 leading-relaxed">
+                <p>
+                  JPMorgan Chase kicked off bank earnings pre-market on October 14 with a double beat on both revenue and profit, yet its stock drifted lower through the week—closing under $300 by Friday. The decline wasn't driven by company fundamentals alone but by a mix of macro headwinds, sector-wide anxiety, and market psychology that punished the broader financial space.
+                </p>
+              </div>
+
+              {/* Stock Chart - Always Visible */}
+              <div className="my-6">
+                <img 
+                  src="/yahoo-finance-jpm-chart.png" 
+                  alt="JPMorgan Chase & Co. (JPM) - 5 Day Performance Chart from Yahoo Finance"
+                  className="w-full rounded-lg border border-gray-200 dark:border-gray-700"
+                />
+                <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-2 text-center">
+                  Chart: Yahoo Finance (JPMorgan Stock Performance Week of Oct 12-18, 2025)
+                </p>
+              </div>
+
+              {/* Expandable Article Content */}
+              <details className="group">
+                <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-lg border border-primary-200 dark:border-primary-700 hover:shadow-md transition-all duration-300">
+                    <span className="text-lg font-semibold text-primary-700 dark:text-primary-300">Read Full Article</span>
+                    <div className="transform group-open:rotate-180 transition-transform duration-300">
+                      <svg className="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </summary>
+                
+                <div className="mt-6 prose prose-lg max-w-none text-secondary-700 dark:text-secondary-300 leading-relaxed space-y-6">
+
+                  {/* Strong Quarter, Shaky Outlook Section */}
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Strong Quarter, Shaky Outlook</h3>
+                  
+                  <p>
+                    JPMorgan reported another strong quarter, supported by robust performance in its investment banking and trading divisions. The bank raised its full-year net interest income (NII) forecast to roughly $95.8 billion, according to Reuters and CNBC coverage. That signaled core banking operations were still benefiting from a high-rate environment. However, much of Q3's upside came from investment and markets revenue—a volatile segment that investors often discount as less stable than consumer or commercial banking.
+                  </p>
+
+                  <p>
+                    CEO Jamie Dimon added to market unease with another round of stark macro warnings. He reiterated concerns about the growing U.S. national debt, heavy reliance on consumer credit, and a potential market correction within the next two years. Dimon also cited signs of strain in consumer credit quality and pointed to geopolitical uncertainty—including major U.S. debt holders like China, Japan, and South Korea selling Treasury securities, a move many analysts interpret as a loss of confidence in U.S. fiscal discipline. Dimon even floated the risk of stagflation if productivity gains from AI underdeliver.
+                  </p>
+
+                  {/* Sector Turmoil Section */}
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Sector Turmoil: Cockroaches and Collateral</h3>
+                  
+                  <p>
+                    The optimism from JPM's results quickly faded as the week unfolded. News broke that subprime auto lender Tricolor Holdings and auto parts supplier First Brands Group had collapsed, exposing credit losses for several regional lenders. Dimon's metaphor about there being "more cockroaches" when one appears became a talking point across Wall Street.
+                  </p>
+
+                  <p>
+                    Shortly after, Zions Bancorporation disclosed a $50 million charge-off tied to two commercial borrowers, sending its shares down nearly 5%. The KBW Regional Banking Index tumbled roughly 4.8%, its worst single-day drop since April. According to MarketWatch and Reuters, the losses were driven by fear of hidden credit risks spreading through smaller banks.
+                  </p>
+
+                  <p>
+                    At the same time, Western Alliance Bancorporation filed a lawsuit against a borrower over alleged fraudulent collateral but maintained that its collateral position remains sufficient and its 2025 guidance unchanged, a signal that not every headline risk spelled contagion. Meanwhile, Fifth Third Bank took a $178 million loan-loss charge connected to Tricolor but still reported solid underlying earnings (Barron's, Oct. 17).
+                  </p>
+
+                  {/* Macro Fear Meets Overreaction Section */}
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Macro Fear Meets Overreaction</h3>
+                  
+                  <p>
+                    Taken together, these incidents triggered a classic sentiment overreaction. Analysts broadly agree that the failures of Tricolor and First Brands were non-systemic, meaning they don't threaten the stability of the financial system—yet they shook confidence in how well banks are monitoring credit exposures.
+                  </p>
+
+                  <p>
+                    With alternative assets posting record-breaking YTD returns, consumer spending resilient heading into the holiday season, and Q4 earnings expected to show strength in goods, services, and BNPL sectors, the macro backdrop isn't uniformly bleak. Combined with JPM's ongoing investment initiatives in national security and technology infrastructure, the setup looks favorable for a short-term rebound in large-cap financials if Q4 results reinforce the resilience seen so far.
+                  </p>
+
+                  {/* Outlook Section */}
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Outlook</h3>
+                  
+                  <p>
+                    Volatility and geopolitics make any long-term call risky. Still, the factors behind this week's drop—non-systemic bankruptcies, heightened credit scrutiny, and sector-wide nerves—don't fundamentally undermine JPMorgan's franchise strength. If anything, they create space for a short-term sentiment-driven rally as markets recalibrate heading into year-end.
+                  </p>
+
+                  {/* Disclaimer and Sources */}
+                  <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <p className="text-sm italic text-gray-600 dark:text-gray-400 underline">
+                      This article is for informational purposes only and does not constitute investment advice.
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                      <strong>Sources:</strong> Reuters, MarketWatch, Barron's, The Guardian, CNBC, InvestmentNews, MarketBeat, Simply Wall St (Oct. 14-19, 2025).
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <div className="flex flex-wrap gap-2 pt-4">
+                {['finance', 'banking', 'earnings', 'market-analysis', 'jpmorgan', 'investment-analysis'].map((tag) => (
+                  <span key={tag} className="badge bg-gradient-to-r from-accent-100 to-primary-100 text-primary-700 dark:from-accent-900/30 dark:to-primary-900/30 dark:text-primary-300">
+                    <Tag size={12} className="mr-1" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        </motion.div>
+      </Section>
+
       {/* Other Posts */}
       {posts.length > 1 && (
         <Section id="other-posts">
