@@ -34,8 +34,6 @@ export default function Writing() {
 
       {/* Featured Article - JPMorgan Earnings Analysis - FIRST POST */}
       <Section id="featured-article" className="relative">
-        {/* Timeline Line - starts after first post */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary-200 via-accent-200 to-primary-200 dark:from-primary-700 dark:via-accent-700 dark:to-primary-700 h-full z-0 top-0"></div>
         {/* Timeline Dot */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary-500 dark:bg-primary-400 rounded-full border-4 border-white dark:border-gray-900 z-10 top-8"></div>
         <motion.div
@@ -173,6 +171,8 @@ export default function Writing() {
 
       {/* Introduction Post - SECOND POST */}
       <Section id="introduction" className="mt-8 relative">
+        {/* Continuous Timeline Line - spans from first post to end */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary-200 via-accent-200 to-primary-200 dark:from-primary-700 dark:via-accent-700 dark:to-primary-700 h-full z-0 top-0"></div>
         {/* Timeline Dot */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-accent-500 dark:bg-accent-400 rounded-full border-4 border-white dark:border-gray-900 z-10 top-8"></div>
         <motion.div
