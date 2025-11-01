@@ -142,36 +142,97 @@ export default function Writing() {
                   <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">I. Macro Momentum: The Perfect Tailwind for BNPL</h3>
                   
                   <p>
-                    The U.S. consumer continues to defy expectations. Data from the Commerce Department (October 2025) shows retail sales up <strong className="text-secondary-900 dark:text-secondary-100">3.5% YoY</strong> in Q3 2025, with October marking one of the strongest pre-holiday months since 2019.
+                    The U.S. consumer continues to defy expectations. Data from the Commerce Department (October 2025) shows retail sales up <strong className="text-secondary-900 dark:text-secondary-100">3.5% YoY</strong> in Q3 2025, with October marking one of the strongest pre-holiday months since 2019. <strong className="text-secondary-900 dark:text-secondary-100">Holiday shopping began earlier this year</strong> due to expectations of tariff-driven price hikes announced in late September, prompting stronger-than-anticipated Q4 consumption patterns.
                   </p>
 
                   <h4 className="text-lg font-semibold text-primary-700 dark:text-primary-300 mt-6 mb-3">Earnings Across Retail Confirm the Trend</h4>
                   <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Costco (COST):</strong> +5.7% comps; +26% digital comps</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Walmart (WMT):</strong> +4.6% U.S. comps ex-fuel</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Amazon (AMZN):</strong> +13% YoY net sales in Q3 2025</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Costco (COST):</strong> +5.7% comps in September 2025; +26% digital comps; stronger traffic and fee income.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Walmart (WMT):</strong> +4.6% U.S. comps ex-fuel, supported by membership and ad growth.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Amazon (AMZN):</strong> +13% YoY net sales in Q3 2025; record Prime Day and steady discretionary spend.</li>
                   </ul>
 
                   <p>
-                    Paired with <strong className="text-secondary-900 dark:text-secondary-100">PayPal's BNPL surge (+20% YoY TPV in Q3 2025)</strong> and Visa's +9% payment growth, the entire consumer finance ecosystem is expanding.
+                    These results echo what <strong className="text-secondary-900 dark:text-secondary-100">Jamie Dimon</strong> emphasized in JPMorgan's October 2025 shareholder note: "Consumers and small businesses remain resilient."
+                  </p>
+
+                  <p>
+                    Paired with <strong className="text-secondary-900 dark:text-secondary-100">PayPal's BNPL surge (+20% YoY TPV in Q3 2025)</strong> and Visa's +9% payment growth, the entire consumer finance ecosystem is expanding rather than contracting. Demand for short-term financing and digital payment flexibility is broadening across income tiers — a key structural tailwind for BNPL leaders heading into the 2025 holiday quarter.
                   </p>
 
                   {/* II. PayPal's BNPL Data */}
                   <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">II. PayPal's BNPL Data: The Sector's Leading Indicator</h3>
                   
-                  <p>PayPal's Q3 2025 results were a shot of adrenaline for the entire BNPL sector:</p>
+                  <p>PayPal's Q3 2025 results (reported October 25, 2025) were a shot of adrenaline for the entire BNPL sector:</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">BNPL TPV:</strong> +20% YoY → ~$40B annualized</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">BNPL Total Payment Volume (TPV):</strong> +20% YoY → ~$40B annualized</li>
                     <li><strong className="text-secondary-900 dark:text-secondary-100">Total Payment Volume:</strong> $458B (+8%)</li>
                     <li><strong className="text-secondary-900 dark:text-secondary-100">Revenue:</strong> $8.4B (+7%)</li>
                     <li><strong className="text-secondary-900 dark:text-secondary-100">EPS Guidance:</strong> Raised to $5.35–$5.39 for FY2025</li>
                   </ul>
 
+                  <p>
+                    The takeaway is clear: <strong className="text-secondary-900 dark:text-secondary-100">BNPL usage isn't plateauing — it's accelerating.</strong> With consumers increasingly choosing installment payments to offset inflation and pre-tariff spending, BNPL's share of total e-commerce and POS financing is expected to exceed <strong className="text-secondary-900 dark:text-secondary-100">$200B by FY2026</strong>, up from $120B in FY2024. This growth directly benefits Klarna and Sezzle — the platforms driving the majority of global BNPL transaction volume.
+                  </p>
+
                   {/* III. Sezzle */}
                   <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">III. Sezzle: The Bullish Reset Before the Next Run</h3>
                   
                   <p>
-                    Sezzle's six-quarter streak of revenue and income beats has made it one of the most reliable fintech performers. Its <strong className="text-secondary-900 dark:text-secondary-100">Q2 2025 selloff — despite record metrics — created an unusually bullish reset.</strong>
+                    Sezzle's six-quarter streak of revenue and income beats has made it one of the most reliable fintech performers. But its <strong className="text-secondary-900 dark:text-secondary-100">Q2 2025 selloff — despite record metrics — created an unusually bullish reset.</strong>
+                  </p>
+
+                  <div className="overflow-x-auto my-6">
+                    <table className="min-w-full border border-gray-300 dark:border-gray-600 text-sm">
+                      <thead className="bg-gray-100 dark:bg-gray-800">
+                        <tr>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">Period</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">GMV ($m)</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">Revenue ($m)</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">YoY Growth</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">Net Income ($m)</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2">Market Reaction</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">FY23</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">1,830</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">159</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">—</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">–9</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">Baseline</td>
+                        </tr>
+                        <tr>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">FY24</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">2,545</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">271</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">+70%</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">+78</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">+110% YTD</td>
+                        </tr>
+                        <tr>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">Q1 25</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">867</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">105</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">+123%</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">+29</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">+31% AH</td>
+                        </tr>
+                        <tr className="bg-primary-50 dark:bg-primary-900/20 font-semibold">
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">Q2 25 (Aug 15, 2025)</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">927</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">98.7</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">+76%</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">+27.6 (+116%)</td>
+                          <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">–18% pre-market ("beat but not enough")</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <p>
+                    That August drawdown flushed expectations but left fundamentals untouched: GMV up 74%, operating margins 36.6%, and FY25 net income guidance reaffirmed around <strong className="text-secondary-900 dark:text-secondary-100">$120M (+50% YoY)</strong>. Historically, Sezzle rallies hardest after "expectation-cleansing" quarters — the same setup that led to its <strong className="text-secondary-900 dark:text-secondary-100">+31% post-earnings surge in Q1 2025</strong>.
                   </p>
 
                   <p><strong className="text-secondary-900 dark:text-secondary-100">Valuation context (as of Oct. 31, 2025):</strong></p>
@@ -181,52 +242,73 @@ export default function Writing() {
                   </ul>
 
                   <p>
-                    If Sezzle sustains 60–70% revenue growth, a re-rating toward 8–10× sales implies <strong className="text-secondary-900 dark:text-secondary-100">40–70% upside</strong>.
+                    If Sezzle sustains 60–70% revenue growth and stable delinquency rates, a re-rating toward 8–10× sales implies <strong className="text-secondary-900 dark:text-secondary-100">40–70% upside</strong> — in line with prior momentum phases.
                   </p>
 
                   {/* IV. Klarna */}
                   <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">IV. Klarna: Profitability + Expansion = Asymmetric Upside</h3>
                   
-                  <p>Klarna has quietly executed one of the most impressive fintech turnarounds:</p>
+                  <p>Klarna has quietly executed one of the most impressive fintech turnarounds in recent memory.</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li><strong className="text-secondary-900 dark:text-secondary-100">FY24 Revenue:</strong> $2.81B (+24% YoY)</li>
                     <li><strong className="text-secondary-900 dark:text-secondary-100">Net Income:</strong> +$21M (first profit since 2020)</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Q2 2025 Revenue:</strong> $823M (+21%)</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Net Cash:</strong> $5.9B</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Q2 2025 Revenue:</strong> $823M (+21%) — second consecutive profitable quarter</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Net Cash:</strong> $5.9B (Cash $6B – Debt $0.8B)</li>
                   </ul>
 
                   <p>
-                    At ~$37.6/share, Klarna's <strong className="text-secondary-900 dark:text-secondary-100">EV/S multiple near 3×</strong> — half of Affirm's 6×. An EV/S expansion from 3× → 6× would justify <strong className="text-secondary-900 dark:text-secondary-100">$50–60/share</strong>.
+                    At ~$37.6/share (~$17.3B market cap, Oct. 30, 2025), Klarna's <strong className="text-secondary-900 dark:text-secondary-100">EV ≈ $9–10B</strong>, giving an <strong className="text-secondary-900 dark:text-secondary-100">EV/S multiple near 3×</strong> — half of Affirm's 6× and far below Sezzle's 2025 peak near 14×.
+                  </p>
+
+                  <p><strong className="text-secondary-900 dark:text-secondary-100">Upcoming catalysts:</strong></p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Visa Flexible Credential rollout (Q4 2025):</strong> enabling in-store BNPL across 150M+ merchants.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Membership tiers:</strong> subscription-based recurring revenue (€17.99 / €44.99).</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Nov. 18, 2025 earnings:</strong> anticipated <strong className="text-secondary-900 dark:text-secondary-100">third straight profitable quarter</strong>.</li>
+                  </ul>
+
+                  <p>
+                    If Klarna's GMV surpasses $30B this quarter, the first such figure since 2021, and maintains margins above 30%, an EV/S expansion from 3× → 6× would justify <strong className="text-secondary-900 dark:text-secondary-100">$50–60/share</strong>, while returning to historic BNPL peaks (EV/S 10–12×) supports <strong className="text-secondary-900 dark:text-secondary-100">$70+</strong>.
                   </p>
 
                   {/* V. Institutional Positioning */}
                   <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">V. Institutional Positioning: Hedge Funds Quietly Rebuild Exposure</h3>
                   
-                  <p>Recent 13F disclosures reveal <strong className="text-secondary-900 dark:text-secondary-100">renewed hedge fund accumulation</strong> in both Klarna and Sezzle:</p>
+                  <p>Recent 13F and fund disclosures (September–October 2025) reveal <strong className="text-secondary-900 dark:text-secondary-100">renewed hedge fund accumulation</strong> in both Klarna and Sezzle — a trend not seen since the pre-2022 fintech cycle.</p>
 
                   <h4 className="text-lg font-semibold text-primary-700 dark:text-primary-300 mt-6 mb-3">Klarna (KLAR)</h4>
                   <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">ARK Invest</strong> initiated positions post-IPO</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Millennium & Citadel</strong> hold ~$120M in IPO allocations</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Viking Global</strong> position estimated at 1.5% of float</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">ARK Invest</strong> initiated speculative positions post-IPO (Sept. 2025), citing BNPL profitability tailwinds.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Millennium Management</strong> and <strong className="text-secondary-900 dark:text-secondary-100">Citadel Advisors</strong> jointly hold ~$120M in IPO allocations (as of Oct. 2025).</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Viking Global</strong> and <strong className="text-secondary-900 dark:text-secondary-100">Coatue Management</strong> expanded fintech exposure, with Viking's position estimated at 1.5% of Klarna's float.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Bridgewater Associates</strong> added Klarna European-listed notes, signaling confidence in credit cycle stability.</li>
                   </ul>
 
                   <h4 className="text-lg font-semibold text-primary-700 dark:text-primary-300 mt-6 mb-3">Sezzle (SEZL)</h4>
                   <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Point72</strong> boosted holdings ~40% QoQ</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Renaissance Technologies</strong> re-entered Sept. 2025</li>
-                    <li>Institutional ownership rose from 26% to 34%</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Point72 Asset Management</strong> boosted holdings ~40% QoQ after the August pullback.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Renaissance Technologies</strong> re-entered Sezzle in Sept. 2025 after exiting in 2024.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Balyasny</strong> and <strong className="text-secondary-900 dark:text-secondary-100">Two Sigma</strong> opened quantitative-driven positions tracking EPS acceleration.</li>
+                    <li>Institutional ownership rose from <strong className="text-secondary-900 dark:text-secondary-100">26% (Q2)</strong> to <strong className="text-secondary-900 dark:text-secondary-100">34% (Oct. 2025)</strong>; insider holdings remain high (~44%), tightening the float and amplifying hedge fund impact.</li>
                   </ul>
+
+                  <p>
+                    These flows suggest that <strong className="text-secondary-900 dark:text-secondary-100">institutional investors are front-running an earnings-driven re-rating</strong> — with smart money betting on profitable fintech momentum.
+                  </p>
 
                   {/* VI. Valuation Disconnect */}
                   <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">VI. The Valuation Disconnect & Sector Psychology</h3>
                   
                   <p>Despite PayPal's category-beating growth, the BNPL cohort trades at compressed multiples:</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Affirm:</strong> EV/S ~6×, unprofitable</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Klarna:</strong> EV/S ~3×, profitable, cash-rich</li>
-                    <li><strong className="text-secondary-900 dark:text-secondary-100">Sezzle:</strong> EV/S ~6×, profitable, expanding margins</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Affirm:</strong> EV/S ~6×, unprofitable.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Klarna:</strong> EV/S ~3×, profitable, cash-rich.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Sezzle:</strong> EV/S ~6×, profitable, expanding margins.</li>
                   </ul>
+
+                  <p>
+                    This pricing gap has less to do with fundamentals and more with lingering 2022–23 skepticism. Historically, when PayPal or Visa lift guidance, fintech multiples follow within 2–4 weeks. If that pattern repeats, November could mark the <strong className="text-secondary-900 dark:text-secondary-100">sector's valuation normalization phase</strong>.
+                  </p>
 
                   {/* VII. Catalysts */}
                   <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">VII. Key Catalysts to Watch in November 2025</h3>
