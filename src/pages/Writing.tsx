@@ -201,12 +201,12 @@ export default function Writing() {
                     <table className="min-w-full border border-gray-300 dark:border-gray-600 text-sm">
                       <thead className="bg-gray-100 dark:bg-gray-800">
                         <tr>
-                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">Period</th>
-                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">GMV ($m)</th>
-                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">Revenue ($m)</th>
-                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">YoY Growth</th>
-                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right">Net Income ($m)</th>
-                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2">Market Reaction</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left text-gray-900 dark:text-gray-100 font-semibold">Period</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right text-gray-900 dark:text-gray-100 font-semibold">GMV ($m)</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right text-gray-900 dark:text-gray-100 font-semibold">Revenue ($m)</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right text-gray-900 dark:text-gray-100 font-semibold">YoY Growth</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-right text-gray-900 dark:text-gray-100 font-semibold">Net Income ($m)</th>
+                          <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-gray-900 dark:text-gray-100 font-semibold">Market Reaction</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -349,7 +349,7 @@ export default function Writing() {
                   {/* IX. Strategic Takeaway */}
                   <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">IX. The Strategic Takeaway: The Stars Are Aligned</h3>
                   
-                  <blockquote className="border-l-4 border-primary-500 dark:border-primary-400 pl-4 italic text-lg my-6">
+                  <blockquote className="border-l-4 border-primary-500 dark:border-primary-400 pl-4 italic text-lg my-6 text-gray-800 dark:text-gray-200">
                     "When a sector leader raises guidance, consumers spend early to beat tariffs, and profitable peers trade at half the multiple — that's not coincidence. It's a setup."
                   </blockquote>
 
