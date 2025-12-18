@@ -64,9 +64,10 @@ export default function Writing() {
               className="flex justify-center gap-3 mt-12"
             >
               {[
-                { num: 1, id: 'bnpl-article', title: 'BNPL Analysis', color: 'from-primary-500 to-primary-600' },
+                { num: 4, id: 'gev-article', title: 'GE Vernova Report', color: 'from-violet-500 to-purple-600' },
+                { num: 3, id: 'bnpl-article', title: 'BNPL Analysis', color: 'from-primary-500 to-primary-600' },
                 { num: 2, id: 'jpmorgan-article', title: 'JPMorgan Earnings', color: 'from-accent-500 to-accent-600' },
-                { num: 3, id: 'introduction', title: 'About Me', color: 'from-secondary-500 to-secondary-600' }
+                { num: 1, id: 'introduction', title: 'About Me', color: 'from-secondary-500 to-secondary-600' }
               ].map((article, idx) => (
                 <motion.button
                   key={article.id}
@@ -93,8 +94,170 @@ export default function Writing() {
         </div>
       </Section>
 
-      {/* NEW Featured Article - BNPL Stocks KLAR & SEZL - FIRST POST */}
+      {/* GE Vernova Investment Report - MOST RECENT POST */}
+      <Section id="gev-article" className="relative py-16">
+        {/* Timeline Dot */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-violet-500 dark:bg-violet-400 rounded-full border-4 border-white dark:border-gray-900 shadow-lg z-10 top-8"></div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-5xl mx-auto relative z-20"
+        >
+          <article className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-2xl transition-shadow duration-300 p-8 lg:p-12">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-violet-500 to-purple-500 flex items-center justify-center">
+                  <TrendingUp className="text-white" size={28} />
+                </div>
+                <div>
+                  <h2 className="text-2xl lg:text-3xl font-bold text-primary-700 dark:text-primary-300">Building & Pitching My First Investment Report- GE Vernova</h2>
+                  <div className="flex items-center justify-between text-sm text-secondary-500 dark:text-secondary-400 mt-2">
+                    <div className="text-sm italic text-secondary-600 dark:text-secondary-300">
+                      by Manmeet S Hayer
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Calendar size={14} />
+                      December 18, 2025
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Video - Always Visible */}
+              <div className="my-6">
+                <video 
+                  controls
+                  className="w-full rounded-lg border border-gray-200 dark:border-gray-700"
+                  preload="metadata"
+                >
+                  <source src="/writing-articles/Hayer_GEV_Presentation.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-2 text-center">
+                  Informal pitch presentation: GE Vernova Investment Research Report
+                </p>
+              </div>
+
+              {/* First Paragraph - Always Visible */}
+              <div className="prose prose-lg max-w-none text-secondary-700 dark:text-secondary-300 leading-relaxed">
+                <p>
+                  This investment report and pitch represented the core of my grade for FIN 365: Portfolio Management at DePauw University, and this article walks through the rigorous process of creating that report, building the presentation, and ultimately pitching the stock. This project was a defining moment in my academic career; it pushed me to move beyond simple stock summaries and into the world of deep-tissue investment analysis. The experience of dismantling a complex business and reconstructing it into a defensible valuation has left me deeply intrigued by the world of equity research—there is a unique thrill in finding a narrative hidden within the numbers.
+                </p>
+              </div>
+
+              {/* Expandable Article Content */}
+              <details className="group">
+                <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900/20 dark:to-accent-900/20 rounded-lg border border-primary-200 dark:border-primary-700 hover:shadow-md transition-all duration-300">
+                    <span className="text-lg font-semibold text-primary-700 dark:text-primary-300">Read Full Article</span>
+                    <div className="transform group-open:rotate-180 transition-transform duration-300">
+                      <svg className="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </summary>
+                
+                <div className="mt-6 prose prose-lg max-w-none text-secondary-700 dark:text-secondary-300 leading-relaxed space-y-6">
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Starting from Zero: Finding the "Right" Fit</h3>
+                  
+                  <p>
+                    The process started with a simple fit search. My first objective was to identify a company that could realistically be pitched to the DePauw Student Endowment Fund Portfolio. This meant looking for a business that wasn't just "interesting," but one that was structurally sound, strategically relevant to a long-term fund, and trading at demonstrably undervalued levels.
+                  </p>
+
+                  <p>
+                    After screening various sectors, GE Vernova (GEV) stood out as a compelling pure-play on the global energy transition. To validate this initial hunch, I conducted a preliminary company analysis and prepared a "rough draft" valuation model to see if the upside was mathematically defensible. Once the initial numbers showed promise, the real work began. I dove into an in-depth analysis covering GEV's historical geographic and product segment growth since its spin-off, performed a comprehensive SWOT analysis, and developed a thorough industry and financial overview. From there, it was a cycle of constant iteration: I was perpetually stress-testing, tweaking, and updating my model to ensure the assumptions were perfectly tailored to GEV's unique profile as a recent spin-off in a capital-intensive industry.
+                  </p>
+
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Understanding the Business: What GE Vernova Actually Does</h3>
+                  
+                  <p>
+                    GE Vernova was created through GE's 2024 spin-off of its energy businesses, forming a global leader in energy infrastructure. In 2024, the company generated approximately $34.9 billion in revenue, leading to a massive ~$135 billion backlog as of Q3 2025. This provides the company with unusually strong multi-year visibility.
+                  </p>
+
+                  <p>
+                    The business operates across three core segments:
+                  </p>
+                  
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Power (~52% of revenue):</strong> Gas turbines, steam, and nuclear equipment, anchored by high-margin service contracts.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Wind (~28%):</strong> Onshore and offshore wind turbines, currently in a strategic margin recovery phase.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Electrification (~20%):</strong> The high-growth engine—grid equipment, transformers, and HVDC systems—positioned at the center of the global grid-modernization bottleneck.</li>
+                  </ul>
+
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Historical Performance: Setting the Baseline</h3>
+                  
+                  <p>
+                    Before projecting the future, the report analyzes post-2022 performance, when GEV's financials became most representative of its standalone trajectory. Over the last three years, revenue growth accelerated as Power and Electrification strengthened, and Adjusted EBITDA improved sharply as spin-related restructuring effects rolled off. This period helped establish what "normalized" performance looks like once legacy losses are removed.
+                  </p>
+
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Revenue Projections: Segment-Level Forecasting</h3>
+                  
+                  <p>
+                    My revenue projections were built bottom-up by segment, then cross-referenced against Bloomberg consensus and management's own long-term framework.
+                  </p>
+
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Power</strong> is projected at a mid-single-digit CAGR, driven by rising demand for firm generation from AI data centers.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Wind</strong> is modeled conservatively with low-single-digit growth, prioritizing margin health over volume.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Electrification</strong> is the primary driver, modeled at high-single-digit growth to account for the critical global transformer shortage. By the end of the forecast period, consolidated revenue is expected to reach ~$50B+, aligning with the stronger end of management's medium-term guidance.</li>
+                  </ul>
+
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Margins and Profitability: The Path to Expansion</h3>
+                  
+                  <p>
+                    A major focus of the report is EBITDA margin expansion. I projected margins to climb toward the high-teens to low-20s range by the outer years as higher-margin backlog (booked at better pricing in 2024/2025) begins to convert into revenue, and as the "Wind" segment finally moves past its legacy offshore contract drag.
+                  </p>
+
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Valuation Framework: DCF, SOTP, and Scenarios</h3>
+                  
+                  <p>
+                    Because GE Vernova is a recent spin-off with distorted near-term earnings, I relied heavily on intrinsic analysis rather than simple trailing multiples:
+                  </p>
+
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">7-year FCFF DCF:</strong> The heavy lifter of the model (60% weight), utilizing both Perpetual Growth and Exit Multiple methods.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Relative Valuation:</strong> Incorporating both "Peer Comps" and "Self Comps" to account for GEV's historical trading premium.</li>
+                    <li><strong className="text-secondary-900 dark:text-secondary-100">Scenario Modeling:</strong> Five distinct cases ranging from "Bear" to "Bull."</li>
+                  </ul>
+
+                  <p>
+                    Under my base (bullish-leaning) scenario, the model produced a 1-year target price of $636.66, implying meaningful upside from the December 3 trading levels, supported by fundamental earnings power.
+                  </p>
+
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Portfolio Fit & Conclusion</h3>
+                  
+                  <p>
+                    The report concludes that GE Vernova is a "Buy" for the DePauw Student Endowment Portfolio. It offers a rare combination of infrastructure-like stability (via the $130B+ backlog) and high-growth secular exposure to the AI power-demand cycle. For a student-led fund, it represents a high-quality "Industrials" add that balances out tech-heavy concentration.
+                  </p>
+
+                  <h3 className="text-xl font-bold text-primary-700 dark:text-primary-300 mt-8 mb-4">Accessing the Full Report</h3>
+                  
+                  <p>
+                    The full investment research report is available on the Projects page of my website. The Word (.doc) version includes the embedded, interactive Excel valuation models, allowing you to adjust assumptions, toggle between the five risk scenarios, and see the transparent linkages from data inputs to the final target price.
+                  </p>
+                </div>
+              </details>
+
+              <div className="flex flex-wrap gap-2 pt-4">
+                {['investment-research', 'financial-modeling', 'energy', 'ge-vernova', 'valuation', 'equity-analysis'].map((tag) => (
+                  <span key={tag} className="badge bg-gradient-to-r from-violet-100 to-purple-100 text-purple-700 dark:from-violet-900/30 dark:to-purple-900/30 dark:text-purple-300">
+                    <Tag size={12} className="mr-1" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        </motion.div>
+      </Section>
+
+      {/* Featured Article - BNPL Stocks KLAR & SEZL - SECOND POST */}
       <Section id="bnpl-article" className="relative py-16">
+        {/* Continuous Timeline Line */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gradient-to-b from-violet-300 via-primary-300 to-accent-300 dark:from-violet-700 dark:via-primary-700 dark:to-accent-700 h-full z-0 top-0 opacity-30"></div>
         {/* Timeline Dot */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-primary-500 dark:bg-primary-400 rounded-full border-4 border-white dark:border-gray-900 shadow-lg z-10 top-8"></div>
         <motion.div
