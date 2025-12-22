@@ -57,24 +57,26 @@ function TypewriterText() {
 // Welcome Text Animation (letter by letter, gothic)
         function WelcomeText() {
           const [displayedText, setDisplayedText] = useState('')
-          const fullText = 'Welcome to Meet\'s Website'
+          const animatedPart = 'Welcome to Meet\'s '
+          const staticPart = 'Website'
           const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
-    if (currentIndex < fullText.length) {
+    if (currentIndex < animatedPart.length) {
       const timeout = setTimeout(() => {
-        setDisplayedText(prev => prev + fullText[currentIndex])
+        setDisplayedText(prev => prev + animatedPart[currentIndex])
         setCurrentIndex(prev => prev + 1)
       }, 150) // Faster letter appearance
 
       return () => clearTimeout(timeout)
     }
-  }, [currentIndex, fullText])
+  }, [currentIndex, animatedPart])
 
   return (
     <span className="text-slate-50 drop-shadow-lg">
       {displayedText}
       <span className="animate-pulse">|</span>
+      {staticPart}
     </span>
   )
 }
