@@ -516,7 +516,7 @@ export default function Home() {
                     onClick={() => window.scrollTo(0, 0)}
                   >
                     <GraduationCap size={18} className="mr-2" />
-                    View My Writing
+                    Writing
                     <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
