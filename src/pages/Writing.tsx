@@ -125,6 +125,30 @@ export default function Writing() {
                 </div>
               </div>
 
+              {/* Download Links - Always Visible */}
+              <div className="my-6 flex flex-col sm:flex-row gap-3 justify-center">
+                <a
+                  href="/gev-project/Hayer_GEV_Report.docx"
+                  download
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors font-semibold shadow-lg hover:shadow-xl"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download Full Report (Word)
+                </a>
+                <a
+                  href="/gev-project/Valuation Model- GEV.xlsm"
+                  download
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-semibold shadow-lg hover:shadow-xl"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download Valuation Model (Excel)
+                </a>
+              </div>
+
               {/* Video - Always Visible */}
               <div className="my-6">
                 <video 
@@ -136,7 +160,7 @@ export default function Writing() {
                   Your browser does not support the video tag.
                 </video>
                 <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-2 text-center">
-                  Informal pitch presentation: GE Vernova Investment Research Report
+                  Informal pitch presentation: GE Vernova Investment Research Report | Downloads available above & in Projects section
                 </p>
               </div>
 

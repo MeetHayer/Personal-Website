@@ -112,9 +112,10 @@ interface ProjBoxProps {
   bounds: { width: number; height: number }
   isMobile: boolean
   laneIndex?: number
+  isSpotlight: boolean
 }
 
-function ProjBox({ project, position, isPaused, onHover, onClick, bounds, isMobile, laneIndex }: ProjBoxProps) {
+function ProjBox({ project, position, isPaused, onHover, onClick, bounds, isMobile, laneIndex, isSpotlight }: ProjBoxProps) {
   const config = projectConfig[project.id as keyof typeof projectConfig]
   const Icon = config.icon
 
@@ -133,18 +134,25 @@ function ProjBox({ project, position, isPaused, onHover, onClick, bounds, isMobi
     <>
       {/* ProjBox Container */}
       <motion.div
-        className="absolute cursor-pointer select-none z-10"
+        className="absolute cursor-pointer select-none"
         style={{
           x: position.x,
           y: position.y,
           rotate: position.rotation,
+          zIndex: isSpotlight ? 50 : 10,
         }}
         animate={!isPaused ? {
           x: position.x,
           y: position.y,
           rotate: position.rotation,
-        } : {}}
-        transition={{ duration: 0.1 }}
+          scale: isSpotlight ? 2.5 : 1,
+        } : {
+          scale: isSpotlight ? 2.5 : 1,
+        }}
+        transition={{ 
+          duration: isSpotlight ? 0.5 : 0.1,
+          scale: { duration: 0.5, ease: "easeInOut" }
+        }}
         onHoverStart={() => onHover(project.id, true)}
         onHoverEnd={() => onHover(project.id, false)}
         onClick={handleClick}
@@ -152,8 +160,8 @@ function ProjBox({ project, position, isPaused, onHover, onClick, bounds, isMobi
         tabIndex={0}
         role="button"
         aria-label={`${project.name}: ${project.tagline || project.summary}`}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: isSpotlight ? 2.6 : 1.05 }}
+        whileTap={{ scale: isSpotlight ? 2.4 : 0.95 }}
       >
         {/* ProjBox Body */}
         <div className={`relative w-32 h-16 rounded-full ${config.bgColor} border-2 border-white dark:border-slate-600 shadow-lg hover:shadow-xl transition-shadow duration-200`}>
@@ -273,6 +281,25 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           {/* Content - Scrollable */}
           <div className="p-8 space-y-6 overflow-y-auto flex-1">
+            {project.details.downloads && project.details.downloads.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Downloads</h3>
+                <div className="flex flex-col gap-3">
+                  {project.details.downloads.map((download, index) => (
+                    <a
+                      key={index}
+                      href={download.href}
+                      download
+                      className="flex items-center gap-2 px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-lg hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors font-semibold"
+                    >
+                      <Download size={16} />
+                      {download.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div>
               <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Summary</h3>
               <p className="text-slate-600 dark:text-slate-300 leading-relaxed">{project.summary}</p>
@@ -325,25 +352,6 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                 </div>
               </div>
             )}
-
-            {project.details.downloads && project.details.downloads.length > 0 && (
-              <div>
-                <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Downloads</h3>
-                <div className="flex flex-col gap-3">
-                  {project.details.downloads.map((download, index) => (
-                    <a
-                      key={index}
-                      href={download.href}
-                      download
-                      className="flex items-center gap-2 px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-lg hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors"
-                    >
-                      <Download size={16} />
-                      {download.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </motion.div>
       </motion.div>
@@ -359,9 +367,41 @@ export default function ProjectCarsShowcase() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isMobile, setIsMobile] = useState(false)
   const [bounds, setBounds] = useState({ width: 800, height: 400 })
+  const [spotlightProject, setSpotlightProject] = useState<string | null>(null)
   const playfieldRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<number>()
   const prefersReducedMotion = usePrefersReducedMotion()
+
+  // Spotlight rotation effect - GEV appears 3x more often
+  useEffect(() => {
+    if (prefersReducedMotion) return
+    
+    // Create rotation sequence with GEV appearing 3x more
+    const rotationSequence = [
+      'gev-investment-report',
+      'tigers-vs-cancer',
+      'gev-investment-report',
+      'vba-automation-abm',
+      'gev-investment-report',
+      'actuarial-case-study',
+      'gev-investment-report'
+    ]
+    
+    let currentIndex = 0
+    
+    const cycleSpotlight = () => {
+      setSpotlightProject(rotationSequence[currentIndex])
+      currentIndex = (currentIndex + 1) % rotationSequence.length
+    }
+    
+    // Start immediately
+    cycleSpotlight()
+    
+    // Then rotate every 5 seconds
+    const interval = setInterval(cycleSpotlight, 5000)
+    
+    return () => clearInterval(interval)
+  }, [prefersReducedMotion])
 
   // Initialize car positions
   useEffect(() => {
@@ -608,6 +648,7 @@ export default function ProjectCarsShowcase() {
                 bounds={bounds}
                 isMobile={isMobile}
                 laneIndex={projects.indexOf(project)}
+                isSpotlight={spotlightProject === project.id}
               />
             )
           })}
