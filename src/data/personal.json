@@ -96,17 +96,18 @@
     },
     {
       "id": "gift-of-life-ambassador",
-      "title": "Campus Ambassador",
+      "title": "Campus Ambassador & Club Founder",
       "company": "Gift of Life Marrow Registry",
       "location": "DePauw University",
-      "period": "Feb 2023 – Apr 2024",
+      "period": "Feb 2023 – Present",
       "tagline": "Building the national marrow donor registry",
-      "description": "Led outreach campaigns to expand the national marrow donor registry, educating peers and building momentum through creative incentives and networking.",
+      "description": "Led comprehensive outreach campaigns to expand the national marrow donor registry, founded a campus club, and directly enabled life-saving stem cell transplants through strategic donor recruitment and education initiatives. By February 2026, Gift of Life @ DePauw will have helped save 2 lives from blood-related cancer.",
       "achievements": [
-        "Recruited 150+ new donors in under six months via tabling, presentations, and peer-to-peer campaigns.",
-        "Designed week-by-week outreach plans and scheduled tabling at high-traffic campus events.",
-        "Represented DePauw at the CAP Symposium in Boca Raton, FL, exchanging strategies with peers nationwide.",
-        "Skills: advertising, marketing, tabling, project planning, networking, public speaking."
+        "Recruited 200+ swab registrations resulting in 12 successful donor matches, with another transplant scheduled for completion in January 2026.",
+        "Founded and established a campus club with a core executive team and 20+ active members, creating a sustainable platform for ongoing donor recruitment.",
+        "Educated campus community about blood cancer and stem cell treatment therapy through multiple channels including presentations, tabling events, and campus mixers.",
+        "Represented DePauw at the annual 2023-24 CAP (Campus Ambassador Program) Symposium in Boca Raton, FL, connecting with ambassadors nationwide and deepening knowledge of cancer treatment procedures.",
+        "Skills: club leadership, project management, budgeting, event planning, public speaking, networking."
       ]
     },
     {
@@ -167,6 +168,32 @@
       ],
       "codeUrl": "",
       "demoUrl": "/298.pdf"
+    },
+    {
+      "title": "GE Vernova (NYSE: GEV) — Equity Investment Research Report",
+      "tagline": "GEV Investment Report | Dec 03-25",
+      "description": "Developed a full, analyst-grade equity investment research report on GE Vernova, replicating the structure and rigor of professional buy-side and sell-side research. The project was completed as part of FIN 365: Portfolio Management and focused on evaluating GE Vernova's long-term fundamentals, intrinsic value, and suitability for inclusion in an institutional portfolio such as the DePauw student endowment fund.",
+      "stack": ["Bloomberg (FA, DS, RV, Company Events)", "Equity Research", "Financial Modeling (DCF, SOTP, FCFF)", "Valuation", "Scenario Analysis", "Portfolio Analysis", "Excel", "Investment Writing"],
+      "achievements": [
+        "Conducted business and industry analysis across GE Vernova's Power, Wind, and Electrification segments, with emphasis on backlog visibility, margin recovery, and secular demand drivers such as grid modernization and electrification.",
+        "Analyzed historical performance, focusing on post-2022 financials following the company's spin-off to establish a realistic baseline for forward projections.",
+        "Built segment-level revenue and margin forecasts aligned with management guidance and Bloomberg consensus, stress-tested across multiple market and execution scenarios.",
+        "Constructed a 7-year FCFF DCF model using two terminal value methodologies, alongside a Sum-of-the-Parts (SOTP) valuation to reflect differing growth and profitability profiles across segments.",
+        "Complemented intrinsic valuation with relative valuation analysis using EV/EBITDA and P/E multiples to benchmark GE Vernova against relevant peers.",
+        "Delivered a defensible BUY recommendation, supported by intrinsic value, improving profitability, and long-duration infrastructure demand rather than multiple expansion alone."
+      ],
+      "codeUrl": "",
+      "demoUrl": "",
+      "downloads": [
+        {
+          "label": "Download Full Report (Word)",
+          "href": "/gev-project/Hayer_GEV_Report.docx"
+        },
+        {
+          "label": "Download Valuation Model (Excel)",
+          "href": "/gev-project/Valuation Model- GEV.xlsm"
+        }
+      ]
     }
   ],
   "programs": [

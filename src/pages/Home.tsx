@@ -9,44 +9,46 @@ import CoursesBelt from '@/components/CoursesBelt'
 // Typewriter Text Component with Loop
 function TypewriterText() {
   const [displayedText, setDisplayedText] = useState('')
+  const [isVisible, setIsVisible] = useState(true)
   const phrases = [
     'ex-FP&A @ ABM , ex-PE intern @ Founders Mosaic',
-    'Interests- Analytics; Exercise; Singing; Nature; Chess; Politics; AI'
+    'Interests- Analytics; Exercise; Singing; Nature; Chess; Politics; AI; Service'
   ]
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
 
   const fullText = phrases[currentPhraseIndex]
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (currentIndex < fullText.length) {
-          setDisplayedText(prev => prev + fullText[currentIndex])
-          setCurrentIndex(prev => prev + 1)
-        } else {
-          // Wait a bit before starting to delete
-          setTimeout(() => setIsDeleting(true), 2000)
-        }
-      } else {
-        if (displayedText.length > 0) {
-          setDisplayedText(prev => prev.slice(0, -1))
-        } else {
-          // Reset for next cycle
-          setIsDeleting(false)
+    // Typing phase
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + fullText[currentIndex])
+        setCurrentIndex(prev => prev + 1)
+      }, 40) // 2.5x faster typing
+      return () => clearTimeout(timeout)
+    } 
+    // After typing is complete, wait 7 seconds then fade out
+    else if (isVisible) {
+      const timeout = setTimeout(() => {
+        setIsVisible(false)
+        // After fade out completes, reset and move to next phrase
+        setTimeout(() => {
+          setDisplayedText('')
           setCurrentIndex(0)
           setCurrentPhraseIndex(prev => (prev + 1) % phrases.length)
-        }
-      }
-    }, isDeleting ? 50 : 100) // Faster deletion
-
-    return () => clearTimeout(timeout)
-  }, [currentIndex, fullText, displayedText, isDeleting, currentPhraseIndex, phrases.length])
+          setIsVisible(true)
+        }, 300) // Fade out duration
+      }, 7000) // 7 seconds display time
+      return () => clearTimeout(timeout)
+    }
+  }, [currentIndex, fullText, isVisible, currentPhraseIndex, phrases.length])
 
   return (
     <div className="text-slate-200/95 font-mono font-semibold">
-      {displayedText}
+      <span className={`transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        {displayedText}
+      </span>
       <span className="animate-pulse">|</span>
     </div>
   )

@@ -20,7 +20,8 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Play, Pause, ExternalLink, Github, Code, Heart, BookOpen, Zap, TrendingUp } from 'lucide-react'
+import { X, Play, Pause, ExternalLink, Github, Code, Heart, BookOpen, Zap, TrendingUp, Download } from 'lucide-react'
+import data from '@/data/personal.json'
 
 // Types
 type Project = {
@@ -32,6 +33,7 @@ type Project = {
     bullets: string[]
     skills?: string[]
     links?: { label: string; href: string }[]
+    downloads?: { label: string; href: string }[]
   }
 }
 
@@ -43,61 +45,42 @@ type CarPosition = {
   rotation: number
 }
 
-// Project data
-export const projects: Project[] = [
-  {
-    id: "tigers-vs-cancer",
-    name: "Tigers vs. Cancer (Gift of Life)",
-    tagline: "Saving a life",
-    summary: "Designed and executed a semester-long donor campaign at DePauw, combining outreach, creative incentives, and campus partnerships to exceed targets and directly enable a life-saving transplant.",
+// Project data - loaded from personal.json
+const projectIdMap: Record<string, string> = {
+  "Tigers vs. Cancer (Gift of Life)": "tigers-vs-cancer",
+  "VBA Automation (ABM Industries)": "vba-automation-abm",
+  "Actuarial Case Study — Pickles Mutual (CAS 298 Competition, Team Lead)": "actuarial-case-study",
+  "GE Vernova (NYSE: GEV) — Equity Investment Research Report": "gev-investment-report"
+}
+
+export const projects: Project[] = (data.projects || []).map((p: any) => {
+  const id = projectIdMap[p.title] || p.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+  const links: { label: string; href: string }[] = []
+  
+  if (p.demoUrl) {
+    links.push({ label: p.title.includes("CAS Case Study") ? "Review our pricing solution" : "View Demo", href: p.demoUrl })
+  }
+  
+  return {
+    id,
+    name: p.title,
+    tagline: p.tagline,
+    summary: p.description,
     details: {
-      bullets: [
-        "Surpassed 115% of target donors, outperforming ~90% of peer campuses nationwide.",
-        "Orchestrated the first successful stem-cell transplant from a DePauw donor — a 63-year-old leukemia patient matched with my Beta Theta Pi brother, Sam Applegate ('26).",
-        "Introduced a budget-based lottery: received ~$1 for each donor added to the registry and reinvested $80 of those funds into a raffle prize for early registrants, boosting urgency and participation."
-      ],
-      skills: ["Project Management", "Marketing", "Community Outreach", "Event Planning", "C++", "Data Analysis", "Advertising", "Tabling", "Networking"],
-      links: []
-    }
-  },
-  {
-    id: "vba-automation-abm",
-    name: "VBA Automation (ABM Industries)",
-    tagline: "Taking initiative",
-    summary: "Built two VBA macro tools to automate core FP&A workflows, reducing manual hours and improving the accuracy of operational reporting across ABM's Education division.",
-    details: {
-      bullets: [
-        "Filterer Macro: Automated filtering of large Excel workbooks by Region/Area/District, with options for new sheets or new files, error-handling, sheet protection, and safe save paths. Improved reporting efficiency by 40%+, cutting hours of manual copy-paste.",
-        "Variance Builder Macro: Processed 52-week Anaplan exports for 160+ accounts, generating single-sheet variance reports grouped by FY26 budgets vs. CY25 actuals/forecasts. Added color-grading and grouping, enabling reviewers to detect anomalies in 2 days instead of weeks.",
-        "Strengthened forecast accuracy and freed FP&A analysts to focus on higher-level review instead of data prep."
-      ],
-      skills: ["VBA", "Excel", "Error Handling", "Data Processing", "Financial Analysis", "Data Formatting", "Oracle ERP", "Automation"],
-      links: []
-    }
-  },
-  {
-    id: "actuarial-case-study",
-    name: "Actuarial Case Study — Pickles Mutual (CAS 298 Competition, Team Lead)",
-    tagline: "Learning something new",
-    summary: "Led a team in an actuarial science case competition, learning advanced risk-based pricing on the fly and producing a defensible case study memo that placed 4th of 12 teams despite entering with no prior actuarial experience.",
-    details: {
-      bullets: [
-        "Conducted research into historical loss data and competitor benchmarks.",
-        "Calculated pure premiums, applied expense and profit loads, and structured discounts using actuarial reasoning.",
-        "Wrote and presented a structured case study memo summarizing methods, assumptions, and recommendations for pricing reform.",
-        "Placed 4th out of 12 teams in competitive case study"
-      ],
-      skills: ["Actuarial Science", "Risk Analysis", "Financial Modeling", "Insurance", "Data Analysis", "Team Leadership", "Research", "Case Study Writing"],
-      links: [{ label: "Review our pricing solution", href: "/298.pdf" }]
+      bullets: p.achievements || [],
+      skills: p.stack || [],
+      links,
+      downloads: p.downloads || []
     }
   }
-]
+})
 
 // Project icons and colors
-const projectConfig = {
+const projectConfig: Record<string, { icon: any; color: string; bgColor: string }> = {
   "tigers-vs-cancer": { icon: Heart, color: "from-violet-500 to-purple-500", bgColor: "bg-violet-50 dark:bg-slate-800" },
   "vba-automation-abm": { icon: Code, color: "from-blue-500 to-indigo-500", bgColor: "bg-blue-50 dark:bg-slate-800" },
-  "actuarial-case-study": { icon: BookOpen, color: "from-slate-600 to-slate-700", bgColor: "bg-slate-50 dark:bg-slate-800" }
+  "actuarial-case-study": { icon: BookOpen, color: "from-slate-600 to-slate-700", bgColor: "bg-slate-50 dark:bg-slate-800" },
+  "gev-investment-report": { icon: TrendingUp, color: "from-emerald-500 to-teal-500", bgColor: "bg-emerald-50 dark:bg-slate-800" }
 }
 
 // Hook for reduced motion preference
@@ -261,11 +244,11 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.8, opacity: 0 }}
-          className="relative max-w-2xl w-full bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden"
+          className="relative max-w-2xl w-full max-h-[90vh] bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className={`p-8 bg-gradient-to-r ${config.color} text-white`}>
+          <div className={`p-8 bg-gradient-to-r ${config.color} text-white flex-shrink-0`}>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
@@ -288,8 +271,8 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
           </div>
 
-          {/* Content */}
-          <div className="p-8 space-y-6">
+          {/* Content - Scrollable */}
+          <div className="p-8 space-y-6 overflow-y-auto flex-1">
             <div>
               <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Summary</h3>
               <p className="text-slate-600 dark:text-slate-300 leading-relaxed">{project.summary}</p>
@@ -337,6 +320,25 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
                     >
                       <ExternalLink size={16} />
                       {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {project.details.downloads && project.details.downloads.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Downloads</h3>
+                <div className="flex flex-col gap-3">
+                  {project.details.downloads.map((download, index) => (
+                    <a
+                      key={index}
+                      href={download.href}
+                      download
+                      className="flex items-center gap-2 px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-lg hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-colors"
+                    >
+                      <Download size={16} />
+                      {download.label}
                     </a>
                   ))}
                 </div>
