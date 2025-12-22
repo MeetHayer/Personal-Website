@@ -510,6 +510,15 @@ export default function Home() {
                     View My Projects
                     <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
+                  <Link 
+                    className="inline-flex items-center rounded-xl px-5 py-3 bg-slate-700/90 hover:bg-slate-600 text-white font-medium shadow-lg transition-all duration-300 group" 
+                    to="/writing"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    <GraduationCap size={18} className="mr-2" />
+                    View My Writing
+                    <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
               </motion.div>
             </div>
